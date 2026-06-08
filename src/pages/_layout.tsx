@@ -1,8 +1,26 @@
 import '../styles.css';
 
 import type { ReactNode } from 'react';
+import * as stylex from '@stylexjs/stylex';
 import { Footer } from '../components/footer';
 import { Header } from '../components/header';
+import { DevStyleXInject } from '../components/DevStyleXInject';
+
+const styles = stylex.create({
+  root: {
+    fontFamily: 'Nunito, sans-serif',
+  },
+  main: {
+    margin: '1.5rem',
+    display: 'flex',
+    alignItems: 'center',
+    '@media (min-width: 1024px)': {
+      margin: 0,
+      minHeight: '100svh',
+      justifyContent: 'center',
+    },
+  },
+});
 
 type RootLayoutProps = { children: ReactNode };
 
@@ -10,7 +28,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
   const data = await getData();
 
   return (
-    <div className="font-['Nunito']">
+    <div {...stylex.props(styles.root)}>
       <meta name="description" content={data.description} />
       <link rel="icon" type="image/png" href={data.icon} />
       <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -20,8 +38,9 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;1,400;1,700&display=swap"
         precedence="font"
       />
+      <DevStyleXInject cssHref="/timer-demo/stylex.css" />
       <Header />
-      <main className="m-6 flex items-center *:min-h-64 *:min-w-64 lg:m-0 lg:min-h-svh lg:justify-center">
+      <main {...stylex.props(styles.main)}>
         {children}
       </main>
       <Footer />
