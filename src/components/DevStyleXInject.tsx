@@ -10,10 +10,6 @@ function DevStyleXInjectImpl() {
   return <link rel="stylesheet" href="/virtual:stylex.css" />;
 }
 
-export function DevStyleXInject({ cssHref }: { cssHref: string }) {
-  return import.meta.env.DEV ? (
-    <DevStyleXInjectImpl />
-  ) : (
-    cssHref && <link rel="stylesheet" href={cssHref} />
-  );
+export function DevStyleXInject() {
+  return import.meta.env.DEV ? <DevStyleXInjectImpl /> : null;
 }
