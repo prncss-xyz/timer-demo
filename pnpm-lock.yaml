@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      hono:
-        specifier: ^4.12.14
-        version: 4.12.23
       react:
         specifier: ~19.2.6
         version: 19.2.7

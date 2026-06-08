@@ -4,6 +4,7 @@ import react, { reactCompilerPreset } from '@vitejs/plugin-react';
 import { defineConfig } from 'waku/config';
 
 export default defineConfig({
+  basePath: '/timer-demo/',
   vite: {
     plugins: [
       tailwindcss(),
