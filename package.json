@@ -1,38 +1,44 @@
 {
-  "name": "timer-demo",
-  "version": "0.0.0",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "dev": "waku dev",
-    "build": "waku build",
-    "start": "waku start",
-    "typegen": "waku router typegen",
-    "prepare": "vp config"
-  },
-  "dependencies": {
-    "@stylexjs/stylex": "^0.18.3",
-    "react": "~19.2.6",
-    "react-dom": "~19.2.6",
-    "react-server-dom-webpack": "~19.2.6",
-    "waku": "1.0.0-beta.2"
-  },
-  "devDependencies": {
-    "@commitlint/cli": "^21.0.2",
-    "@commitlint/config-conventional": "^21.0.2",
-    "@commitlint/types": "^21.0.1",
-    "@rolldown/plugin-babel": "^0.2.3",
-    "@stylexjs/unplugin": "^0.18.3",
-    "@types/react": "^19.2.15",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^6.0.1",
-    "@vitest/coverage-v8": "^4.1.8",
-    "babel-plugin-react-compiler": "^1.0.0",
-    "happy-dom": "^20.10.2",
-    "knip": "^6.16.1",
-    "typescript": "^6.0.3",
-    "vite": "catalog:",
-    "vite-plus": "catalog:",
-    "vitest": "catalog:"
-  }
+	"name": "timer-demo",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "waku dev",
+		"build": "waku build",
+		"start": "waku start",
+		"typegen": "waku router typegen",
+		"prepare": "vp config",
+		"dev:test": "vp test watch",
+		"check:test": "vp test --coverage",
+		"check:tsc": "vpr tsc",
+		"check:knip": "vpr knip",
+		"fix": "vp check --fix"
+	},
+	"dependencies": {
+		"@stylexjs/stylex": "^0.18.3",
+		"react": "~19.2.6",
+		"react-dom": "~19.2.6",
+		"react-server-dom-webpack": "~19.2.6",
+		"waku": "1.0.0-beta.2"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^21.0.2",
+		"@commitlint/config-conventional": "^21.0.2",
+		"@commitlint/types": "^21.0.1",
+		"@rolldown/plugin-babel": "^0.2.3",
+		"@stylexjs/unplugin": "^0.18.3",
+		"@types/react": "^19.2.15",
+		"@types/react-dom": "^19.2.3",
+		"@vitejs/plugin-react": "^6.0.1",
+		"@vitest/coverage-v8": "^4.1.8",
+		"babel-plugin-react-compiler": "^1.0.0",
+		"happy-dom": "^20.10.2",
+		"knip": "^6.16.1",
+		"typescript": "^6.0.3",
+		"vite": "catalog:",
+		"vite-plus": "catalog:",
+		"vitest": "catalog:"
+	},
+	"packageManager": "pnpm@11.5.2"
 }

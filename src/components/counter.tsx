@@ -1,48 +1,45 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import * as stylex from '@stylexjs/stylex';
+import * as stylex from '@stylexjs/stylex'
+import { useState } from 'react'
 
 const styles = stylex.create({
-  section: {
-    borderColor: '#60a5fa',
-    marginLeft: '-1rem',
-    marginRight: '-1rem',
-    marginTop: '1rem',
-    borderRadius: '2px',
-    borderWidth: '1px',
-    borderStyle: 'dashed',
-    padding: '1rem',
-  },
-  button: {
-    borderRadius: '1px',
-    backgroundColor: '#000',
-    paddingLeft: '0.5rem',
-    paddingRight: '0.5rem',
-    paddingTop: '0.125rem',
-    paddingBottom: '0.125rem',
-    fontSize: '0.875rem',
-    lineHeight: '1.25rem',
-    color: '#fff',
-    border: 'none',
-    cursor: 'pointer',
-  },
-});
+	button: {
+		backgroundColor: '#000',
+		border: 'none',
+		borderRadius: '1px',
+		color: '#fff',
+		cursor: 'pointer',
+		fontSize: '0.875rem',
+		lineHeight: '1.25rem',
+		paddingBottom: '0.125rem',
+		paddingLeft: '0.5rem',
+		paddingRight: '0.5rem',
+		paddingTop: '0.125rem',
+	},
+	section: {
+		borderColor: '#60a5fa',
+		borderRadius: '2px',
+		borderStyle: 'dashed',
+		borderWidth: '1px',
+		marginLeft: '-1rem',
+		marginRight: '-1rem',
+		marginTop: '1rem',
+		padding: '1rem',
+	},
+})
 
 export const Counter = () => {
-  const [count, setCount] = useState(0);
+	const [count, setCount] = useState(0)
 
-  const handleIncrement = () => setCount((c) => c + 1);
+	const handleIncrement = () => setCount((c) => c + 1)
 
-  return (
-    <section {...stylex.props(styles.section)}>
-      <div>Count: {count}</div>
-      <button
-        onClick={handleIncrement}
-        {...stylex.props(styles.button)}
-      >
-        Increment
-      </button>
-    </section>
-  );
-};
+	return (
+		<section {...stylex.props(styles.section)}>
+			<div>Count: {count}</div>
+			<button onClick={handleIncrement} {...stylex.props(styles.button)}>
+				Increment
+			</button>
+		</section>
+	)
+}
