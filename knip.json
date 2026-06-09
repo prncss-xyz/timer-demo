@@ -3,7 +3,6 @@
 	"entry": [
 		"waku.config.ts!",
 		"src/waku.server.tsx!",
-		"src/waku.client.tsx",
 		"src/pages/**/*.{ts,tsx}!"
 	],
 	"project": ["src/**/*.{ts,tsx}!"],

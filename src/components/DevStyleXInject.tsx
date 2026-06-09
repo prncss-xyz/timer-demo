@@ -7,9 +7,7 @@ function DevStyleXInjectImpl() {
 			void import(/* @vite-ignore */ 'virtual:stylex:css-only')
 		}
 	}, [])
-	return (
-		<link rel='stylesheet' href='/virtual:stylex.css' precedence='default' />
-	)
+	return <link rel='stylesheet' href='/virtual:stylex.css' />
 }
 
 export function DevStyleXInject() {
