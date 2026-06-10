@@ -1,0 +1,6 @@
+- ci
+  - action: load path
+  - viteplus github action
+  - vpr commands
+- codeblocks
+- mermaid

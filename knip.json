@@ -8,9 +8,27 @@
 	"project": ["src/**/*.{ts,tsx}!"],
 	"ignore": [
 		"src/pages.gen.ts",
+		"src/components/MD/*",
+		"src/components/images/*",
+		"src/components/elements/*",
 		"src/components/Box.tsx",
-		"src/components/tokens.stylex.ts"
+		"src/components/tokens.stylex.ts",
+		"src/basePath.ts"
 	],
-	"ignoreDependencies": ["@commitlint/cli"],
+	"ignoreDependencies": [
+		"@commitlint/cli",
+		"@base-ui/react",
+		"@sindresorhus/slugify",
+		"react-icons",
+		"rehype-react",
+		"rehype-sanitize",
+		"rehype-stringify",
+		"remark-breaks",
+		"remark-gfm",
+		"remark-parse",
+		"remark-rehype",
+		"sharp",
+		"unified"
+	],
 	"ignoreBinaries": ["vpr"]
 }

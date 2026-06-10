@@ -10,7 +10,9 @@
 		"moduleResolution": "bundler",
 		"skipLibCheck": true,
 		"noUncheckedIndexedAccess": true,
+		"erasableSyntaxOnly": true,
 		"exactOptionalPropertyTypes": true,
+		"types": ["vite-plus/test/globals"],
 		"jsx": "react-jsx",
 		"paths": {
 			"@/*": ["./src/*"]

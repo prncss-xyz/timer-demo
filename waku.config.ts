@@ -1,7 +1,9 @@
-import { defineConfig } from "waku/config";
-import viteConfig from "./vite.config";
+import { defineConfig } from 'waku/config'
+
+import { basePath } from './src/basePath'
+import vite from './vite.config'
 
 export default defineConfig({
-  basePath: "/timer-demo/",
-  vite: viteConfig,
-});
+	basePath,
+	vite,
+})

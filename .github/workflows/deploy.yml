@@ -37,8 +37,16 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v4
+
       - name: Build site
         run: pnpm build
+        env:
+          VITE_GITHUB_REPOSITORY: ${{ github.repository }}
+          VITE_BASE_URL: ${{ steps.pages.outputs.base_url }}
+          VITE_BASE_PATH: ${{ steps.pages.outputs.base_path }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
