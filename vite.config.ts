@@ -263,5 +263,6 @@ export default defineConfig({
 		environment: 'happy-dom',
 		globals: true,
 		include: ['**/src/**/*.test.{js,ts,jsx,tsx}'],
+		passWithNoTests: true,
 	},
 })
