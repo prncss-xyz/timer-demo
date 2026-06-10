@@ -6,8 +6,8 @@ import { useState } from 'react'
 const styles = stylex.create({
 	button: {
 		backgroundColor: '#000',
-		border: 'none',
 		borderRadius: '1px',
+		borderStyle: 'none',
 		color: '#fff',
 		cursor: 'pointer',
 		fontSize: '0.875rem',

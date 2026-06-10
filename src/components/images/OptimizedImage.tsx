@@ -10,7 +10,8 @@ const styles = create({
 		placeItems: 'center',
 	},
 	content: {
-		gridArea: '1 / 1',
+		gridColumnStart: '1',
+		gridRowStart: '1',
 	},
 	invisible: {
 		zIndex: -1,

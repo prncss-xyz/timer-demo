@@ -1,5 +1,8 @@
+- reflow issues
+  - serve fonts
+- stylex linting rule
+- image caching
 - ci
-  - action: load path
   - viteplus github action
   - vpr commands
 - codeblocks

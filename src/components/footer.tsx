@@ -2,12 +2,19 @@ import * as stylex from '@stylexjs/stylex'
 
 const styles = stylex.create({
 	footer: {
-		'@media (min-width: 1024px)': {
-			bottom: 0,
-			left: 0,
-			position: 'fixed',
+		bottom: {
+			'@media (min-width: 1024px)': 0,
+			default: null,
+		},
+		left: {
+			'@media (min-width: 1024px)': 0,
+			default: null,
 		},
 		padding: '1.5rem',
+		position: {
+			'@media (min-width: 1024px)': 'fixed',
+			default: null,
+		},
 	},
 	link: {
 		color: 'inherit',

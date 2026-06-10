@@ -41,6 +41,7 @@
 		"@commitlint/types": "^21.0.1",
 		"@img/sharp-linux-x64": "^0.34.5",
 		"@rolldown/plugin-babel": "^0.2.3",
+		"@stylexjs/eslint-plugin": "^0.18.3",
 		"@stylexjs/unplugin": "^0.18.3",
 		"@types/qrcode": "^1.5.6",
 		"@types/react": "^19.2.17",

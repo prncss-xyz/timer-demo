@@ -8,14 +8,20 @@ import { Header } from '../components/header'
 
 const styles = stylex.create({
 	main: {
-		'@media (min-width: 1024px)': {
-			justifyContent: 'center',
-			margin: 0,
-			minHeight: '100svh',
-		},
 		alignItems: 'center',
 		display: 'flex',
-		margin: '1.5rem',
+		justifyContent: {
+			'@media (min-width: 1024px)': 'center',
+			default: null,
+		},
+		margin: {
+			'@media (min-width: 1024px)': 0,
+			default: '1.5rem',
+		},
+		minHeight: {
+			'@media (min-width: 1024px)': '100svh',
+			default: null,
+		},
 	},
 	root: {
 		fontFamily: 'Nunito, sans-serif',

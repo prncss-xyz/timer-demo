@@ -31,6 +31,12 @@ export default defineConfig({
 			builtin: true,
 		},
 		ignorePatterns: ['.*'],
+		jsPlugins: [
+			{
+				name: 'stylex',
+				specifier: '@stylexjs/eslint-plugin',
+			},
+		],
 		options: {
 			denyWarnings: true,
 			typeAware: true,
@@ -137,6 +143,15 @@ export default defineConfig({
 			'require-yield': 'error',
 			'sort-keys': 'error',
 			'sort-vars': 'error',
+			'stylex/enforce-extension': 'error',
+			'stylex/no-conflicting-props': 'error',
+			'stylex/no-legacy-contextual-styles': 'error',
+			'stylex/no-lookahead-selectors': 'error',
+			'stylex/no-nonstandard-styles': 'error',
+			'stylex/no-unused': 'error',
+			'stylex/sort-keys': 'off',
+			'stylex/valid-shorthands': 'error',
+			'stylex/valid-styles': 'error',
 			'typescript/await-thenable': 'error',
 			'typescript/ban-ts-comment': 'error',
 			'typescript/no-duplicate-enum-values': 'error',

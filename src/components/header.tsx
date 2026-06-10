@@ -3,15 +3,23 @@ import { Link } from 'waku'
 
 const styles = stylex.create({
 	header: {
-		'@media (min-width: 1024px)': {
-			left: 0,
-			position: 'fixed',
-			top: 0,
-		},
 		alignItems: 'center',
+		columnGap: '1rem',
 		display: 'flex',
-		gap: '1rem',
+		left: {
+			'@media (min-width: 1024px)': 0,
+			default: null,
+		},
 		padding: '1.5rem',
+		position: {
+			'@media (min-width: 1024px)': 'fixed',
+			default: null,
+		},
+		rowGap: '1rem',
+		top: {
+			'@media (min-width: 1024px)': 0,
+			default: null,
+		},
 	},
 	link: {
 		color: 'inherit',
