@@ -206,7 +206,7 @@ export default defineConfig({
 	run: {
 		tasks: {
 			ci: {
-				command: 'vp check && vpr knip && vpr tsc && vpr test',
+				command: 'vp check && vpr knip && vpr tsc && vpr test && vpr build',
 			},
 			commitlint: {
 				command: 'commitlint --edit',
@@ -215,7 +215,8 @@ export default defineConfig({
 				command: 'knip --production --cache',
 			},
 			pre_commit: {
-				command: 'vp staged && vpr knip && vpr tsc && vpr test --changed',
+				command:
+					'vp staged && vpr knip && vpr tsc && vpr test --changed && vpr build',
 			},
 			test: {
 				cache: true,

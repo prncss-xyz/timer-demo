@@ -1,9 +1,13 @@
 - reflow issues
   - serve fonts
-- stylex linting rule
 - image caching
 - ci
   - viteplus github action
   - vpr commands
-- codeblocks
-- mermaid
+- mdx
+  - code hike
+  - codeblocks
+  - mermaid
+- rename components to layouts
+- use Box in header and footer
+- menu
