@@ -1,9 +1,8 @@
 - reflow issues
 - image caching
-- css reset
 - mdx
   - code hike
   - codeblocks
   - mermaid
-- use Box in header and footer
 - menu
+- dark mode
