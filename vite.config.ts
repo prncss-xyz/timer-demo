@@ -186,15 +186,18 @@ export default defineConfig({
 		},
 	},
 	plugins: [
-		stylex.vite({
-			aliases: {
-				'@/*': ['src/*'],
-			},
-			devMode: 'css-only',
-			devPersistToDisk: true,
-			runtimeInjection: false,
-			useCSSLayers: true,
-		}),
+		// the StyleX Vite plugin (@stylexjs/unplugin), keeps file watchers and cause the Vite dev server to keep alive when tests have completed
+		process.env.VITEST
+			? null
+			: stylex.vite({
+					aliases: {
+						'@/*': ['src/*'],
+					},
+					devMode: 'css-only',
+					devPersistToDisk: true,
+					runtimeInjection: false,
+					useCSSLayers: true,
+				}),
 		react(),
 		babel({ presets: [reactCompilerPreset()] }),
 	],
@@ -264,5 +267,6 @@ export default defineConfig({
 		globals: true,
 		include: ['**/src/**/*.test.{js,ts,jsx,tsx}'],
 		passWithNoTests: true,
+		pool: 'forks',
 	},
 })
