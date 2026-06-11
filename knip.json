@@ -28,7 +28,8 @@
 		"remark-parse",
 		"remark-rehype",
 		"sharp",
-		"unified"
+		"unified",
+		"content-collections"
 	],
 	"ignoreBinaries": ["vpr"]
 }
