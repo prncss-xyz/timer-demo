@@ -191,7 +191,7 @@ export default defineConfig({
 			? null
 			: stylex.vite({
 					aliases: {
-						'@/*': ['src/*'],
+						'@/*': [fileURLToPath(new URL('./src/*', import.meta.url))],
 					},
 					devMode: 'css-only',
 					devPersistToDisk: true,
