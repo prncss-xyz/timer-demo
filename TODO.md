@@ -1,5 +1,5 @@
+- serve fonts
 - reflow issues
-  - serve fonts
 - image caching
 - ci
   - viteplus github action

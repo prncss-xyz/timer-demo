@@ -1,4 +1,8 @@
 import '../styles.css'
+import '@fontsource/nunito/400.css'
+import '@fontsource/nunito/400-italic.css'
+import '@fontsource/nunito/700.css'
+import '@fontsource/nunito/700-italic.css'
 import * as stylex from '@stylexjs/stylex'
 import type { ReactNode } from 'react'
 
@@ -37,13 +41,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 		<div {...stylex.props(styles.root)}>
 			<meta name='description' content={data.description} />
 			<link rel='icon' type='image/png' href={data.icon} />
-			<link rel='preconnect' href='https://fonts.googleapis.com' />
-			<link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin='' />
-			<link
-				rel='stylesheet'
-				href='https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;1,400;1,700&display=block'
-				precedence='font'
-			/>
+
 			<DevStyleXInject />
 			<Header />
 			<main {...stylex.props(styles.main)}>{children}</main>
