@@ -15,3 +15,7 @@ export function Ol({ style, ...rest }: ElemProps<'ol'>) {
 export function Ul({ style, ...rest }: ElemProps<'ul'>) {
 	return <ul {...rest} {...props(styles.base, style)} />
 }
+
+export function Li({ style, ...rest }: ElemProps<'li'>) {
+	return <li {...rest} {...props(style)} />
+}

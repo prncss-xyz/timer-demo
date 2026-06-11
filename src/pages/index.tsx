@@ -1,5 +1,4 @@
 import * as stylex from '@stylexjs/stylex'
-import { Link } from 'waku'
 
 import { Box, Col, Row } from '@/layouts/Box'
 
@@ -16,12 +15,6 @@ const styles = stylex.create({
 		letterSpacing: '-0.025em',
 		lineHeight: '2.5rem',
 		margin: 0,
-	},
-	link: {
-		color: 'inherit',
-		display: 'inline-block',
-		marginTop: '1rem',
-		textDecoration: 'underline',
 	},
 })
 
@@ -40,9 +33,6 @@ export default async function HomePage() {
 			</Col>
 			<p>{data.body}</p>
 			<Counter />
-			<Link to='/about' {...stylex.props(styles.link)}>
-				About page
-			</Link>
 		</div>
 	)
 }

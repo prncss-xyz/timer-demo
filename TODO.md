@@ -1,8 +1,9 @@
 - reflow issues
 - image caching
 - mdx
-  - code hike
   - codeblocks
+  - code hike
   - mermaid
+  - search
 - menu
 - dark mode

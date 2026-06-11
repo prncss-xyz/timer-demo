@@ -1,5 +1,6 @@
 import { fileURLToPath } from 'node:url'
 
+import contentCollections from '@content-collections/vite'
 import babel from '@rolldown/plugin-babel'
 import stylex from '@stylexjs/unplugin'
 import react, { reactCompilerPreset } from '@vitejs/plugin-react'
@@ -200,6 +201,7 @@ export default defineConfig({
 				}),
 		react(),
 		babel({ presets: [reactCompilerPreset()] }),
+		contentCollections(),
 	],
 	resolve: {
 		alias: {

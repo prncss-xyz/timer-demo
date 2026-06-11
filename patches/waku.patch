@@ -1,0 +1,56 @@
+diff --git a/dist/lib/vite-plugins/fs-router-typegen.js b/dist/lib/vite-plugins/fs-router-typegen.js
+index 919f47e62d343e9c2fdabcc4ad6f0fb4b5f5107c..9742a404e4d54a1a2f57f25b505987706a8c3e3d 100644
+--- a/dist/lib/vite-plugins/fs-router-typegen.js
++++ b/dist/lib/vite-plugins/fs-router-typegen.js
+@@ -136,7 +136,7 @@ export async function generateFsRouterTypes(pagesDir) {
+             if (entry.isDirectory()) {
+                 await collectFiles(fullPath, files);
+             } else {
+-                if (entry.name.endsWith('.tsx')) {
++                if (entry.name.endsWith('.tsx') || entry.name.endsWith('.mdx')) {
+                     files.push(fullPath.slice(pagesDir.length));
+                 }
+             }
+@@ -144,6 +144,10 @@ export async function generateFsRouterTypes(pagesDir) {
+         return files;
+     };
+     const fileExportsGetConfig = async (filePath)=>{
++        if (filePath.endsWith('.mdx')) {
++            const source = readFileSync(pagesDir + filePath, 'utf8');
++            return source.includes('export const getConfig') || source.includes('export function getConfig');
++        }
+         const file = await parseModule(pagesDir + filePath);
+         return file.body.some((node)=>{
+             if (node.type !== 'ExportNamedDeclaration') {
+@@ -170,10 +174,10 @@ export async function generateFsRouterTypes(pagesDir) {
+             } catch  {
+                 return null;
+             }
+-            if (filePath.endsWith('/_layout.tsx') || isIgnoredPath(filePath.split('/'))) {
++            if (filePath.endsWith('/_layout.tsx') || filePath.endsWith('/_layout.mdx') || isIgnoredPath(filePath.split('/'))) {
+                 continue;
+-            } else if (filePath.endsWith('/index.tsx')) {
+-                const path = filePath.slice(0, -'/index.tsx'.length);
++            } else if (filePath.endsWith('/index.tsx') || filePath.endsWith('/index.mdx')) {
++                const path = filePath.slice(0, filePath.endsWith('/index.mdx') ? -'/index.mdx'.length : -'/index.tsx'.length);
+                 fileInfo.push({
+                     path: getGrouplessPath(path) || '/',
+                     src,
+@@ -181,7 +185,7 @@ export async function generateFsRouterTypes(pagesDir) {
+                 });
+             } else {
+                 fileInfo.push({
+-                    path: getGrouplessPath(filePath.replace('.tsx', '')),
++                    path: getGrouplessPath(filePath.replace(/\.(tsx|mdx)$/, '')),
+                     src,
+                     hasGetConfig
+                 });
+@@ -201,7 +205,7 @@ export async function generateFsRouterTypes(pagesDir) {
+                     continue;
+                 }
+                 const moduleName = moduleNames[file.src];
+-                lines.push(`// prettier-ignore`, `import type { getConfig as ${moduleName}_getConfig } from './${SRC_PAGES}/${file.src.replace('.tsx', '')}';`);
++                lines.push(`// prettier-ignore`, `import type { getConfig as ${moduleName}_getConfig } from './${SRC_PAGES}/${file.src.replace(/\.(tsx|mdx)$/, '')}';`);
+             }
+         }
+         lines.push('', '// prettier-ignore', 'type Page =');
