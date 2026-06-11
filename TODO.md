@@ -1,9 +1,5 @@
-- serve fonts
 - reflow issues
 - image caching
-- ci
-  - viteplus github action
-  - vpr commands
 - mdx
   - code hike
   - codeblocks

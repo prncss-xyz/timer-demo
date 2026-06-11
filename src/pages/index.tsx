@@ -1,7 +1,7 @@
 import * as stylex from '@stylexjs/stylex'
 import { Link } from 'waku'
 
-import { Box, Col, Row } from '@/components/Box'
+import { Box, Col, Row } from '@/layouts/Box'
 
 import { Counter } from '../components/counter'
 

@@ -6,9 +6,9 @@ import '@fontsource/nunito/700-italic.css'
 import * as stylex from '@stylexjs/stylex'
 import type { ReactNode } from 'react'
 
-import { DevStyleXInject } from '../components/DevStyleXInject'
-import { Footer } from '../components/footer'
-import { Header } from '../components/header'
+import { DevStyleXInject } from '../layouts/DevStyleXInject'
+import { Footer } from '../layouts/footer'
+import { Header } from '../layouts/header'
 
 const styles = stylex.create({
 	main: {

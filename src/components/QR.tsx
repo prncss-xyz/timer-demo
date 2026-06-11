@@ -1,9 +1,9 @@
 import { create, props } from '@stylexjs/stylex'
 import qr from 'qrcode'
 
-import { Col } from './Box'
-import { A } from './elements/A'
-import { fontSizes } from './tokens.stylex'
+import { Col } from '@/layouts/Box'
+import { A } from '@/layouts/elements/A'
+import { fontSizes } from '@/layouts/tokens.stylex'
 
 const styles = create({
 	legend: {

@@ -8,11 +8,11 @@
 	"project": ["src/**/*.{ts,tsx}!"],
 	"ignore": [
 		"src/pages.gen.ts",
-		"src/components/MD/*",
-		"src/components/images/*",
-		"src/components/elements/*",
-		"src/components/Box.tsx",
-		"src/components/tokens.stylex.ts",
+		"src/layouts/MD/*",
+		"src/layouts/images/*",
+		"src/layouts/elements/*",
+		"src/layouts/Box.tsx",
+		"src/layouts/tokens.stylex.ts",
 		"src/basePath.ts"
 	],
 	"ignoreDependencies": [

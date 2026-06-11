@@ -1,8 +1,7 @@
 import { create, props } from '@stylexjs/stylex'
 
-import { getResponsiveImage } from '@/components/images/getResponsiveImage'
-import { OptimizedImage } from '@/components/images/OptimizedImage'
-
+import { getResponsiveImage } from '../images/getResponsiveImage'
+import { OptimizedImage } from '../images/OptimizedImage'
 import { ElemProps } from './types'
 
 const styles = create({

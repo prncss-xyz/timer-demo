@@ -243,7 +243,7 @@ export default defineConfig({
 			},
 			tsc: {
 				cache: true,
-				command: 'tsc --noEmit',
+				command: 'tsgo --noEmit',
 				input: [
 					'tsconfig.json',
 					'package.json',
