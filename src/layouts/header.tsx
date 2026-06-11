@@ -1,6 +1,8 @@
 import * as stylex from '@stylexjs/stylex'
 import { Link } from 'waku'
 
+import { H2 } from './elements/Heading'
+
 const styles = stylex.create({
 	header: {
 		alignItems: 'center',
@@ -21,10 +23,6 @@ const styles = stylex.create({
 			default: null,
 		},
 	},
-	link: {
-		color: 'inherit',
-		textDecoration: 'none',
-	},
 	title: {
 		fontSize: '1.125rem',
 		fontWeight: 700,
@@ -37,11 +35,9 @@ const styles = stylex.create({
 export const Header = () => {
 	return (
 		<header {...stylex.props(styles.header)}>
-			<h2 {...stylex.props(styles.title)}>
-				<Link to='/' {...stylex.props(styles.link)}>
-					Waku starter
-				</Link>
-			</h2>
+			<H2 {...stylex.props(styles.title)}>
+				<Link to='/'>Waku starter</Link>
+			</H2>
 		</header>
 	)
 }

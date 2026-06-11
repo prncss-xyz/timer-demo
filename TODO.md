@@ -1,9 +1,9 @@
 - reflow issues
 - image caching
+- css reset
 - mdx
   - code hike
   - codeblocks
   - mermaid
-- rename components to layouts
 - use Box in header and footer
 - menu
