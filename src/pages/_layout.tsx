@@ -1,8 +1,3 @@
-import '../styles.css'
-import '@fontsource/nunito/400.css'
-import '@fontsource/nunito/400-italic.css'
-import '@fontsource/nunito/700.css'
-import '@fontsource/nunito/700-italic.css'
 import * as stylex from '@stylexjs/stylex'
 import type { ReactNode } from 'react'
 
