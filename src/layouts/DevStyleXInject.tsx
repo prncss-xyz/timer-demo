@@ -7,9 +7,13 @@ function DevStyleXInjectImpl() {
 			void import(/* @vite-ignore */ 'virtual:stylex:css-only')
 		}
 	}, [])
-	return null
+	return <link href='/virtual:stylex.css' rel='stylesheet' precedence='high' />
 }
 
-export function DevStyleXInject() {
-	return import.meta.env.DEV ? <DevStyleXInjectImpl /> : null
+export function DevStyleXInject({ cssHref }: { cssHref: string }) {
+	return import.meta.env.DEV ? (
+		<DevStyleXInjectImpl />
+	) : (
+		<link href={cssHref} rel='stylesheet' />
+	)
 }
