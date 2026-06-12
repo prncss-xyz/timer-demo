@@ -201,7 +201,9 @@ export default defineConfig({
 				}),
 		react(),
 		babel({ presets: [reactCompilerPreset()] }),
-		contentCollections(),
+		contentCollections({
+			isEnabled: () => !process.env.VITEST,
+		}),
 	],
 	resolve: {
 		alias: {
