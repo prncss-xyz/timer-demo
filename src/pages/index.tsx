@@ -2,8 +2,6 @@ import * as stylex from '@stylexjs/stylex'
 
 import { Box, Col, Row } from '@/layouts/Box'
 
-import { Counter } from '../components/counter'
-
 const styles = stylex.create({
 	container: {
 		minHeight: '16rem',
@@ -32,7 +30,6 @@ export default async function HomePage() {
 				</Row>
 			</Col>
 			<p>{data.body}</p>
-			<Counter />
 		</div>
 	)
 }

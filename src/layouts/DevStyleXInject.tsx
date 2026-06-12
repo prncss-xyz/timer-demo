@@ -14,6 +14,6 @@ export function DevStyleXInject({ cssHref }: { cssHref: string }) {
 	return import.meta.env.DEV ? (
 		<DevStyleXInjectImpl />
 	) : (
-		<link href={cssHref} rel='stylesheet' />
+		<link href={cssHref} rel='stylesheet' precedence='high' />
 	)
 }

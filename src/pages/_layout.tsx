@@ -1,14 +1,11 @@
-import './styles.css'
-import '@fontsource/nunito/400.css'
-import '@fontsource/nunito/400-italic.css'
-import '@fontsource/nunito/700.css'
-import '@fontsource/nunito/700-italic.css'
+import './reset.css'
+import './nunito.css'
 import * as stylex from '@stylexjs/stylex'
 import type { ReactNode } from 'react'
 
-import { DevStyleXInject } from '../layouts/DevStyleXInject'
-import { Footer } from '../layouts/footer'
-import { Header } from '../layouts/header'
+import { DevStyleXInject } from '@/layouts/DevStyleXInject'
+import { Footer } from '@/layouts/footer'
+import { Header } from '@/layouts/header'
 
 const styles = stylex.create({
 	main: {
@@ -28,7 +25,7 @@ const styles = stylex.create({
 		},
 	},
 	root: {
-		fontFamily: 'Nunito, sans-serif',
+		fontFamily: 'Nunito',
 	},
 })
 

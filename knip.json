@@ -16,6 +16,7 @@
 		"src/basePath.ts"
 	],
 	"ignoreDependencies": [
+		"@fontsource/nunito",
 		"@commitlint/cli",
 		"@base-ui/react",
 		"@sindresorhus/slugify",
