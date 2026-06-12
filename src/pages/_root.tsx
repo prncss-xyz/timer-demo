@@ -5,7 +5,11 @@ type RootElementProps = { children: ReactNode }
 export default async function RootElement({ children }: RootElementProps) {
 	return (
 		<html lang='en'>
-			<head></head>
+			<head>
+				{import.meta.env.DEV && (
+					<link rel='stylesheet' href='/virtual:stylex.css' />
+				)}
+			</head>
 			<body>{children}</body>
 		</html>
 	)
