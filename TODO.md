@@ -1,9 +1,14 @@
 - fix: flash of unstyled contents
 - image caching
+- styling
+    - dark mode
+    - color palette
+    - create design tokens
+    - enforce design tokens
 - mdx
+  - blockquote, small, sub, sup
   - codeblocks
   - code hike
   - mermaid
   - search
 - menu
-- dark mode

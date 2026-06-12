@@ -13,7 +13,6 @@ const styles = create({
 	},
 })
 
-// TODO: as ratio
 const sizeVariants = create({
 	1: {
 		fontSize: fontSizes[6],
