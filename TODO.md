@@ -1,4 +1,4 @@
-- reflow issues
+- fix: flash of unstyled contents
 - image caching
 - mdx
   - codeblocks
