@@ -1,3 +1,5 @@
+import fs from 'node:fs'
+import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import contentCollections from '@content-collections/vite'
@@ -224,6 +226,28 @@ export default defineConfig({
 						}
 					}
 					delete bundle[webfontsAsset.fileName]
+				}
+			},
+			writeBundle(options) {
+				if (options.dir && options.dir.includes('public')) {
+					const serverAssetsDir = path.resolve(options.dir, '../server/assets')
+					const publicAssetsDir = path.resolve(options.dir, 'assets')
+					if (fs.existsSync(serverAssetsDir)) {
+						const files = fs.readdirSync(serverAssetsDir)
+						for (const file of files) {
+							if (
+								file.endsWith('.woff2') ||
+								file.endsWith('.woff') ||
+								file.endsWith('.ttf')
+							) {
+								fs.mkdirSync(publicAssetsDir, { recursive: true })
+								fs.copyFileSync(
+									path.resolve(serverAssetsDir, file),
+									path.resolve(publicAssetsDir, file),
+								)
+							}
+						}
+					}
 				}
 			},
 		},

@@ -14,8 +14,8 @@ export const colors = defineVars({
 })
 
 export const fontFamilies = defineVars({
-	base: 'nunito',
-	heading: 'nunito',
+	base: 'Nunito',
+	heading: 'Nunito',
 })
 
 export const fontWeights = defineVars({
