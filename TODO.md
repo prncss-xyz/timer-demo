@@ -1,8 +1,6 @@
 - styling
   - dark mode
     - storage key as param
-    - fix system preference
-    - make script a local component
   - color palette
   - create design tokens
   - enforce design tokens

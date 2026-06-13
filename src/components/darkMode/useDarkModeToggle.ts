@@ -1,17 +1,31 @@
 import { useEffect, useState } from 'react'
+
+import { themeKey } from './consts'
+
 export type Theme = 'light' | 'dark' | 'system'
+const init: Theme = 'system'
+
+function parseDarkMode(u: unknown): Theme {
+	switch (u) {
+		case 'light':
+			return 'light'
+		case 'dark':
+			return 'dark'
+		default:
+			return 'system'
+	}
+}
 
 export function useDarkModeToggle() {
-	const [theme, setTheme] = useState<Theme>('system')
+	const [theme, setTheme] = useState(init)
 
 	useEffect(() => {
-		const savedTheme = (localStorage.getItem('theme') as Theme) || 'system'
-		setTheme(savedTheme)
+		setTheme(parseDarkMode(localStorage.getItem(themeKey)))
 	}, [])
 
 	const updateTheme = (next: Theme) => {
 		setTheme(next)
-		localStorage.setItem('theme', next)
+		localStorage.setItem(themeKey, next)
 
 		const dark =
 			next === 'dark' ||
@@ -24,9 +38,8 @@ export function useDarkModeToggle() {
 		if (theme !== 'system') return
 
 		const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-		const handleChange = (e: MediaQueryListEvent) => {
+		const handleChange = (e: MediaQueryListEvent) =>
 			document.documentElement.classList.toggle('dark', e.matches)
-		}
 
 		mediaQuery.addEventListener('change', handleChange)
 		return () => mediaQuery.removeEventListener('change', handleChange)

@@ -2,6 +2,7 @@ import { act } from 'react'
 import { createRoot } from 'react-dom/client'
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
 
+import { themeKey } from './consts'
 import { DarkModeToggle } from './DarkModeToggle'
 
 vi.mock('@stylexjs/stylex', () => ({
@@ -66,7 +67,7 @@ describe('ThemeToggle', () => {
 			lightBtn.click()
 		})
 
-		expect(localStorage.getItem('theme')).toBe('light')
+		expect(localStorage.getItem(themeKey)).toBe('light')
 		expect(document.documentElement.classList.contains('dark')).toBe(false)
 	})
 
@@ -83,7 +84,7 @@ describe('ThemeToggle', () => {
 			darkBtn.click()
 		})
 
-		expect(localStorage.getItem('theme')).toBe('dark')
+		expect(localStorage.getItem(themeKey)).toBe('dark')
 		expect(document.documentElement.classList.contains('dark')).toBe(true)
 	})
 })
