@@ -33,13 +33,13 @@ const styles = stylex.create({
 
 ## Applying styles
 
-Convert StyleX style objects to props using `stylex.props()`:
+Apply StyleX styles using the `sx` prop:
 
 ```tsx
 function Component() {
 	return (
-		<div {...stylex.props(styles.container)}>
-			<h1 {...stylex.props(styles.title)}>Hello</h1>
+		<div sx={styles.container}>
+			<h1 sx={styles.title}>Hello</h1>
 		</div>
 	)
 }
@@ -47,41 +47,38 @@ function Component() {
 
 ### Merging styles
 
-Pass multiple styles to merge them. The last style wins for conflicting properties:
+Pass multiple styles as an array to merge them. The last style wins for conflicting properties:
 
 ```tsx
 // styles.highlighted overrides conflicting properties from styles.base
-<div {...stylex.props(styles.base, styles.highlighted)} />
-
-// Or passed in as arrays
-<div {...stylex.props([styles.base, styles.highlighted])} />
+<div sx={[styles.base, styles.highlighted]} />
 ```
 
 ### Conditional styles
 
-Use JavaScript expressions for conditional styling:
+Use JavaScript expressions and arrays for conditional styling:
 
 ```tsx
 <div
-	{...stylex.props(
+	sx={[
 		styles.base,
 		isActive && styles.active,
 		isDisabled && styles.disabled,
 		variant === 'primary' ? styles.primary : styles.secondary,
-	)}
+	]}
 />
 ```
 
-### Passing styles as props
+### Passing styles as props (via `sx`)
 
-Accept styles from parent components:
+Accept styles from parent components using the `sx` prop:
 
 ```tsx
 import type { StyleXStyles } from '@stylexjs/stylex'
 
 type Props = {
 	children: React.ReactNode
-	style?: StyleXStyles
+	sx?: StyleXStyles
 }
 
 const styles = stylex.create({
@@ -91,9 +88,9 @@ const styles = stylex.create({
 	},
 })
 
-function Card({ children, style }: Props) {
-	// Local styles first, then prop styles (so props can override)
-	return <div {...stylex.props(styles.card, style)}>{children}</div>
+function Card({ children, sx }: Props) {
+	// Local styles first, then sx prop (so parents can override)
+	return <div sx={[styles.card, sx]}>{children}</div>
 }
 ```
 
@@ -107,7 +104,7 @@ const styles = stylex.create({
 	reset: { margin: null, padding: null }, // Removes margin and padding
 })
 
-;<div {...stylex.props(styles.base, styles.reset)} />
+;<div sx={[styles.base, styles.reset]} />
 ```
 
 ---
@@ -207,8 +204,8 @@ const styles = stylex.create({
   }),
 });
 
-<div {...stylex.props(styles.bar(100))} />
-<div {...stylex.props(styles.positioned(mouseX, mouseY))} />
+<div sx={styles.bar(100)} />
+<div sx={styles.positioned(mouseX, mouseY)} />
 ```
 
 ---
@@ -304,7 +301,7 @@ export const darkTheme = stylex.createTheme(colors, {
 // Apply theme to a container
 function App({ isDark, children }) {
 	return (
-		<div {...stylex.props(isDark && darkTheme)}>
+		<div sx={isDark && darkTheme}>
 			{children} {/* All descendants use theme values */}
 		</div>
 	)
@@ -331,8 +328,8 @@ const styles = stylex.create({
 	},
 })
 
-;<div {...stylex.props(stylex.defaultMarker())}>
-	<div {...stylex.props(styles.card)}>Hover the parent to move me</div>
+;<div sx={stylex.defaultMarker()}>
+	<div sx={styles.card}>Hover the parent to move me</div>
 </div>
 ```
 
@@ -442,7 +439,7 @@ Accept any StyleX styles:
 import type { StyleXStyles } from '@stylexjs/stylex'
 
 type Props = {
-	style?: StyleXStyles
+	sx?: StyleXStyles
 }
 ```
 
@@ -450,7 +447,7 @@ Constrain to specific properties:
 
 ```tsx
 type Props = {
-	style?: StyleXStyles<{
+	sx?: StyleXStyles<{
 		color?: string
 		backgroundColor?: string
 	}>
@@ -466,7 +463,7 @@ import type { StyleXStylesWithout } from '@stylexjs/stylex'
 
 type Props = {
 	// Allow all styles except layout properties
-	style?: StyleXStylesWithout<{
+	sx?: StyleXStylesWithout<{
 		margin: unknown
 		padding: unknown
 		width: unknown
@@ -484,7 +481,7 @@ import type { VarGroup } from '@stylexjs/stylex'
 import { colors } from './tokens.stylex'
 
 function ThemeProvider({ theme }: { theme: VarGroup<typeof colors> }) {
-	return <div {...stylex.props(theme)}>{children}</div>
+	return <div sx={theme}>{children}</div>
 }
 ```
 
@@ -512,14 +509,14 @@ const styles = stylex.create({
 
 ### Don't use `style` or `className` props
 
-Do not apply `style` or `className` props on an element with a `stylex.props()` spread.
+Do not apply `style` or `className` props on an element with an `sx` prop.
 
 ```tsx
 // invalid: no `classname` and `style` prop usage
-<div className="m-10" style={style} {...stylex.props(styles.container)} />
+<div className="m-10" style={style} sx={styles.container} />
 
 // valid
-<div {...stylex.props(styles.container)} />
+<div sx={styles.container} />
 ```
 
 ### Don't use media queries or pseudo-classes at the top level
