@@ -86,33 +86,33 @@ const styles = stylex.create({
 
 export default async function HomePage() {
 	return (
-		<div {...stylex.props(styles.container)}>
+		<div sx={styles.container}>
 			<title>Dark Mode Demo</title>
 
-			<div {...stylex.props(styles.textSection)}>
-				<span {...stylex.props(styles.badge)}>Feature Complete</span>
-				<h1 {...stylex.props(styles.heading)}>Sleek Dark Mode</h1>
-				<p {...stylex.props(styles.description)}>
+			<div sx={styles.textSection}>
+				<span sx={styles.badge}>Feature Complete</span>
+				<h1 sx={styles.heading}>Sleek Dark Mode</h1>
+				<p sx={styles.description}>
 					A gorgeous web application showcasing a persisted three-state dark
 					mode toggle (Light, Dark, and System theme synchronization) built
 					using StyleX and Waku.
 				</p>
 
-				<div {...stylex.props(styles.featureList)}>
-					<div {...stylex.props(styles.featureItem)}>
-						<div {...stylex.props(styles.bullet)} />
+				<div sx={styles.featureList}>
+					<div sx={styles.featureItem}>
+						<div sx={styles.bullet} />
 						<span>3-State Persistence (Light / Dark / System)</span>
 					</div>
-					<div {...stylex.props(styles.featureItem)}>
-						<div {...stylex.props(styles.bullet)} />
+					<div sx={styles.featureItem}>
+						<div sx={styles.bullet} />
 						<span>Zero Flash of Unthemed Content (FOUC)</span>
 					</div>
-					<div {...stylex.props(styles.featureItem)}>
-						<div {...stylex.props(styles.bullet)} />
+					<div sx={styles.featureItem}>
+						<div sx={styles.bullet} />
 						<span>System theme auto-update listeners</span>
 					</div>
-					<div {...stylex.props(styles.featureItem)}>
-						<div {...stylex.props(styles.bullet)} />
+					<div sx={styles.featureItem}>
+						<div sx={styles.bullet} />
 						<span>Premium responsive interface using StyleX</span>
 					</div>
 				</div>

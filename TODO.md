@@ -1,10 +1,8 @@
 - styling
-  - dark mode
-    - storage key as param
   - color palette
   - create design tokens
   - enforce design tokens
-    stylex sx
+  - stylex sx
 - QR
   - moins flou
 - image caching

@@ -16,7 +16,7 @@ const styles = stylex.create({
 
 export default async function QRPage() {
 	return (
-		<div {...stylex.props(styles.container)}>
+		<div sx={styles.container}>
 			<title>QR Code - {title}</title>
 			<QR href={baseUrl} name={title} />
 		</div>

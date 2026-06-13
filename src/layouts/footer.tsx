@@ -26,14 +26,14 @@ const styles = stylex.create({
 
 export const Footer = () => {
 	return (
-		<footer {...stylex.props(styles.footer)}>
+		<footer sx={styles.footer}>
 			<div>
 				visit{' '}
 				<a
 					href='https://waku.gg/'
 					target='_blank'
 					rel='noreferrer'
-					{...stylex.props(styles.link)}
+					sx={styles.link}
 				>
 					waku.gg
 				</a>{' '}

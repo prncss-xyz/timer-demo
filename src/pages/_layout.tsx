@@ -36,13 +36,13 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 	const data = await getData()
 
 	return (
-		<div {...stylex.props(styles.root)}>
+		<div sx={styles.root}>
 			<meta name='description' content={data.description} />
 			<link rel='icon' type='image/png' href={data.icon} />
 
 			<DevStyleXInject />
 			<Header />
-			<main {...stylex.props(styles.main)}>{children}</main>
+			<main sx={styles.main}>{children}</main>
 			<Footer />
 		</div>
 	)

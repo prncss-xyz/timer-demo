@@ -86,16 +86,12 @@ export function DarkModeToggle() {
 
 	return (
 		<div
-			{...stylex.props(styles.container)}
+			sx={styles.container}
 			role='radiogroup'
 			aria-label='Choose appearance theme'
 		>
 			<div
-				{...stylex.props(
-					styles.indicator,
-					styles.indicatorAnimated,
-					styles[theme],
-				)}
+				sx={[styles.indicator, styles.indicatorAnimated, styles[theme]]}
 				aria-hidden='true'
 			/>
 
@@ -104,13 +100,10 @@ export function DarkModeToggle() {
 				role='radio'
 				aria-checked={theme === 'light'}
 				onClick={() => updateTheme('light')}
-				{...stylex.props(
-					styles.button,
-					theme === 'light' && styles.activeButton,
-				)}
+				sx={[styles.button, theme === 'light' && styles.activeButton]}
 				title='Light theme'
 			>
-				<span {...stylex.props(styles.srOnly)}>Light theme</span>
+				<span sx={styles.srOnly}>Light theme</span>
 				<FiSun size={18} />
 			</button>
 
@@ -119,13 +112,10 @@ export function DarkModeToggle() {
 				role='radio'
 				aria-checked={theme === 'dark'}
 				onClick={() => updateTheme('dark')}
-				{...stylex.props(
-					styles.button,
-					theme === 'dark' && styles.activeButton,
-				)}
+				sx={[styles.button, theme === 'dark' && styles.activeButton]}
 				title='Dark theme'
 			>
-				<span {...stylex.props(styles.srOnly)}>Dark theme</span>
+				<span sx={styles.srOnly}>Dark theme</span>
 				<FiMoon size={18} />
 			</button>
 
@@ -134,13 +124,10 @@ export function DarkModeToggle() {
 				role='radio'
 				aria-checked={theme === 'system'}
 				onClick={() => updateTheme('system')}
-				{...stylex.props(
-					styles.button,
-					theme === 'system' && styles.activeButton,
-				)}
+				sx={[styles.button, theme === 'system' && styles.activeButton]}
 				title='System theme'
 			>
-				<span {...stylex.props(styles.srOnly)}>System theme</span>
+				<span sx={styles.srOnly}>System theme</span>
 				<FiMonitor size={18} />
 			</button>
 		</div>
