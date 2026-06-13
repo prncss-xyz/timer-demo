@@ -71,9 +71,9 @@ export const borderWidth = defineVars({
 })
 
 export const animationDurations = defineVars({
-	fast: '0.2s',
-	normal: '0.25s',
-	slow: '0.3s',
+	fast: { default: '0.2s', '@media (prefers-reduced-motion: reduce)': '0s' },
+	normal: { default: '0.25s', '@media (prefers-reduced-motion: reduce)': '0s' },
+	slow: { default: '0.3s', '@media (prefers-reduced-motion: reduce)': '0s' },
 })
 
 export const animationTimings = defineVars({
