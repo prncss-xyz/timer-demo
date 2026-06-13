@@ -1,8 +1,6 @@
 'use client'
 import { useEffect } from 'react'
 
-import { basePath } from '@/basePath'
-
 function DevStyleXInjectImpl() {
 	useEffect(() => {
 		if (import.meta.env.DEV) {
@@ -14,7 +12,5 @@ function DevStyleXInjectImpl() {
 
 export function DevStyleXInject() {
 	if (import.meta.env.DEV) return <DevStyleXInjectImpl />
-	return (
-		<link href={basePath + 'stylex.css'} rel='stylesheet' precedence='high' />
-	)
+	return null
 }

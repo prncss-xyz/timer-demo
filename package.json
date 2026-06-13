@@ -7,6 +7,7 @@
 		"dev": "waku dev",
 		"build": "waku build",
 		"start": "waku start",
+		"build-start": "waku build; waku start",
 		"typegen": "waku router typegen",
 		"prepare": "vp config",
 		"dev:test": "vp test watch",
