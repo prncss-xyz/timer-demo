@@ -1,8 +1,8 @@
 import * as stylex from '@stylexjs/stylex'
 
-import { baseUrl, title } from '@/basePath'
 import { QR } from '@/components/QR'
 import { sizes } from '@/layouts/tokens.stylex'
+import { baseUrl, title } from '@/meta'
 
 const styles = stylex.create({
 	container: {

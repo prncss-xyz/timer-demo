@@ -1,12 +1,13 @@
 import type { ReactNode } from 'react'
 
 import { DarkModeScript } from '@/components/darkMode/DarkModeScript'
+import { lang } from '@/meta'
 
 type RootElementProps = { children: ReactNode }
 
 export default async function RootElement({ children }: RootElementProps) {
 	return (
-		<html lang='en'>
+		<html lang={lang}>
 			<head>
 				<DarkModeScript />
 			</head>

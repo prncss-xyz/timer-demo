@@ -3,12 +3,12 @@ import './reset.css'
 import * as stylex from '@stylexjs/stylex'
 import type { ReactNode } from 'react'
 
-import { basePath, title } from '@/basePath'
 import { MEDIA } from '@/layouts/breakpoints.stylex'
 import { DevStyleXInject } from '@/layouts/DevStyleXInject'
 import { Footer } from '@/layouts/footer'
 import { Header } from '@/layouts/header'
 import { sizes, spaces } from '@/layouts/tokens.stylex'
+import { basePath, title } from '@/meta'
 
 const styles = stylex.create({
 	main: {

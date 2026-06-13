@@ -3,7 +3,7 @@ import path from 'node:path'
 
 import sharp from 'sharp'
 
-import { basePath } from '@/basePath'
+import { basePath } from '@/meta'
 
 // TODO: cache images
 
