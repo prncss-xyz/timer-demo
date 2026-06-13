@@ -3,6 +3,7 @@ import './nunito.css'
 import * as stylex from '@stylexjs/stylex'
 import type { ReactNode } from 'react'
 
+import { basePath } from '@/basePath'
 import { DevStyleXInject } from '@/layouts/DevStyleXInject'
 import { Footer } from '@/layouts/footer'
 import { Header } from '@/layouts/header'
@@ -50,7 +51,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 const getData = async () => {
 	const data = {
 		description: 'An internet website!',
-		icon: '/timer-demo/images/favicon.png',
+		icon: basePath + 'images/favicon.png',
 	}
 
 	return data
