@@ -1,11 +1,10 @@
-- use BaseUI
+- testing
+  - Vitest browser mode playwright
 - styling
   - enforce design tokens
   - color palette
   - relative fontSize token (quote, sup, sub)
 - useLocalStorage hook for dark mode
-- QR
-  - moins flou
 - image caching
 - mdx
   - blockquote, small, sub, sup
@@ -15,8 +14,6 @@
   - search
 - intl/msg
 - menu
-- testing
-  - Vitest browser mode playwright
 - RSS
 - guidance
   - stylex llm instructions (https://stylexjs.com/docs/llm-resources)

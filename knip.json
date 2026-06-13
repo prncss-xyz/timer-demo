@@ -13,7 +13,7 @@
 		"src/layouts/elements/*",
 		"src/layouts/Box.tsx",
 		"src/layouts/tokens.stylex.ts",
-		"src/basePath.ts"
+		"src/test.setup.ts"
 	],
 	"ignoreDependencies": [
 		"@fontsource/nunito",

@@ -6,6 +6,7 @@ import contentCollections from '@content-collections/vite'
 import babel from '@rolldown/plugin-babel'
 import stylex from '@stylexjs/unplugin'
 import react, { reactCompilerPreset } from '@vitejs/plugin-react'
+import { playwright } from '@vitest/browser-playwright'
 import { ViteWebfontDownload } from 'vite-plugin-webfont-dl'
 import { defineConfig } from 'vite-plus'
 
@@ -314,10 +315,13 @@ export default defineConfig({
 			provider: 'v8',
 			reporter: ['text', 'json'],
 		},
-		environment: 'happy-dom',
-		globals: true,
+		browser: {
+			enabled: true,
+			provider: playwright(),
+			instances: [{ browser: 'chromium' }],
+		},
 		include: ['**/src/**/*.test.{js,ts,jsx,tsx}'],
 		passWithNoTests: true,
-		pool: 'forks',
+		setupFiles: ['./src/test.setup.ts'],
 	},
 })
