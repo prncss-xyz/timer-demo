@@ -4,6 +4,7 @@ import contentCollections from '@content-collections/vite'
 import babel from '@rolldown/plugin-babel'
 import stylex from '@stylexjs/unplugin'
 import react, { reactCompilerPreset } from '@vitejs/plugin-react'
+import { ViteWebfontDownload } from 'vite-plugin-webfont-dl'
 import { defineConfig } from 'vite-plus'
 
 export default defineConfig({
@@ -203,6 +204,29 @@ export default defineConfig({
 		contentCollections({
 			isEnabled: () => !process.env.VITEST,
 		}),
+		ViteWebfontDownload(),
+		{
+			name: 'inject-webfont-to-css',
+			enforce: 'post',
+			generateBundle(options, bundle) {
+				const webfontsAsset = Object.values(bundle).find(
+					(chunk) => chunk.type === 'asset' && chunk.name === 'webfonts.css',
+				)
+				if (webfontsAsset && webfontsAsset.type === 'asset') {
+					for (const key in bundle) {
+						const chunk = bundle[key]
+						if (
+							chunk.type === 'asset' &&
+							chunk.fileName.endsWith('.css') &&
+							chunk !== webfontsAsset
+						) {
+							chunk.source = webfontsAsset.source + '\n' + chunk.source
+						}
+					}
+					delete bundle[webfontsAsset.fileName]
+				}
+			},
+		},
 	],
 	resolve: {
 		alias: {

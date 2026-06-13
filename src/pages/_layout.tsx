@@ -1,5 +1,4 @@
 import './reset.css'
-import './nunito.css'
 import * as stylex from '@stylexjs/stylex'
 import type { ReactNode } from 'react'
 
