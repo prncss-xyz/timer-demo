@@ -19,13 +19,7 @@ export async function Img({
 }: ElemProps<'div'> & ElemProps<'img'>) {
 	if (src) {
 		const image = await getResponsiveImage(src, alt)
-		return (
-			<OptimizedImage
-				image={image}
-				{...rest}
-				style={[styles.base, sx] as any}
-			/>
-		)
+		return <OptimizedImage image={image} {...rest} sx={[styles.base, sx]} />
 	}
 	return <img {...rest} sx={[styles.base, sx]} />
 }

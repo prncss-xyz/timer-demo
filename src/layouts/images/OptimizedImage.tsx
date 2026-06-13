@@ -1,10 +1,10 @@
 'use client'
-import { create, props, StyleXStyles } from '@stylexjs/stylex'
+import * as stylex from '@stylexjs/stylex'
 import { ComponentProps, useEffect, useRef, useState } from 'react'
 
 import { ResponsiveImage } from './getResponsiveImage'
 
-const styles = create({
+const styles = stylex.create({
 	container: {
 		placeItems: 'center',
 		display: 'inline-grid',
@@ -20,11 +20,11 @@ const styles = create({
 
 export function OptimizedImage({
 	image: { alt, height, placeholder, src, srcSet, width },
-	style,
+	sx,
 	...rest
 }: Omit<ComponentProps<'div'>, 'classname' | 'style'> & {
 	image: ResponsiveImage
-	style?: StyleXStyles
+	sx?: stylex.StyleXStyles | stylex.StyleXStyles[]
 }) {
 	const [loaded, setLoaded] = useState(false)
 	const imgRef = useRef<HTMLImageElement>(null)
@@ -32,14 +32,14 @@ export function OptimizedImage({
 		if (imgRef.current?.complete) setLoaded(true)
 	}, [])
 	return (
-		<div {...rest} {...props(styles.container)}>
+		<div {...rest} sx={[styles.container, sx]}>
 			<img
 				alt={alt}
 				aria-hidden='true'
 				height={height}
 				src={placeholder}
 				width={width}
-				{...props(style, styles.content, loaded && styles.invisible)}
+				sx={[styles.content, loaded && styles.invisible]}
 			/>
 			<img
 				alt={alt}
@@ -49,7 +49,7 @@ export function OptimizedImage({
 				src={src}
 				srcSet={srcSet}
 				width={width}
-				{...props(style, styles.content, !loaded && styles.invisible)}
+				sx={[styles.content, !loaded && styles.invisible]}
 			/>
 		</div>
 	)
