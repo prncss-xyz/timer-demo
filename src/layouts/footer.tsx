@@ -4,7 +4,7 @@ import { MEDIA } from '@/layouts/breakpoints.stylex'
 
 import { Row } from './Box'
 import { A } from './elements/A'
-import { spaces } from './tokens.stylex'
+import { spaces } from './tokens/spaces.stylex'
 
 const styles = stylex.create({
 	footer: {

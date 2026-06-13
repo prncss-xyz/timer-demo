@@ -2,7 +2,7 @@ import * as stylex from '@stylexjs/stylex'
 
 import { getResponsiveImage } from '../images/getResponsiveImage'
 import { OptimizedImage } from '../images/OptimizedImage'
-import { spaces } from '../tokens.stylex'
+import { spaces } from '../tokens/spaces.stylex'
 import { ElemProps } from './types'
 
 const styles = stylex.create({

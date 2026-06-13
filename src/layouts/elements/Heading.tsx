@@ -1,7 +1,10 @@
 import * as stylex from '@stylexjs/stylex'
 import { ElementType } from 'react'
 
-import { fontFamilies, fontSizes, fontWeights, spaces } from '../tokens.stylex'
+import { fontFamilies } from '../tokens/fontFamilies.stylex'
+import { fontSizes } from '../tokens/fontSizes.stylex'
+import { fontWeights } from '../tokens/fontWeights.stylex'
+import { spaces } from '../tokens/spaces.stylex'
 import { ElemProps } from './types'
 
 const styles = stylex.create({

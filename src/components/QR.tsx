@@ -3,7 +3,8 @@ import qr from 'qrcode'
 
 import { Col } from '@/layouts/Box'
 import { A } from '@/layouts/elements/A'
-import { fontSizes, sizes } from '@/layouts/tokens.stylex'
+import { fontSizes } from '@/layouts/tokens/fontSizes.stylex'
+import { sizes } from '@/layouts/tokens/sizes.stylex'
 
 const styles = stylex.create({
 	legend: {

@@ -1,6 +1,6 @@
 import * as stylex from '@stylexjs/stylex'
 
-import { fontSizes } from '../tokens.stylex'
+import { fontSizes } from '../tokens/fontSizes.stylex'
 import { ElemProps } from './types'
 
 const styles = stylex.create({

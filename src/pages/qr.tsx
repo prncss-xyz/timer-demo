@@ -1,7 +1,7 @@
 import * as stylex from '@stylexjs/stylex'
 
 import { QR } from '@/components/QR'
-import { sizes } from '@/layouts/tokens.stylex'
+import { sizes } from '@/layouts/tokens/sizes.stylex'
 import { baseUrl, title } from '@/meta'
 
 const styles = stylex.create({

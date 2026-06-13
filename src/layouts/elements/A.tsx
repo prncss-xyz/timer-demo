@@ -1,7 +1,8 @@
 import * as stylex from '@stylexjs/stylex'
 import { Link } from 'waku'
 
-import { fontSizes, fontWeights } from '../tokens.stylex'
+import { fontSizes } from '../tokens/fontSizes.stylex'
+import { fontWeights } from '../tokens/fontWeights.stylex'
 import { ElemProps } from './types'
 
 const styles = stylex.create({

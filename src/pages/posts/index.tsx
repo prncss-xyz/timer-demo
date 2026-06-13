@@ -3,7 +3,7 @@ import { allPosts } from 'content-collections'
 import { Link } from 'waku'
 
 import { Ul } from '@/layouts/elements/list'
-import { spaces } from '@/layouts/tokens.stylex'
+import { spaces } from '@/layouts/tokens/spaces.stylex'
 
 const styles = stylex.create({
 	item: {

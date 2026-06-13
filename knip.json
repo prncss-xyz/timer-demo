@@ -12,7 +12,7 @@
 		"src/layouts/images/*",
 		"src/layouts/elements/*",
 		"src/layouts/Box.tsx",
-		"src/layouts/tokens.stylex.ts",
+		"src/layouts/tokens/*.stylex.ts",
 		"src/test.setup.ts"
 	],
 	"ignoreDependencies": [

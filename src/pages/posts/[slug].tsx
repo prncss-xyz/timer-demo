@@ -2,7 +2,7 @@ import * as stylex from '@stylexjs/stylex'
 import { allPosts } from 'content-collections'
 
 import { MD } from '@/layouts/MD'
-import { spaces } from '@/layouts/tokens.stylex'
+import { spaces } from '@/layouts/tokens/spaces.stylex'
 
 const styles = stylex.create({
 	container: {

@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 
-import { DarkModeScript } from '@/components/darkMode/DarkModeScript'
+import { DarkModeScript } from '@/features/darkMode/DarkModeScript'
 import { lang } from '@/meta'
 
 type RootElementProps = { children: ReactNode }

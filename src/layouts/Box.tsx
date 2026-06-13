@@ -1,6 +1,7 @@
 import * as stylex from '@stylexjs/stylex'
 
-import { spaces, sizes } from './tokens.stylex'
+import { sizes } from './tokens/sizes.stylex'
+import { spaces } from './tokens/spaces.stylex'
 
 const sizeVariants = stylex.create({
 	fullHeight: {

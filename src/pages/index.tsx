@@ -4,7 +4,7 @@ import { Col } from '@/layouts/Box'
 import { H2 } from '@/layouts/elements/Heading'
 import { Li, Ul } from '@/layouts/elements/list'
 import { P } from '@/layouts/elements/P'
-import { sizes } from '@/layouts/tokens.stylex'
+import { sizes } from '@/layouts/tokens/sizes.stylex'
 
 const styles = stylex.create({
 	txt: {

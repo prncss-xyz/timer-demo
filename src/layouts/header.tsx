@@ -1,17 +1,15 @@
 import * as stylex from '@stylexjs/stylex'
 import { Link } from 'waku'
 
-import { DarkModeToggle } from '@/components/darkMode/DarkModeToggle'
+import { DarkModeToggle } from '@/features/darkMode/DarkModeToggle'
 import { title } from '@/meta'
 
 import { H1 } from './elements/Heading'
-import {
-	colors,
-	borderWidth,
-	spaces,
-	animationDurations,
-	animationTimings,
-} from './tokens.stylex'
+import { animationDurations } from './tokens/animationDurations.stylex'
+import { animationTimings } from './tokens/animationTimings.stylex'
+import { borderWidth } from './tokens/borderWidth.stylex'
+import { colors } from './tokens/colors.stylex'
+import { spaces } from './tokens/spaces.stylex'
 
 const styles = stylex.create({
 	header: {

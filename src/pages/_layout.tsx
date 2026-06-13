@@ -7,7 +7,8 @@ import { MEDIA } from '@/layouts/breakpoints.stylex'
 import { DevStyleXInject } from '@/layouts/DevStyleXInject'
 import { Footer } from '@/layouts/footer'
 import { Header } from '@/layouts/header'
-import { sizes, spaces } from '@/layouts/tokens.stylex'
+import { sizes } from '@/layouts/tokens/sizes.stylex'
+import { spaces } from '@/layouts/tokens/spaces.stylex'
 import { basePath, title } from '@/meta'
 
 const styles = stylex.create({

@@ -5,15 +5,13 @@ import { RadioGroup } from '@base-ui/react/radio-group'
 import * as stylex from '@stylexjs/stylex'
 import { FiSun, FiMoon, FiMonitor } from 'react-icons/fi'
 
-import {
-	colors,
-	borderRadius,
-	borderWidth,
-	sizes,
-	spaces,
-	animationDurations,
-	animationTimings,
-} from '@/layouts/tokens.stylex'
+import { animationDurations } from '@/layouts/tokens/animationDurations.stylex'
+import { animationTimings } from '@/layouts/tokens/animationTimings.stylex'
+import { borderRadius } from '@/layouts/tokens/borderRadius.stylex'
+import { borderWidth } from '@/layouts/tokens/borderWidth.stylex'
+import { colors } from '@/layouts/tokens/colors.stylex'
+import { sizes } from '@/layouts/tokens/sizes.stylex'
+import { spaces } from '@/layouts/tokens/spaces.stylex'
 
 import { useDarkModeToggle } from './useDarkModeToggle'
 

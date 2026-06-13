@@ -1,7 +1,6 @@
 - styling
-  - remove sx
-  - enforce design tokens
   - relative fontSize token (quote, sup, sub)
+  - enforce design tokens
   - color palette
 - useLocalStorage hook for dark mode
 - image caching
