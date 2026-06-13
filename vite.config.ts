@@ -208,15 +208,15 @@ export default defineConfig({
 		{
 			name: 'inject-webfont-to-css',
 			enforce: 'post',
-			generateBundle(options, bundle) {
+			generateBundle(_options, bundle) {
 				const webfontsAsset = Object.values(bundle).find(
-					(chunk) => chunk.type === 'asset' && chunk.name === 'webfonts.css',
-				)
+					(c) => c?.type === 'asset' && (c as any).name === 'webfonts.css',
+				) as any
 				if (webfontsAsset && webfontsAsset.type === 'asset') {
 					for (const key in bundle) {
-						const chunk = bundle[key]
+						const chunk = bundle[key] as any
 						if (
-							chunk.type === 'asset' &&
+							chunk?.type === 'asset' &&
 							chunk.fileName.endsWith('.css') &&
 							chunk !== webfontsAsset
 						) {
