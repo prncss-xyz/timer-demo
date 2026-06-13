@@ -15,6 +15,7 @@ overrides:
   vitest: npm:@voidzero-dev/vite-plus-test@^0.1.24
 
 patchedDependencies:
+  '@vitest/browser': ab91de1c2dafefdbe9e021eb09a4bbf218e13d572a2aca905829e9a154f35032
   react-server-dom-webpack: 6f51e7408ac3495647a541df84cd45bfea2345982dbe042d05d8082db4315815
 
 importers:
@@ -120,7 +121,7 @@ importers:
         version: 6.0.2(@rolldown/plugin-babel@0.2.3(@babel/core@7.29.7)(@babel/runtime@7.29.7)(@voidzero-dev/vite-plus-core@0.1.24(@types/node@25.9.2)(jiti@2.7.0)(terser@5.48.0)(typescript@6.0.3)(yaml@2.9.0))(rolldown@1.0.3))(@voidzero-dev/vite-plus-core@0.1.24(@types/node@25.9.2)(jiti@2.7.0)(terser@5.48.0)(typescript@6.0.3)(yaml@2.9.0))(babel-plugin-react-compiler@1.0.0)
       '@vitest/browser':
         specifier: ^4.1.8
-        version: 4.1.8(@voidzero-dev/vite-plus-core@0.1.24(@types/node@25.9.2)(jiti@2.7.0)(terser@5.48.0)(typescript@6.0.3)(yaml@2.9.0))(@voidzero-dev/vite-plus-test@0.1.24)
+        version: 4.1.8(patch_hash=ab91de1c2dafefdbe9e021eb09a4bbf218e13d572a2aca905829e9a154f35032)(@voidzero-dev/vite-plus-core@0.1.24(@types/node@25.9.2)(jiti@2.7.0)(terser@5.48.0)(typescript@6.0.3)(yaml@2.9.0))(@voidzero-dev/vite-plus-test@0.1.24)
       '@vitest/browser-playwright':
         specifier: ^4.1.8
         version: 4.1.8(@voidzero-dev/vite-plus-core@0.1.24(@types/node@25.9.2)(jiti@2.7.0)(terser@5.48.0)(typescript@6.0.3)(yaml@2.9.0))(@voidzero-dev/vite-plus-test@0.1.24)(playwright@1.60.0)
@@ -4385,7 +4386,7 @@ snapshots:
 
   '@vitest/browser-playwright@4.1.8(@voidzero-dev/vite-plus-core@0.1.24(@types/node@25.9.2)(jiti@2.7.0)(terser@5.48.0)(typescript@6.0.3)(yaml@2.9.0))(@voidzero-dev/vite-plus-test@0.1.24)(playwright@1.60.0)':
     dependencies:
-      '@vitest/browser': 4.1.8(@voidzero-dev/vite-plus-core@0.1.24(@types/node@25.9.2)(jiti@2.7.0)(terser@5.48.0)(typescript@6.0.3)(yaml@2.9.0))(@voidzero-dev/vite-plus-test@0.1.24)
+      '@vitest/browser': 4.1.8(patch_hash=ab91de1c2dafefdbe9e021eb09a4bbf218e13d572a2aca905829e9a154f35032)(@voidzero-dev/vite-plus-core@0.1.24(@types/node@25.9.2)(jiti@2.7.0)(terser@5.48.0)(typescript@6.0.3)(yaml@2.9.0))(@voidzero-dev/vite-plus-test@0.1.24)
       '@vitest/mocker': 4.1.8(@voidzero-dev/vite-plus-core@0.1.24(@types/node@25.9.2)(jiti@2.7.0)(terser@5.48.0)(typescript@6.0.3)(yaml@2.9.0))
       playwright: 1.60.0
       tinyrainbow: 3.1.0
@@ -4396,7 +4397,7 @@ snapshots:
       - utf-8-validate
       - vite
 
-  '@vitest/browser@4.1.8(@voidzero-dev/vite-plus-core@0.1.24(@types/node@25.9.2)(jiti@2.7.0)(terser@5.48.0)(typescript@6.0.3)(yaml@2.9.0))(@voidzero-dev/vite-plus-test@0.1.24)':
+  '@vitest/browser@4.1.8(patch_hash=ab91de1c2dafefdbe9e021eb09a4bbf218e13d572a2aca905829e9a154f35032)(@voidzero-dev/vite-plus-core@0.1.24(@types/node@25.9.2)(jiti@2.7.0)(terser@5.48.0)(typescript@6.0.3)(yaml@2.9.0))(@voidzero-dev/vite-plus-test@0.1.24)':
     dependencies:
       '@blazediff/core': 1.9.1
       '@vitest/mocker': 4.1.8(@voidzero-dev/vite-plus-core@0.1.24(@types/node@25.9.2)(jiti@2.7.0)(terser@5.48.0)(typescript@6.0.3)(yaml@2.9.0))
@@ -4427,7 +4428,7 @@ snapshots:
       tinyrainbow: 3.1.0
       vitest: '@voidzero-dev/vite-plus-test@0.1.24(@types/node@25.9.2)(@vitest/coverage-v8@4.1.8)(@voidzero-dev/vite-plus-core@0.1.24(@types/node@25.9.2)(jiti@2.7.0)(terser@5.48.0)(typescript@6.0.3)(yaml@2.9.0))(happy-dom@20.10.2)(jiti@2.7.0)(terser@5.48.0)(typescript@6.0.3)(yaml@2.9.0)'
     optionalDependencies:
-      '@vitest/browser': 4.1.8(@voidzero-dev/vite-plus-core@0.1.24(@types/node@25.9.2)(jiti@2.7.0)(terser@5.48.0)(typescript@6.0.3)(yaml@2.9.0))(@voidzero-dev/vite-plus-test@0.1.24)
+      '@vitest/browser': 4.1.8(patch_hash=ab91de1c2dafefdbe9e021eb09a4bbf218e13d572a2aca905829e9a154f35032)(@voidzero-dev/vite-plus-core@0.1.24(@types/node@25.9.2)(jiti@2.7.0)(terser@5.48.0)(typescript@6.0.3)(yaml@2.9.0))(@voidzero-dev/vite-plus-test@0.1.24)
 
   '@vitest/mocker@4.1.8(@voidzero-dev/vite-plus-core@0.1.24(@types/node@25.9.2)(jiti@2.7.0)(terser@5.48.0)(typescript@6.0.3)(yaml@2.9.0))':
     dependencies:

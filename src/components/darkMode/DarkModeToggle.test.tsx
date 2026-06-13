@@ -36,7 +36,9 @@ describe('ThemeToggle', () => {
 		})
 
 		const lightBtn = page.getByTitle('Light theme')
-		await lightBtn.click()
+		await act(async () => {
+			await lightBtn.click()
+		})
 
 		expect(document.documentElement.classList.contains('dark')).toBe(false)
 	})
@@ -48,7 +50,9 @@ describe('ThemeToggle', () => {
 		})
 
 		const darkBtn = page.getByTitle('Dark theme')
-		await darkBtn.click()
+		await act(async () => {
+			await darkBtn.click()
+		})
 
 		expect(document.documentElement.classList.contains('dark')).toBe(true)
 	})

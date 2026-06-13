@@ -100,12 +100,12 @@ export function DarkModeToggle() {
 
 	return (
 		<RadioGroup
-			render={<div sx={styles.container} />}
 			aria-label='Choose appearance theme'
 			value={theme}
 			onValueChange={(val) => {
 				if (val) updateTheme(val)
 			}}
+			{...stylex.props([styles.container])}
 		>
 			<div
 				sx={[styles.indicator, styles.indicatorAnimated, styles[theme]]}
@@ -114,42 +114,54 @@ export function DarkModeToggle() {
 
 			<Radio.Root
 				value='light'
-				render={
-					<button
-						sx={[styles.button, theme === 'light' && styles.activeButton]}
-					/>
-				}
-				title='Light theme'
-			>
-				<span sx={styles.srOnly}>Light theme</span>
-				<FiSun size={18} />
-			</Radio.Root>
+				nativeButton
+				render={(buttonProps) => (
+					<label>
+						<button
+							{...buttonProps}
+							title='Light theme'
+							sx={[styles.button, theme === 'light' && styles.activeButton]}
+						>
+							<span sx={styles.srOnly}>Light theme</span>
+							<FiSun size={18} />
+						</button>
+					</label>
+				)}
+			/>
 
 			<Radio.Root
 				value='dark'
-				render={
-					<button
-						sx={[styles.button, theme === 'dark' && styles.activeButton]}
-					/>
-				}
-				title='Dark theme'
-			>
-				<span sx={styles.srOnly}>Dark theme</span>
-				<FiMoon size={18} />
-			</Radio.Root>
+				nativeButton
+				render={(buttonProps) => (
+					<label>
+						<button
+							{...buttonProps}
+							title='Dark theme'
+							sx={[styles.button, theme === 'dark' && styles.activeButton]}
+						>
+							<span sx={styles.srOnly}>Dark theme</span>
+							<FiMoon size={18} />
+						</button>
+					</label>
+				)}
+			/>
 
 			<Radio.Root
 				value='system'
-				render={
-					<button
-						sx={[styles.button, theme === 'system' && styles.activeButton]}
-					/>
-				}
-				title='System theme'
-			>
-				<span sx={styles.srOnly}>System theme</span>
-				<FiMonitor size={18} />
-			</Radio.Root>
+				nativeButton
+				render={(buttonProps) => (
+					<label>
+						<button
+							{...buttonProps}
+							title='System theme'
+							sx={[styles.button, theme === 'system' && styles.activeButton]}
+						>
+							<span sx={styles.srOnly}>System theme</span>
+							<FiMonitor size={18} />
+						</button>
+					</label>
+				)}
+			/>
 		</RadioGroup>
 	)
 }

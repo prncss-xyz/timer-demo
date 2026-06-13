@@ -1,0 +1,26 @@
+diff --git a/dist/index.js b/dist/index.js
+index bc9f871cd750f98919315d1ac8296ed67f21baac..1e82153a75c994658be9e903b2fc897c28d14e0d 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -1089,9 +1089,9 @@ var BrowserPlugin = (parentServer, base = "/") => {
+ 					}
+ 				}
+ 				const include = [
+-					"vitest > expect-type",
+-					"vitest > @vitest/snapshot > magic-string",
+-					"vitest > @vitest/expect > chai"
++					// "vitest > expect-type",
++					// "vitest > @vitest/snapshot > magic-string",
++					// "vitest > @vitest/expect > chai"
+ 				];
+ 				const provider = parentServer.config.browser.provider || [...parentServer.children][0]?.provider;
+ 				if (provider?.name === "preview") {
+@@ -7881,7 +7881,7 @@ const createBrowserServer = async (options) => {
+ 	const project = options.project;
+ 	const configFile = project.vite.config.configFile;
+ 	if (project.vitest.version !== version) {
+-		project.vitest.logger.warn(c.yellow(`Loaded ${c.inverse(c.yellow(` vitest@${project.vitest.version} `))} and ${c.inverse(c.yellow(` @vitest/browser@${version} `))}.` + "\nRunning mixed versions is not supported and may lead into bugs" + "\nUpdate your dependencies and make sure the versions match."));
++		// project.vitest.logger.warn(c.yellow(`Loaded ${c.inverse(c.yellow(` vitest@${project.vitest.version} `))} and ${c.inverse(c.yellow(` @vitest/browser@${version} `))}.` + "\nRunning mixed versions is not supported and may lead into bugs" + "\nUpdate your dependencies and make sure the versions match."));
+ 	}
+ 	const server = new ParentBrowserProject(project, "/");
+ 	const configPath = typeof configFile === "string" ? configFile : false;

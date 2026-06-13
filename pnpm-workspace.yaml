@@ -23,4 +23,5 @@ peerDependencyRules:
     vitest: '*'
 
 patchedDependencies:
+  '@vitest/browser': patches/@vitest__browser.patch
   react-server-dom-webpack: patches/react-server-dom-webpack.patch
