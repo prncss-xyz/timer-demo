@@ -1,9 +1,9 @@
 'use client'
 
 import * as stylex from '@stylexjs/stylex'
-import { useEffect, useState } from 'react'
 import { FiSun, FiMoon, FiMonitor } from 'react-icons/fi'
 
+import { useDarkModeToggle } from '@/components/ThemeToggle/useDarkModeToggle'
 import { colors } from '@/layouts/tokens.stylex'
 
 const styles = stylex.create({
@@ -81,38 +81,7 @@ const styles = stylex.create({
 })
 
 export function ThemeToggle() {
-	const [theme, setTheme] = useState<'light' | 'dark' | 'system'>('system')
-	const [mounted, setMounted] = useState(false)
-
-	useEffect(() => {
-		const savedTheme =
-			(localStorage.getItem('theme') as 'light' | 'dark' | 'system') || 'system'
-		setTheme(savedTheme)
-		setMounted(true)
-	}, [])
-
-	const updateTheme = (newTheme: 'light' | 'dark' | 'system') => {
-		setTheme(newTheme)
-		localStorage.setItem('theme', newTheme)
-
-		const isDark =
-			newTheme === 'dark' ||
-			(newTheme === 'system' &&
-				window.matchMedia('(prefers-color-scheme: dark)').matches)
-		document.documentElement.classList.toggle('dark', isDark)
-	}
-
-	useEffect(() => {
-		if (theme !== 'system') return
-
-		const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-		const handleChange = (e: MediaQueryListEvent) => {
-			document.documentElement.classList.toggle('dark', e.matches)
-		}
-
-		mediaQuery.addEventListener('change', handleChange)
-		return () => mediaQuery.removeEventListener('change', handleChange)
-	}, [theme])
+	const { theme, updateTheme } = useDarkModeToggle()
 
 	return (
 		<div
@@ -120,25 +89,23 @@ export function ThemeToggle() {
 			role='radiogroup'
 			aria-label='Choose appearance theme'
 		>
-			{mounted && (
-				<div
-					{...stylex.props(
-						styles.indicator,
-						styles.indicatorAnimated,
-						styles[theme],
-					)}
-					aria-hidden='true'
-				/>
-			)}
+			<div
+				{...stylex.props(
+					styles.indicator,
+					styles.indicatorAnimated,
+					styles[theme],
+				)}
+				aria-hidden='true'
+			/>
 
 			<button
 				type='button'
 				role='radio'
-				aria-checked={mounted && theme === 'light'}
+				aria-checked={theme === 'light'}
 				onClick={() => updateTheme('light')}
 				{...stylex.props(
 					styles.button,
-					mounted && theme === 'light' && styles.activeButton,
+					theme === 'light' && styles.activeButton,
 				)}
 				title='Light theme'
 			>
@@ -149,11 +116,11 @@ export function ThemeToggle() {
 			<button
 				type='button'
 				role='radio'
-				aria-checked={mounted && theme === 'dark'}
+				aria-checked={theme === 'dark'}
 				onClick={() => updateTheme('dark')}
 				{...stylex.props(
 					styles.button,
-					mounted && theme === 'dark' && styles.activeButton,
+					theme === 'dark' && styles.activeButton,
 				)}
 				title='Dark theme'
 			>
@@ -164,11 +131,11 @@ export function ThemeToggle() {
 			<button
 				type='button'
 				role='radio'
-				aria-checked={mounted && theme === 'system'}
+				aria-checked={theme === 'system'}
 				onClick={() => updateTheme('system')}
 				{...stylex.props(
 					styles.button,
-					mounted && theme === 'system' && styles.activeButton,
+					theme === 'system' && styles.activeButton,
 				)}
 				title='System theme'
 			>

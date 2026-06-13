@@ -1,7 +1,7 @@
 import * as stylex from '@stylexjs/stylex'
 import { Link } from 'waku'
 
-import { ThemeToggle } from '@/components/ThemeToggle'
+import { ThemeToggle } from '@/components/ThemeToggle/index'
 
 import { H2 } from './elements/Heading'
 import { colors } from './tokens.stylex'

@@ -2,7 +2,7 @@ import { act } from 'react'
 import { createRoot } from 'react-dom/client'
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
 
-import { ThemeToggle } from './ThemeToggle'
+import { ThemeToggle } from '.'
 
 vi.mock('@stylexjs/stylex', () => ({
 	create: (x: any) => x,
