@@ -3,7 +3,7 @@ import './reset.css'
 import * as stylex from '@stylexjs/stylex'
 import type { ReactNode } from 'react'
 
-import { basePath } from '@/basePath'
+import { basePath, title } from '@/basePath'
 import { MEDIA } from '@/layouts/breakpoints.stylex'
 import { DevStyleXInject } from '@/layouts/DevStyleXInject'
 import { Footer } from '@/layouts/footer'
@@ -39,6 +39,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 
 	return (
 		<div sx={styles.root}>
+			<title>{data.title}</title>
 			<meta name='description' content={data.description} />
 			<link rel='icon' type='image/png' href={data.icon} />
 
@@ -52,6 +53,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 
 const getData = async () => {
 	const data = {
+		title,
 		description: 'An internet website!',
 		icon: basePath + 'images/favicon.png',
 	}
