@@ -3,10 +3,8 @@
   - enforce design tokens
   - font script
   - relative fontSize token (quote, sup, sub)
-  - animations
-    - centralise
-    - accessibility
 - useLocalStorage hook for dark mode
+- use BaseUI
 - QR
   - moins flou
 - image caching
@@ -21,6 +19,8 @@
 - testing
   - Vitest browser mode playwright
 - RSS
+- guidance
+  - stylex llm instructions (https://stylexjs.com/docs/llm-resources)
 - backpressure
   - enforce import type
   - max length for file (chars, tokens)

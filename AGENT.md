@@ -10,23 +10,7 @@
 
 ### CSS & Styling
 
-Always use StyleX's API:
-
-```tsx
-import * as stylex from '@stylexjs/stylex'
-import { colors } from '@/layouts/tokens.stylex'
-
-const styles = stylex.create({
-  card: {
-    backgroundColor: colors.background,
-    padding: '1rem',
-    borderRadius: '8px',
-  }
-})
-
-// Applying props
-<div {...stylex.props(styles.card)}>...</div>
-```
+see `/docs/stylex-authoring.md`
 
 ### Layout Components
 
