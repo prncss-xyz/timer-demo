@@ -16,7 +16,6 @@ overrides:
 
 patchedDependencies:
   react-server-dom-webpack: 6f51e7408ac3495647a541df84cd45bfea2345982dbe042d05d8082db4315815
-  waku@1.0.0-beta.2: b24dc15ab0a44f2a218cb1ab80cf6691c6cf6646d33ffaee123a4930f8b5a1bc
 
 importers:
 
@@ -78,7 +77,7 @@ importers:
         version: 11.0.5
       waku:
         specifier: 1.0.0-beta.2
-        version: 1.0.0-beta.2(patch_hash=b24dc15ab0a44f2a218cb1ab80cf6691c6cf6646d33ffaee123a4930f8b5a1bc)(@rolldown/plugin-babel@0.2.3(@babel/core@7.29.7)(@babel/runtime@7.29.7)(@voidzero-dev/vite-plus-core@0.1.24(@types/node@25.9.2)(jiti@2.7.0)(terser@5.48.0)(typescript@6.0.3)(yaml@2.9.0))(rolldown@1.0.3))(@types/node@25.9.2)(babel-plugin-react-compiler@1.0.0)(jiti@2.7.0)(react-dom@19.2.7(react@19.2.7))(react-server-dom-webpack@19.2.7(patch_hash=6f51e7408ac3495647a541df84cd45bfea2345982dbe042d05d8082db4315815)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(webpack@5.107.2))(react@19.2.7)(terser@5.48.0)(typescript@6.0.3)(yaml@2.9.0)
+        version: 1.0.0-beta.2(@rolldown/plugin-babel@0.2.3(@babel/core@7.29.7)(@babel/runtime@7.29.7)(@voidzero-dev/vite-plus-core@0.1.24(@types/node@25.9.2)(jiti@2.7.0)(terser@5.48.0)(typescript@6.0.3)(yaml@2.9.0))(rolldown@1.0.3))(@types/node@25.9.2)(babel-plugin-react-compiler@1.0.0)(jiti@2.7.0)(react-dom@19.2.7(react@19.2.7))(react-server-dom-webpack@19.2.7(patch_hash=6f51e7408ac3495647a541df84cd45bfea2345982dbe042d05d8082db4315815)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(webpack@5.107.2))(react@19.2.7)(terser@5.48.0)(typescript@6.0.3)(yaml@2.9.0)
     devDependencies:
       '@commitlint/cli':
         specifier: ^21.0.2
@@ -5892,7 +5891,7 @@ snapshots:
     optionalDependencies:
       vite: '@voidzero-dev/vite-plus-core@0.1.24(@types/node@25.9.2)(jiti@2.7.0)(terser@5.48.0)(typescript@6.0.3)(yaml@2.9.0)'
 
-  waku@1.0.0-beta.2(patch_hash=b24dc15ab0a44f2a218cb1ab80cf6691c6cf6646d33ffaee123a4930f8b5a1bc)(@rolldown/plugin-babel@0.2.3(@babel/core@7.29.7)(@babel/runtime@7.29.7)(@voidzero-dev/vite-plus-core@0.1.24(@types/node@25.9.2)(jiti@2.7.0)(terser@5.48.0)(typescript@6.0.3)(yaml@2.9.0))(rolldown@1.0.3))(@types/node@25.9.2)(babel-plugin-react-compiler@1.0.0)(jiti@2.7.0)(react-dom@19.2.7(react@19.2.7))(react-server-dom-webpack@19.2.7(patch_hash=6f51e7408ac3495647a541df84cd45bfea2345982dbe042d05d8082db4315815)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(webpack@5.107.2))(react@19.2.7)(terser@5.48.0)(typescript@6.0.3)(yaml@2.9.0):
+  waku@1.0.0-beta.2(@rolldown/plugin-babel@0.2.3(@babel/core@7.29.7)(@babel/runtime@7.29.7)(@voidzero-dev/vite-plus-core@0.1.24(@types/node@25.9.2)(jiti@2.7.0)(terser@5.48.0)(typescript@6.0.3)(yaml@2.9.0))(rolldown@1.0.3))(@types/node@25.9.2)(babel-plugin-react-compiler@1.0.0)(jiti@2.7.0)(react-dom@19.2.7(react@19.2.7))(react-server-dom-webpack@19.2.7(patch_hash=6f51e7408ac3495647a541df84cd45bfea2345982dbe042d05d8082db4315815)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(webpack@5.107.2))(react@19.2.7)(terser@5.48.0)(typescript@6.0.3)(yaml@2.9.0):
     dependencies:
       '@hono/node-server': 2.0.4(hono@4.12.24)
       '@vitejs/plugin-react': 6.0.2(@rolldown/plugin-babel@0.2.3(@babel/core@7.29.7)(@babel/runtime@7.29.7)(@voidzero-dev/vite-plus-core@0.1.24(@types/node@25.9.2)(jiti@2.7.0)(terser@5.48.0)(typescript@6.0.3)(yaml@2.9.0))(rolldown@1.0.3))(@voidzero-dev/vite-plus-core@0.1.24(@types/node@25.9.2)(jiti@2.7.0)(terser@5.48.0)(typescript@6.0.3)(yaml@2.9.0))(babel-plugin-react-compiler@1.0.0)

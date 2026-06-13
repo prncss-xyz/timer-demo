@@ -2,6 +2,11 @@
 	"name": "timer-demo",
 	"version": "0.0.0",
 	"private": true,
+	"homepage": "https://prncss-xyz.github.io/timer-demo/",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/prncss-xyz/timer-demo.git"
+	},
 	"type": "module",
 	"scripts": {
 		"dev": "waku dev",
