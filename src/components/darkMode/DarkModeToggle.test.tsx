@@ -2,7 +2,7 @@ import { act } from 'react'
 import { createRoot } from 'react-dom/client'
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
 
-import { ThemeToggle } from '.'
+import { DarkModeToggle } from './DarkModeToggle'
 
 vi.mock('@stylexjs/stylex', () => ({
 	create: (x: any) => x,
@@ -39,7 +39,7 @@ describe('ThemeToggle', () => {
 	it('should render theme toggle and initialize to system by default', async () => {
 		const root = createRoot(container)
 		await act(async () => {
-			root.render(<ThemeToggle />)
+			root.render(<DarkModeToggle />)
 		})
 
 		const lightBtn = container.querySelector('[title="Light theme"]')
@@ -56,7 +56,7 @@ describe('ThemeToggle', () => {
 	it('should switch theme to light on click', async () => {
 		const root = createRoot(container)
 		await act(async () => {
-			root.render(<ThemeToggle />)
+			root.render(<DarkModeToggle />)
 		})
 
 		const lightBtn = container.querySelector(
@@ -73,7 +73,7 @@ describe('ThemeToggle', () => {
 	it('should switch theme to dark on click', async () => {
 		const root = createRoot(container)
 		await act(async () => {
-			root.render(<ThemeToggle />)
+			root.render(<DarkModeToggle />)
 		})
 
 		const darkBtn = container.querySelector(

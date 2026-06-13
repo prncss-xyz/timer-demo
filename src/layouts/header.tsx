@@ -1,7 +1,7 @@
 import * as stylex from '@stylexjs/stylex'
 import { Link } from 'waku'
 
-import { ThemeToggle } from '@/components/ThemeToggle/index'
+import { DarkModeToggle } from '@/components/darkMode/DarkModeToggle'
 
 import { H2 } from './elements/Heading'
 import { colors } from './tokens.stylex'
@@ -41,7 +41,7 @@ export const Header = () => {
 			<H2 {...stylex.props(styles.title)}>
 				<Link to='/'>Waku starter</Link>
 			</H2>
-			<ThemeToggle />
+			<DarkModeToggle />
 		</header>
 	)
 }

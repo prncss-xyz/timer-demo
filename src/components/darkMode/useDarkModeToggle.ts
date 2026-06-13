@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-
 export type Theme = 'light' | 'dark' | 'system'
 
 export function useDarkModeToggle() {
@@ -10,15 +9,15 @@ export function useDarkModeToggle() {
 		setTheme(savedTheme)
 	}, [])
 
-	const updateTheme = (newTheme: Theme) => {
-		setTheme(newTheme)
-		localStorage.setItem('theme', newTheme)
+	const updateTheme = (next: Theme) => {
+		setTheme(next)
+		localStorage.setItem('theme', next)
 
-		const isDark =
-			newTheme === 'dark' ||
-			(newTheme === 'system' &&
+		const dark =
+			next === 'dark' ||
+			(next === 'system' &&
 				window.matchMedia('(prefers-color-scheme: dark)').matches)
-		document.documentElement.classList.toggle('dark', isDark)
+		document.documentElement.classList.toggle('dark', dark)
 	}
 
 	useEffect(() => {

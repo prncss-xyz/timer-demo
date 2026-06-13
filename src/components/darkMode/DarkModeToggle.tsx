@@ -3,8 +3,9 @@
 import * as stylex from '@stylexjs/stylex'
 import { FiSun, FiMoon, FiMonitor } from 'react-icons/fi'
 
-import { useDarkModeToggle } from '@/components/ThemeToggle/useDarkModeToggle'
 import { colors } from '@/layouts/tokens.stylex'
+
+import { useDarkModeToggle } from './useDarkModeToggle'
 
 const styles = stylex.create({
 	container: {
@@ -80,7 +81,7 @@ const styles = stylex.create({
 	},
 })
 
-export function ThemeToggle() {
+export function DarkModeToggle() {
 	const { theme, updateTheme } = useDarkModeToggle()
 
 	return (

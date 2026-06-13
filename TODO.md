@@ -1,14 +1,23 @@
-- fix: flash of unstyled contents
-- image caching
 - styling
   - dark mode
+    - storage key as param
+    - fix system preference
+    - make script a local component
   - color palette
   - create design tokens
   - enforce design tokens
+    stylex sx
+- QR
+  - moins flou
+- image caching
 - mdx
   - blockquote, small, sub, sup
   - codeblocks
   - code hike
   - mermaid
   - search
+- intl/msg
 - menu
+- testing
+  - Vitest browser mode playwright
+- RSS
