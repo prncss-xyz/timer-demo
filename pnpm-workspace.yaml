@@ -21,3 +21,7 @@ peerDependencyRules:
   allowedVersions:
     vite: '*'
     vitest: '*'
+
+patchedDependencies:
+  react-server-dom-webpack: patches/react-server-dom-webpack.patch
+  waku@1.0.0-beta.2: patches/waku.patch
