@@ -11,7 +11,7 @@ const styles = stylex.create({
 		backgroundColor: colors.btnBg,
 		borderLeftColor: colors.primary,
 		borderLeftStyle: 'solid',
-		fontSize: fontSizes[2],
+		fontSize: fontSizes.blockquote,
 		borderLeftWidth: borderWidth.thick,
 		paddingLeft: spaces[4],
 	},

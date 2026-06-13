@@ -4,16 +4,16 @@ import { fontSizes } from '../tokens/fontSizes.stylex'
 import { ElemProps } from './types'
 
 const styles = stylex.create({
-	base: {
-		fontSize: fontSizes[2],
+	small: {
+		fontSize: fontSizes.small,
 	},
 	sub: {
-		fontSize: fontSizes[2],
+		fontSize: fontSizes.small,
 		position: 'relative',
 		top: '0.5rem',
 	},
 	sup: {
-		fontSize: fontSizes[2],
+		fontSize: fontSizes.small,
 		bottom: '0.5rem',
 		position: 'relative',
 	},
@@ -23,7 +23,7 @@ export function Small({
 	style,
 	...rest
 }: Omit<ElemProps<'small'>, 'style'> & { style?: stylex.StyleXStyles }) {
-	return <small {...rest} {...stylex.props([styles.base, style])} />
+	return <small {...rest} {...stylex.props([styles.small, style])} />
 }
 
 export function Sup({

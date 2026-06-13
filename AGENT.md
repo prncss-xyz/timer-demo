@@ -20,6 +20,10 @@ Do not define raw flex/grid containers manually if the layout components in `src
 - `<Row>`: Horizontal flexbox layout
 - `<Box>`: Standard styled div block
 
+## React
+
+We use React compiler. **NEVER** use `useMemo` or `useCallback`.
+
 ## Boundaries & Guardrails
 
 - **DO NOT** use default CSS selectors or add raw styles outside of StyleX, except when defining styles in layout reset/reset.css.

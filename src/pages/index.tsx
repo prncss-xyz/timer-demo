@@ -16,7 +16,6 @@ export default async function HomePage() {
 	return (
 		<Col gap={6} style={styles.txt}>
 			<H2>Dark Mode Demo</H2>
-
 			<P>
 				A gorgeous web application showcasing a persisted three-state dark mode
 				toggle (Light, Dark, and System theme synchronization) built using

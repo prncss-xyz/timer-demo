@@ -1,23 +1,24 @@
-- styling
-  - relative fontSize token (quote, sup, sub)
-  - enforce design tokens
-  - color palette
-- useLocalStorage hook for dark mode
 - image caching
 - mdx
-  - blockquote, small, sub, sup
-  - codeblocks
   - code hike
-  - mermaid
+    - codeblocks
+    - mermaid
   - search
 - intl/msg
 - menu
 - RSS
-- guidance
-  - stylex llm instructions (https://stylexjs.com/docs/llm-resources)
+- improve guidance
+- styling
+  - color palette
 - backpressure
-  - enforce import type
   - max length for file (chars, tokens)
-  - use style tokens
   - no UUID in files
   - react compiler checks
+  - enforce style tokens
+
+## Reference
+
+hmtl styling:
+
+- https://github.com/prncss-xyz/optics-talk/blob/main/src/components/markdown.tsx
+- https://github.com/prncss-xyz/zknext/blob/main/src/theme.css.ts
