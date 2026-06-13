@@ -50,6 +50,7 @@ export const spaces = defineVars({
 export const sizes = defineVars({
 	none: '0rem',
 	full: '100%',
+	readable: '60ch',
 	toggleButton: '38px',
 	qrContainer: '16rem',
 	halfScreenHeight: '50vh',

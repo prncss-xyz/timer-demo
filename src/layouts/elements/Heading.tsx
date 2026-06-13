@@ -49,7 +49,10 @@ function createHeading(
 	}) {
 		const E = as ?? baseElement
 		return (
-			<E {...rest} sx={[styles.base, sizeVariants[size ?? baseSize], sx]} />
+			<E
+				{...rest}
+				{...stylex.props(styles.base, sizeVariants[size ?? baseSize], sx)}
+			/>
 		)
 	}
 }

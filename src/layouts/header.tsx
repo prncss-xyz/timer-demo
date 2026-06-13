@@ -3,14 +3,8 @@ import { Link } from 'waku'
 
 import { DarkModeToggle } from '@/components/darkMode/DarkModeToggle'
 
-import { H2 } from './elements/Heading'
-import {
-	colors,
-	borderWidth,
-	fontSizes,
-	fontWeights,
-	spaces,
-} from './tokens.stylex'
+import { H1 } from './elements/Heading'
+import { colors, borderWidth, spaces } from './tokens.stylex'
 
 const styles = stylex.create({
 	header: {
@@ -31,22 +25,14 @@ const styles = stylex.create({
 		backdropFilter: 'blur(12px)',
 		transition: 'background-color 0.3s ease, border-color 0.3s ease',
 	},
-	title: {
-		fontSize: fontSizes[4],
-		fontWeight: fontWeights.bold,
-		letterSpacing: '-0.03em',
-		margin: spaces.none,
-		lineHeight: '1.75rem',
-		color: colors.text,
-	},
 })
 
 export const Header = () => {
 	return (
 		<header sx={styles.header}>
-			<H2 sx={styles.title}>
+			<H1>
 				<Link to='/'>Waku starter</Link>
-			</H2>
+			</H1>
 			<DarkModeToggle />
 		</header>
 	)

@@ -189,7 +189,7 @@ export function Box<E extends React.ElementType = typeof defaultElement>({
 	return (
 		<Element
 			{...rest}
-			sx={[
+			{...stylex.props(
 				flex && flexVariants[flex],
 				p && pVariants[p],
 				px && pxVariants[px],
@@ -199,15 +199,15 @@ export function Box<E extends React.ElementType = typeof defaultElement>({
 				justify && justifyVariants[justify],
 				size && sizeVariants[size],
 				sx,
-			]}
+			)}
 		/>
 	)
 }
 
-export function Row<E extends React.ElementType = typeof defaultElement>({
-	...rest
-}: BoxProps<E>) {
-	return <Box flex='row' {...rest} />
+export function Row<E extends React.ElementType = typeof defaultElement>(
+	props: BoxProps<E>,
+) {
+	return <Box flex='row' {...props} />
 }
 
 export function Col<E extends React.ElementType = typeof defaultElement>({

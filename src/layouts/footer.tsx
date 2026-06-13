@@ -1,5 +1,7 @@
 import * as stylex from '@stylexjs/stylex'
 
+import { Row } from './Box'
+import { A } from './elements/A'
 import { spaces } from './tokens.stylex'
 
 const styles = stylex.create({
@@ -18,29 +20,17 @@ const styles = stylex.create({
 			'@media (min-width: 1024px)': 'fixed',
 		},
 	},
-	link: {
-		color: 'inherit',
-		display: 'inline-block',
-		textDecoration: 'underline',
-		marginTop: spaces[5],
-	},
 })
 
 export const Footer = () => {
 	return (
 		<footer sx={styles.footer}>
-			<div>
-				visit{' '}
-				<a
-					href='https://waku.gg/'
-					target='_blank'
-					rel='noreferrer'
-					sx={styles.link}
-				>
+			<Row gap={3}>
+				<A href='https://waku.gg/' target='_blank' rel='noreferrer'>
 					waku.gg
-				</a>{' '}
-				to learn more
-			</div>
+				</A>
+				<div>to learn more</div>
+			</Row>
 		</footer>
 	)
 }

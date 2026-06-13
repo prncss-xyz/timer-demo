@@ -20,7 +20,7 @@ export function A({ children, href, sx, ...rest }: BoxProps) {
 				children={children}
 				to={href as any}
 				{...rest}
-				sx={[styles.base, sx]}
+				{...stylex.props(styles.base, sx)}
 			/>
 		)
 	return (
@@ -29,7 +29,7 @@ export function A({ children, href, sx, ...rest }: BoxProps) {
 			href={href}
 			target='_blank'
 			{...rest}
-			sx={[styles.base, sx]}
+			{...stylex.props(styles.base, sx)}
 		/>
 	)
 }
