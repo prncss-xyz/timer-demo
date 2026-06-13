@@ -40,7 +40,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 			<meta name='description' content={data.description} />
 			<link rel='icon' type='image/png' href={data.icon} />
 
-			<DevStyleXInject cssHref='/stylex.css' />
+			<DevStyleXInject />
 			<Header />
 			<main {...stylex.props(styles.main)}>{children}</main>
 			<Footer />
