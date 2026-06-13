@@ -44,7 +44,7 @@ const styles = stylex.create({
 export const Header = () => {
 	return (
 		<header sx={styles.header}>
-			<H2 {...stylex.props(styles.title)}>
+			<H2 sx={styles.title}>
 				<Link to='/'>Waku starter</Link>
 			</H2>
 			<DarkModeToggle />

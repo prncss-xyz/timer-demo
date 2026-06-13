@@ -1,11 +1,11 @@
-import { create, props } from '@stylexjs/stylex'
+import * as stylex from '@stylexjs/stylex'
 
 import { getResponsiveImage } from '../images/getResponsiveImage'
 import { OptimizedImage } from '../images/OptimizedImage'
 import { spaces } from '../tokens.stylex'
 import { ElemProps } from './types'
 
-const styles = create({
+const styles = stylex.create({
 	base: {
 		padding: spaces[4],
 	},
@@ -14,14 +14,18 @@ const styles = create({
 export async function Img({
 	alt,
 	src,
-	style,
+	sx,
 	...rest
 }: ElemProps<'div'> & ElemProps<'img'>) {
 	if (src) {
 		const image = await getResponsiveImage(src, alt)
 		return (
-			<OptimizedImage image={image} {...rest} {...props(styles.base, style)} />
+			<OptimizedImage
+				image={image}
+				{...rest}
+				style={[styles.base, sx] as any}
+			/>
 		)
 	}
-	return <img {...rest} {...props(styles.base, style)} />
+	return <img {...rest} sx={[styles.base, sx]} />
 }

@@ -1,10 +1,8 @@
-// source: https://github.com/TheMightyPenguin/dessert-box/blob/main/packages/react/src/index.ts
-// source: https://github.com/kripod/react-polymorphic-box
-import { create, props, StyleXStyles } from '@stylexjs/stylex'
+import * as stylex from '@stylexjs/stylex'
 
 import { spaces, sizes } from './tokens.stylex'
 
-const sizeVariants = create({
+const sizeVariants = stylex.create({
 	fullHeight: {
 		height: sizes.full,
 	},
@@ -17,7 +15,7 @@ const sizeVariants = create({
 	},
 })
 
-const flexVariants = create({
+const flexVariants = stylex.create({
 	col: {
 		display: 'flex',
 		flexDirection: 'column',
@@ -28,7 +26,7 @@ const flexVariants = create({
 	},
 })
 
-const justifyVariants = create({
+const justifyVariants = stylex.create({
 	around: {
 		justifyContent: 'space-around',
 	},
@@ -46,7 +44,7 @@ const justifyVariants = create({
 	},
 })
 
-const alignVariants = create({
+const alignVariants = stylex.create({
 	baseline: {
 		alignItems: 'baseline',
 	},
@@ -64,7 +62,7 @@ const alignVariants = create({
 	},
 })
 
-const pVariants = create({
+const pVariants = stylex.create({
 	1: { padding: spaces[1] },
 	2: { padding: spaces[2] },
 	3: { padding: spaces[3] },
@@ -75,7 +73,7 @@ const pVariants = create({
 	8: { padding: spaces[8] },
 })
 
-const pxVariants = create({
+const pxVariants = stylex.create({
 	1: {
 		paddingLeft: spaces[1],
 		paddingRight: spaces[1],
@@ -110,7 +108,7 @@ const pxVariants = create({
 	},
 })
 
-const pyVariants = create({
+const pyVariants = stylex.create({
 	1: {
 		paddingBottom: spaces[1],
 		paddingTop: spaces[1],
@@ -145,7 +143,7 @@ const pyVariants = create({
 	},
 })
 
-const gapVariants = create({
+const gapVariants = stylex.create({
 	1: { gap: spaces[1] },
 	2: { gap: spaces[2] },
 	3: { gap: spaces[3] },
@@ -166,7 +164,7 @@ export type BoxBaseProps<E extends React.ElementType = React.ElementType> = {
 	px?: keyof typeof pxVariants
 	py?: keyof typeof pyVariants
 	size?: keyof typeof sizeVariants
-	style?: StyleXStyles
+	sx?: stylex.StyleXStyles
 }
 
 type BoxProps<E extends React.ElementType> = BoxBaseProps<E> &
@@ -184,14 +182,14 @@ export function Box<E extends React.ElementType = typeof defaultElement>({
 	px,
 	py,
 	size,
-	style,
+	sx,
 	...rest
 }: BoxProps<E>) {
 	const Element = as || defaultElement
 	return (
 		<Element
 			{...rest}
-			{...props(
+			sx={[
 				flex && flexVariants[flex],
 				p && pVariants[p],
 				px && pxVariants[px],
@@ -200,8 +198,8 @@ export function Box<E extends React.ElementType = typeof defaultElement>({
 				align && alignVariants[align],
 				justify && justifyVariants[justify],
 				size && sizeVariants[size],
-				style,
-			)}
+				sx,
+			]}
 		/>
 	)
 }

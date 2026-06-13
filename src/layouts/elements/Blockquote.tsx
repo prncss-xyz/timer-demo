@@ -1,9 +1,9 @@
-import { create, props } from '@stylexjs/stylex'
+import * as stylex from '@stylexjs/stylex'
 
 import { fontSizes, borderWidth, spaces, colors } from '../tokens.stylex'
 import { ElemProps } from './types'
 
-const styles = create({
+const styles = stylex.create({
 	base: {
 		backgroundColor: colors.btnBg,
 		borderLeftColor: colors.primary,
@@ -14,6 +14,6 @@ const styles = create({
 	},
 })
 
-export function Blockquote({ style, ...rest }: ElemProps<'blockquote'>) {
-	return <blockquote {...rest} {...props(styles.base, style)} />
+export function Blockquote({ sx, ...rest }: ElemProps<'blockquote'>) {
+	return <blockquote {...rest} sx={[styles.base, sx]} />
 }

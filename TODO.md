@@ -5,6 +5,7 @@
   - font script
   - relative fontSize token (quote, sup, sub)
   - breakpoints
+  - animations
 - useLocalStorage hook for dark mode
 - QR
   - moins flou
@@ -21,6 +22,7 @@
   - Vitest browser mode playwright
 - RSS
 - backpressure
+  - enforce import type
   - max length for file (chars, tokens)
   - use style tokens
   - no UUID in files

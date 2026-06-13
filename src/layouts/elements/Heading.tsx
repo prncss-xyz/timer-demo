@@ -1,10 +1,10 @@
-import { create, props } from '@stylexjs/stylex'
+import * as stylex from '@stylexjs/stylex'
 import { ElementType } from 'react'
 
 import { fontFamilies, fontSizes, fontWeights, spaces } from '../tokens.stylex'
 import { ElemProps } from './types'
 
-const styles = create({
+const styles = stylex.create({
 	base: {
 		fontFamily: fontFamilies.heading,
 		fontWeight: fontWeights.bold,
@@ -13,7 +13,7 @@ const styles = create({
 	},
 })
 
-const sizeVariants = create({
+const sizeVariants = stylex.create({
 	1: {
 		fontSize: fontSizes[6],
 	},
@@ -41,7 +41,7 @@ function createHeading(
 	return function Heading<E extends ElementType>({
 		as,
 		size,
-		style,
+		sx,
 		...rest
 	}: ElemProps<'h1'> & {
 		as?: E
@@ -49,10 +49,7 @@ function createHeading(
 	}) {
 		const E = as ?? baseElement
 		return (
-			<E
-				{...rest}
-				{...props(styles.base, sizeVariants[size ?? baseSize], style)}
-			/>
+			<E {...rest} sx={[styles.base, sizeVariants[size ?? baseSize], sx]} />
 		)
 	}
 }

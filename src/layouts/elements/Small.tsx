@@ -1,9 +1,9 @@
-import { create, props } from '@stylexjs/stylex'
+import * as stylex from '@stylexjs/stylex'
 
 import { fontSizes } from '../tokens.stylex'
 import { ElemProps } from './types'
 
-const styles = create({
+const styles = stylex.create({
 	base: {
 		fontSize: fontSizes[2],
 	},
@@ -19,14 +19,14 @@ const styles = create({
 	},
 })
 
-export function Small({ style, ...rest }: ElemProps<'small'>) {
-	return <small {...rest} {...props(styles.base, style)} />
+export function Small({ sx, ...rest }: ElemProps<'small'>) {
+	return <small {...rest} sx={[styles.base, sx]} />
 }
 
-export function Sup({ style, ...rest }: ElemProps<'sup'>) {
-	return <sup {...rest} {...props(styles.sup, style)} />
+export function Sup({ sx, ...rest }: ElemProps<'sup'>) {
+	return <sup {...rest} sx={[styles.sup, sx]} />
 }
 
-export function Sub({ style, ...rest }: ElemProps<'sub'>) {
-	return <sub {...rest} {...props(styles.sub, style)} />
+export function Sub({ sx, ...rest }: ElemProps<'sub'>) {
+	return <sub {...rest} sx={[styles.sub, sx]} />
 }
