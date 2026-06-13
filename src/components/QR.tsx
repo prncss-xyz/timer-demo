@@ -16,7 +16,8 @@ const styles = stylex.create({
 })
 
 export async function QR({ href, name }: { href: string; name: string }) {
-	const src = await qr.toDataURL(href)
+	const svgString = await qr.toString(href, { type: 'svg' })
+	const src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svgString)}`
 	return (
 		<Col align='center' gap={5}>
 			<img alt={name} src={src} sx={styles.qr} />

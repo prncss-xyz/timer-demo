@@ -1,5 +1,7 @@
 'use client'
 
+import { Radio } from '@base-ui/react/radio'
+import { RadioGroup } from '@base-ui/react/radio-group'
 import * as stylex from '@stylexjs/stylex'
 import { FiSun, FiMoon, FiMonitor } from 'react-icons/fi'
 
@@ -97,51 +99,57 @@ export function DarkModeToggle() {
 	const { theme, updateTheme } = useDarkModeToggle()
 
 	return (
-		<div
-			sx={styles.container}
-			role='radiogroup'
+		<RadioGroup
+			render={<div sx={styles.container} />}
 			aria-label='Choose appearance theme'
+			value={theme}
+			onValueChange={(val) => {
+				if (val) updateTheme(val)
+			}}
 		>
 			<div
 				sx={[styles.indicator, styles.indicatorAnimated, styles[theme]]}
 				aria-hidden='true'
 			/>
 
-			<button
-				type='button'
-				role='radio'
-				aria-checked={theme === 'light'}
-				onClick={() => updateTheme('light')}
-				sx={[styles.button, theme === 'light' && styles.activeButton]}
+			<Radio.Root
+				value='light'
+				render={
+					<button
+						sx={[styles.button, theme === 'light' && styles.activeButton]}
+					/>
+				}
 				title='Light theme'
 			>
 				<span sx={styles.srOnly}>Light theme</span>
 				<FiSun size={18} />
-			</button>
+			</Radio.Root>
 
-			<button
-				type='button'
-				role='radio'
-				aria-checked={theme === 'dark'}
-				onClick={() => updateTheme('dark')}
-				sx={[styles.button, theme === 'dark' && styles.activeButton]}
+			<Radio.Root
+				value='dark'
+				render={
+					<button
+						sx={[styles.button, theme === 'dark' && styles.activeButton]}
+					/>
+				}
 				title='Dark theme'
 			>
 				<span sx={styles.srOnly}>Dark theme</span>
 				<FiMoon size={18} />
-			</button>
+			</Radio.Root>
 
-			<button
-				type='button'
-				role='radio'
-				aria-checked={theme === 'system'}
-				onClick={() => updateTheme('system')}
-				sx={[styles.button, theme === 'system' && styles.activeButton]}
+			<Radio.Root
+				value='system'
+				render={
+					<button
+						sx={[styles.button, theme === 'system' && styles.activeButton]}
+					/>
+				}
 				title='System theme'
 			>
 				<span sx={styles.srOnly}>System theme</span>
 				<FiMonitor size={18} />
-			</button>
-		</div>
+			</Radio.Root>
+		</RadioGroup>
 	)
 }

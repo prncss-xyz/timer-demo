@@ -2,6 +2,7 @@ import * as stylex from '@stylexjs/stylex'
 import { Link } from 'waku'
 
 import { DarkModeToggle } from '@/components/darkMode/DarkModeToggle'
+import { title } from '@/meta'
 
 import { H1 } from './elements/Heading'
 import {
@@ -39,7 +40,7 @@ export const Header = () => {
 	return (
 		<header sx={styles.header}>
 			<H1>
-				<Link to='/'>Waku starter</Link>
+				<Link to='/'>{title}</Link>
 			</H1>
 			<DarkModeToggle />
 		</header>
