@@ -6,8 +6,8 @@ import { ResponsiveImage } from './getResponsiveImage'
 
 const styles = create({
 	container: {
-		display: 'inline-grid',
 		placeItems: 'center',
+		display: 'inline-grid',
 	},
 	content: {
 		gridColumnStart: '1',

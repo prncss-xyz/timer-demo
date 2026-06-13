@@ -12,17 +12,17 @@ const styles = stylex.create({
 		alignItems: 'center',
 		display: 'flex',
 		justifyContent: {
+			default: null,
 			'@media (min-width: 1024px)': 'center',
-			default: null,
 		},
+		paddingBottom: '6rem',
+		paddingTop: '6rem',
+		boxSizing: 'border-box',
 		margin: {
-			'@media (min-width: 1024px)': 0,
 			default: '1.5rem',
+			'@media (min-width: 1024px)': 0,
 		},
-		minHeight: {
-			'@media (min-width: 1024px)': '100svh',
-			default: null,
-		},
+		minHeight: '100svh',
 	},
 	root: {
 		fontFamily: 'Nunito',

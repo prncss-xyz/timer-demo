@@ -13,8 +13,8 @@ const styles = create({
 		top: '0.5rem',
 	},
 	sup: {
-		bottom: '0.5rem',
 		fontSize: fontSizes[2],
+		bottom: '0.5rem',
 		position: 'relative',
 	},
 })

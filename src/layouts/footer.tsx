@@ -3,24 +3,24 @@ import * as stylex from '@stylexjs/stylex'
 const styles = stylex.create({
 	footer: {
 		bottom: {
-			'@media (min-width: 1024px)': 0,
 			default: null,
+			'@media (min-width: 1024px)': 0,
 		},
+		padding: '1.5rem',
 		left: {
 			'@media (min-width: 1024px)': 0,
 			default: null,
 		},
-		padding: '1.5rem',
 		position: {
-			'@media (min-width: 1024px)': 'fixed',
 			default: null,
+			'@media (min-width: 1024px)': 'fixed',
 		},
 	},
 	link: {
 		color: 'inherit',
 		display: 'inline-block',
-		marginTop: '1rem',
 		textDecoration: 'underline',
+		marginTop: '1rem',
 	},
 })
 

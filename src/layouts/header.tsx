@@ -1,34 +1,37 @@
 import * as stylex from '@stylexjs/stylex'
 import { Link } from 'waku'
 
+import { ThemeToggle } from '@/components/ThemeToggle'
+
 import { H2 } from './elements/Heading'
+import { colors } from './tokens.stylex'
 
 const styles = stylex.create({
 	header: {
 		alignItems: 'center',
-		columnGap: '1rem',
 		display: 'flex',
-		left: {
-			'@media (min-width: 1024px)': 0,
-			default: null,
-		},
-		padding: '1.5rem',
-		position: {
-			'@media (min-width: 1024px)': 'fixed',
-			default: null,
-		},
-		rowGap: '1rem',
-		top: {
-			'@media (min-width: 1024px)': 0,
-			default: null,
-		},
+		justifyContent: 'space-between',
+		left: 0,
+		paddingBlock: '0.75rem',
+		paddingInline: '2rem',
+		right: 0,
+		position: 'fixed',
+		zIndex: 100,
+		top: 0,
+		backgroundColor: 'var(--header-bg)',
+		borderBottomWidth: '1px',
+		borderBottomStyle: 'solid',
+		borderBottomColor: colors.border,
+		backdropFilter: 'blur(12px)',
+		transition: 'background-color 0.3s ease, border-color 0.3s ease',
 	},
 	title: {
-		fontSize: '1.125rem',
-		fontWeight: 700,
-		letterSpacing: '-0.025em',
-		lineHeight: '1.75rem',
+		fontSize: '1.25rem',
+		fontWeight: 800,
+		letterSpacing: '-0.03em',
 		margin: 0,
+		lineHeight: '1.75rem',
+		color: colors.text,
 	},
 })
 
@@ -38,6 +41,7 @@ export const Header = () => {
 			<H2 {...stylex.props(styles.title)}>
 				<Link to='/'>Waku starter</Link>
 			</H2>
+			<ThemeToggle />
 		</header>
 	)
 }

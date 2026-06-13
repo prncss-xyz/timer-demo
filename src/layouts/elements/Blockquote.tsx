@@ -7,8 +7,8 @@ const styles = create({
 	base: {
 		backgroundColor: 'lightgray',
 		borderLeftColor: 'black',
-		borderLeftWidth: '0.25rem',
 		fontSize: fontSizes[2],
+		borderLeftWidth: '0.25rem',
 		paddingLeft: '0.75rem',
 	},
 })

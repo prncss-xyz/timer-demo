@@ -1,10 +1,10 @@
 - fix: flash of unstyled contents
 - image caching
 - styling
-    - dark mode
-    - color palette
-    - create design tokens
-    - enforce design tokens
+  - dark mode
+  - color palette
+  - create design tokens
+  - enforce design tokens
 - mdx
   - blockquote, small, sub, sup
   - codeblocks

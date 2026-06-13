@@ -3,7 +3,7 @@
 ## Commands & Tasks
 
 - `pnpm typegen` generates route types
-- `vpr staged` formats and fixes code, and runs all checks (types, linting, tests etc.)
+- `vpr pre_commit` formats and fixes code, and runs all checks (types, linting, tests etc.)
 - `pnpm check:test` runs tests
 
 ## Coding Standards & Guidelines
