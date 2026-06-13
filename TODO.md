@@ -1,9 +1,8 @@
-- testing
-  - Vitest browser mode playwright
 - styling
+  - remove sx
   - enforce design tokens
-  - color palette
   - relative fontSize token (quote, sup, sub)
+  - color palette
 - useLocalStorage hook for dark mode
 - image caching
 - mdx

@@ -41,17 +41,18 @@ function createHeading(
 	return function Heading<E extends ElementType>({
 		as,
 		size,
-		sx,
+		style,
 		...rest
-	}: ElemProps<'h1'> & {
+	}: Omit<ElemProps<'h1'>, 'style'> & {
 		as?: E
 		size?: keyof typeof sizeVariants
+		style?: stylex.StyleXStyles
 	}) {
 		const E = as ?? baseElement
 		return (
 			<E
 				{...rest}
-				{...stylex.props(styles.base, sizeVariants[size ?? baseSize], sx)}
+				{...stylex.props([styles.base, sizeVariants[size ?? baseSize], style])}
 			/>
 		)
 	}

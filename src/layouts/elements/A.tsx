@@ -11,16 +11,16 @@ const styles = stylex.create({
 	},
 })
 
-type BoxProps = ElemProps<'a'>
+type BoxProps = Omit<ElemProps<'a'>, 'style'> & { style?: stylex.StyleXStyles }
 
-export function A({ children, href, sx, ...rest }: BoxProps) {
+export function A({ children, href, style, ...rest }: BoxProps) {
 	if (href && (href.startsWith('/') || href.startsWith('.')))
 		return (
 			<Link
 				children={children}
 				to={href as any}
 				{...rest}
-				{...stylex.props(styles.base, sx)}
+				{...stylex.props([styles.base, style])}
 			/>
 		)
 	return (
@@ -29,7 +29,7 @@ export function A({ children, href, sx, ...rest }: BoxProps) {
 			href={href}
 			target='_blank'
 			{...rest}
-			{...stylex.props(styles.base, sx)}
+			{...stylex.props([styles.base, style])}
 		/>
 	)
 }

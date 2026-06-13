@@ -9,14 +9,23 @@ const styles = stylex.create({
 	},
 })
 
-export function Ol({ sx, ...rest }: ElemProps<'ol'>) {
-	return <ol {...rest} sx={[styles.base, sx]} />
+export function Ol({
+	style,
+	...rest
+}: Omit<ElemProps<'ol'>, 'style'> & { style?: stylex.StyleXStyles }) {
+	return <ol {...rest} {...stylex.props([styles.base, style])} />
 }
 
-export function Ul({ sx, ...rest }: ElemProps<'ul'>) {
-	return <ul {...rest} sx={[styles.base, sx]} />
+export function Ul({
+	style,
+	...rest
+}: Omit<ElemProps<'ul'>, 'style'> & { style?: stylex.StyleXStyles }) {
+	return <ul {...rest} {...stylex.props([styles.base, style])} />
 }
 
-export function Li({ sx, ...rest }: ElemProps<'li'>) {
-	return <li {...rest} sx={sx} />
+export function Li({
+	style,
+	...rest
+}: Omit<ElemProps<'li'>, 'style'> & { style?: stylex.StyleXStyles }) {
+	return <li {...rest} {...stylex.props([style])} />
 }

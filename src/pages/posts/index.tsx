@@ -27,9 +27,9 @@ export default async function PostsIndex() {
 			<h1>Posts</h1>
 			<Ul>
 				{sortedPosts.map((post) => (
-					<li key={post._meta.path} sx={styles.item}>
+					<li key={post._meta.path} {...stylex.props([styles.item])}>
 						<Link to={`/posts/${post._meta.path}`}>
-							<h2 sx={styles.title}>{post.title}</h2>
+							<h2 {...stylex.props([styles.title])}>{post.title}</h2>
 						</Link>
 						<div>{post.date}</div>
 					</li>

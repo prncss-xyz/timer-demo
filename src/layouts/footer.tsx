@@ -26,7 +26,7 @@ const styles = stylex.create({
 
 export const Footer = () => {
 	return (
-		<footer sx={styles.footer}>
+		<footer {...stylex.props([styles.footer])}>
 			<Row gap={3}>
 				<A href='https://waku.gg/' target='_blank' rel='noreferrer'>
 					waku.gg

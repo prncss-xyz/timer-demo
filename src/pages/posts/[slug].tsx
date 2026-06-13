@@ -24,7 +24,7 @@ export default async function PostPage({ slug }: { slug: string }) {
 	return (
 		<div>
 			<title>{post.title}</title>
-			<div sx={styles.container}>
+			<div {...stylex.props([styles.container])}>
 				<MD>{post.content}</MD>
 			</div>
 		</div>

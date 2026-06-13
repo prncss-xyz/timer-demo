@@ -108,7 +108,11 @@ export function DarkModeToggle() {
 			{...stylex.props([styles.container])}
 		>
 			<div
-				sx={[styles.indicator, styles.indicatorAnimated, styles[theme]]}
+				{...stylex.props([
+					styles.indicator,
+					styles.indicatorAnimated,
+					styles[theme],
+				])}
 				aria-hidden='true'
 			/>
 
@@ -120,9 +124,12 @@ export function DarkModeToggle() {
 						<button
 							{...buttonProps}
 							title='Light theme'
-							sx={[styles.button, theme === 'light' && styles.activeButton]}
+							{...stylex.props([
+								styles.button,
+								theme === 'light' && styles.activeButton,
+							])}
 						>
-							<span sx={styles.srOnly}>Light theme</span>
+							<span {...stylex.props([styles.srOnly])}>Light theme</span>
 							<FiSun size={18} />
 						</button>
 					</label>
@@ -137,9 +144,12 @@ export function DarkModeToggle() {
 						<button
 							{...buttonProps}
 							title='Dark theme'
-							sx={[styles.button, theme === 'dark' && styles.activeButton]}
+							{...stylex.props([
+								styles.button,
+								theme === 'dark' && styles.activeButton,
+							])}
 						>
-							<span sx={styles.srOnly}>Dark theme</span>
+							<span {...stylex.props([styles.srOnly])}>Dark theme</span>
 							<FiMoon size={18} />
 						</button>
 					</label>
@@ -154,9 +164,12 @@ export function DarkModeToggle() {
 						<button
 							{...buttonProps}
 							title='System theme'
-							sx={[styles.button, theme === 'system' && styles.activeButton]}
+							{...stylex.props([
+								styles.button,
+								theme === 'system' && styles.activeButton,
+							])}
 						>
-							<span sx={styles.srOnly}>System theme</span>
+							<span {...stylex.props([styles.srOnly])}>System theme</span>
 							<FiMonitor size={18} />
 						</button>
 					</label>

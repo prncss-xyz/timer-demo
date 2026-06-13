@@ -198,7 +198,6 @@ export default defineConfig({
 					},
 					devMode: 'css-only',
 					devPersistToDisk: true,
-					sxPropName: 'sx',
 					runtimeInjection: false,
 					useCSSLayers: true,
 				}),

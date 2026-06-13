@@ -38,7 +38,7 @@ const styles = stylex.create({
 
 export const Header = () => {
 	return (
-		<header sx={styles.header}>
+		<header {...stylex.props([styles.header])}>
 			<H1>
 				<Link to='/'>{title}</Link>
 			</H1>

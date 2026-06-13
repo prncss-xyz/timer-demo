@@ -14,6 +14,9 @@ const styles = stylex.create({
 	},
 })
 
-export function Blockquote({ sx, ...rest }: ElemProps<'blockquote'>) {
-	return <blockquote {...rest} sx={[styles.base, sx]} />
+export function Blockquote({
+	style,
+	...rest
+}: Omit<ElemProps<'blockquote'>, 'style'> & { style?: stylex.StyleXStyles }) {
+	return <blockquote {...rest} {...stylex.props([styles.base, style])} />
 }

@@ -10,6 +10,9 @@ const styles = stylex.create({
 	},
 })
 
-export function P({ sx, ...rest }: ElemProps<'p'>) {
-	return <p {...rest} sx={[styles.base, sx]} />
+export function P({
+	style,
+	...rest
+}: Omit<ElemProps<'p'>, 'style'> & { style?: stylex.StyleXStyles }) {
+	return <p {...rest} {...stylex.props([styles.base, style])} />
 }

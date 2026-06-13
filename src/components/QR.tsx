@@ -20,8 +20,8 @@ export async function QR({ href, name }: { href: string; name: string }) {
 	const src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svgString)}`
 	return (
 		<Col align='center' gap={5}>
-			<img alt={name} src={src} sx={styles.qr} />
-			<A href={href} sx={styles.legend}>
+			<img alt={name} src={src} {...stylex.props([styles.qr])} />
+			<A href={href} style={styles.legend}>
 				{name}
 			</A>
 		</Col>

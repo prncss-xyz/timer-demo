@@ -164,7 +164,7 @@ export type BoxBaseProps<E extends React.ElementType = React.ElementType> = {
 	px?: keyof typeof pxVariants
 	py?: keyof typeof pyVariants
 	size?: keyof typeof sizeVariants
-	sx?: stylex.StyleXStyles
+	style?: stylex.StyleXStyles
 }
 
 type BoxProps<E extends React.ElementType> = BoxBaseProps<E> &
@@ -182,14 +182,14 @@ export function Box<E extends React.ElementType = typeof defaultElement>({
 	px,
 	py,
 	size,
-	sx,
+	style,
 	...rest
 }: BoxProps<E>) {
 	const Element = as || defaultElement
 	return (
 		<Element
 			{...rest}
-			{...stylex.props(
+			{...stylex.props([
 				flex && flexVariants[flex],
 				p && pVariants[p],
 				px && pxVariants[px],
@@ -198,8 +198,8 @@ export function Box<E extends React.ElementType = typeof defaultElement>({
 				align && alignVariants[align],
 				justify && justifyVariants[justify],
 				size && sizeVariants[size],
-				sx,
-			)}
+				style,
+			])}
 		/>
 	)
 }

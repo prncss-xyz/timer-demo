@@ -14,12 +14,15 @@ const styles = stylex.create({
 export async function Img({
 	alt,
 	src,
-	sx,
+	style,
 	...rest
-}: ElemProps<'div'> & ElemProps<'img'>) {
+}: Omit<ElemProps<'div'>, 'style'> &
+	Omit<ElemProps<'img'>, 'style'> & { style?: stylex.StyleXStyles }) {
 	if (src) {
 		const image = await getResponsiveImage(src, alt)
-		return <OptimizedImage image={image} {...rest} sx={[styles.base, sx]} />
+		return (
+			<OptimizedImage image={image} {...rest} style={[styles.base, style]} />
+		)
 	}
-	return <img {...rest} sx={[styles.base, sx]} />
+	return <img {...rest} {...stylex.props([styles.base, style])} />
 }

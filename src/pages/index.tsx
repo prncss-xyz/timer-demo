@@ -1,4 +1,4 @@
-import { create } from '@stylexjs/stylex'
+import * as stylex from '@stylexjs/stylex'
 
 import { Col } from '@/layouts/Box'
 import { H2 } from '@/layouts/elements/Heading'
@@ -6,7 +6,7 @@ import { Li, Ul } from '@/layouts/elements/list'
 import { P } from '@/layouts/elements/P'
 import { sizes } from '@/layouts/tokens.stylex'
 
-const styles = create({
+const styles = stylex.create({
 	txt: {
 		width: sizes.readable,
 	},
@@ -14,7 +14,7 @@ const styles = create({
 
 export default async function HomePage() {
 	return (
-		<Col gap={6} sx={styles.txt}>
+		<Col gap={6} style={styles.txt}>
 			<H2>Dark Mode Demo</H2>
 
 			<P>

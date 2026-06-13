@@ -20,11 +20,11 @@ const styles = stylex.create({
 
 export function OptimizedImage({
 	image: { alt, height, placeholder, src, srcSet, width },
-	sx,
+	style,
 	...rest
 }: Omit<ComponentProps<'div'>, 'classname' | 'style'> & {
 	image: ResponsiveImage
-	sx?: stylex.StyleXStyles | stylex.StyleXStyles[]
+	style?: stylex.StyleXStyles
 }) {
 	const [loaded, setLoaded] = useState(false)
 	const imgRef = useRef<HTMLImageElement>(null)
@@ -32,14 +32,14 @@ export function OptimizedImage({
 		if (imgRef.current?.complete) setLoaded(true)
 	}, [])
 	return (
-		<div {...rest} sx={[styles.container, sx]}>
+		<div {...rest} {...stylex.props([styles.container, style])}>
 			<img
 				alt={alt}
 				aria-hidden='true'
 				height={height}
 				src={placeholder}
 				width={width}
-				sx={[styles.content, loaded && styles.invisible]}
+				{...stylex.props([styles.content, loaded && styles.invisible])}
 			/>
 			<img
 				alt={alt}
@@ -49,7 +49,7 @@ export function OptimizedImage({
 				src={src}
 				srcSet={srcSet}
 				width={width}
-				sx={[styles.content, !loaded && styles.invisible]}
+				{...stylex.props([styles.content, !loaded && styles.invisible])}
 			/>
 		</div>
 	)
