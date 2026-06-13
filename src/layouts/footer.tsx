@@ -1,5 +1,7 @@
 import * as stylex from '@stylexjs/stylex'
 
+import { MEDIA } from '@/layouts/breakpoints.stylex'
+
 import { Row } from './Box'
 import { A } from './elements/A'
 import { spaces } from './tokens.stylex'
@@ -8,16 +10,16 @@ const styles = stylex.create({
 	footer: {
 		bottom: {
 			default: null,
-			'@media (min-width: 1024px)': 0,
+			[MEDIA.lg]: 0,
 		},
 		padding: spaces[5],
 		left: {
-			'@media (min-width: 1024px)': 0,
+			[MEDIA.lg]: 0,
 			default: null,
 		},
 		position: {
 			default: null,
-			'@media (min-width: 1024px)': 'fixed',
+			[MEDIA.lg]: 'fixed',
 		},
 	},
 })

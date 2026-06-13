@@ -1,11 +1,11 @@
 - styling
   - color palette
   - enforce design tokens
-  - use sx on existing components
   - font script
   - relative fontSize token (quote, sup, sub)
-  - breakpoints
   - animations
+    - centralise
+    - accessibility
 - useLocalStorage hook for dark mode
 - QR
   - moins flou

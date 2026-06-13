@@ -9,6 +9,8 @@ import {
 	borderWidth,
 	sizes,
 	spaces,
+	animationDurations,
+	animationTimings,
 } from '@/layouts/tokens.stylex'
 
 import { useDarkModeToggle } from './useDarkModeToggle'
@@ -42,7 +44,9 @@ const styles = stylex.create({
 		},
 		cursor: 'pointer',
 		outline: 'none',
-		transition: 'color 0.2s ease',
+		transitionProperty: 'color',
+		transitionDuration: animationDurations.fast,
+		transitionTimingFunction: animationTimings.ease,
 	},
 	activeButton: {
 		color: colors.text,
@@ -62,7 +66,9 @@ const styles = stylex.create({
 		zIndex: 1,
 	},
 	indicatorAnimated: {
-		transition: 'transform 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
+		transitionProperty: 'transform',
+		transitionDuration: animationDurations.normal,
+		transitionTimingFunction: animationTimings.snappy,
 	},
 	// Transforms for slide effect
 	light: {

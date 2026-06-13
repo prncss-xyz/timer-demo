@@ -4,6 +4,7 @@ import * as stylex from '@stylexjs/stylex'
 import type { ReactNode } from 'react'
 
 import { basePath } from '@/basePath'
+import { MEDIA } from '@/layouts/breakpoints.stylex'
 import { DevStyleXInject } from '@/layouts/DevStyleXInject'
 import { Footer } from '@/layouts/footer'
 import { Header } from '@/layouts/header'
@@ -15,14 +16,14 @@ const styles = stylex.create({
 		display: 'flex',
 		justifyContent: {
 			default: null,
-			'@media (min-width: 1024px)': 'center',
+			[MEDIA.lg]: 'center',
 		},
 		paddingBottom: spaces[7],
 		paddingTop: spaces[7],
 		boxSizing: 'border-box',
 		margin: {
 			default: spaces[5],
-			'@media (min-width: 1024px)': spaces.none,
+			[MEDIA.lg]: spaces.none,
 		},
 		minHeight: sizes.screenHeight,
 	},

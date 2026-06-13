@@ -4,7 +4,13 @@ import { Link } from 'waku'
 import { DarkModeToggle } from '@/components/darkMode/DarkModeToggle'
 
 import { H1 } from './elements/Heading'
-import { colors, borderWidth, spaces } from './tokens.stylex'
+import {
+	colors,
+	borderWidth,
+	spaces,
+	animationDurations,
+	animationTimings,
+} from './tokens.stylex'
 
 const styles = stylex.create({
 	header: {
@@ -23,7 +29,9 @@ const styles = stylex.create({
 		borderBottomStyle: 'solid',
 		borderBottomColor: colors.border,
 		backdropFilter: 'blur(12px)',
-		transition: 'background-color 0.3s ease, border-color 0.3s ease',
+		transitionProperty: 'background-color, border-color',
+		transitionDuration: animationDurations.slow,
+		transitionTimingFunction: animationTimings.ease,
 	},
 })
 

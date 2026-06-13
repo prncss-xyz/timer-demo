@@ -69,3 +69,14 @@ export const borderWidth = defineVars({
 	thin: '1px',
 	thick: '0.25rem',
 })
+
+export const animationDurations = defineVars({
+	fast: '0.2s',
+	normal: '0.25s',
+	slow: '0.3s',
+})
+
+export const animationTimings = defineVars({
+	ease: 'ease',
+	snappy: 'cubic-bezier(0.4, 0, 0.2, 1)',
+})
