@@ -5,7 +5,7 @@ import { themeKey } from './consts'
 export type Theme = 'light' | 'dark' | 'system'
 const init: Theme = 'system'
 
-function parseDarkMode(u: unknown): Theme {
+function parseDarkMode(u: string | null): Theme {
 	switch (u) {
 		case 'light':
 			return 'light'

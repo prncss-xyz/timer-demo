@@ -7,6 +7,7 @@ import { basePath } from '@/basePath'
 import { DevStyleXInject } from '@/layouts/DevStyleXInject'
 import { Footer } from '@/layouts/footer'
 import { Header } from '@/layouts/header'
+import { sizes, spaces } from '@/layouts/tokens.stylex'
 
 const styles = stylex.create({
 	main: {
@@ -16,14 +17,14 @@ const styles = stylex.create({
 			default: null,
 			'@media (min-width: 1024px)': 'center',
 		},
-		paddingBottom: '6rem',
-		paddingTop: '6rem',
+		paddingBottom: spaces[7],
+		paddingTop: spaces[7],
 		boxSizing: 'border-box',
 		margin: {
-			default: '1.5rem',
-			'@media (min-width: 1024px)': 0,
+			default: spaces[5],
+			'@media (min-width: 1024px)': spaces.none,
 		},
-		minHeight: '100svh',
+		minHeight: sizes.screenHeight,
 	},
 	root: {
 		fontFamily: 'Nunito',

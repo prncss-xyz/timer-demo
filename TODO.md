@@ -1,8 +1,11 @@
 - styling
   - color palette
-  - create design tokens
   - enforce design tokens
-  - stylex sx
+  - use sx on existing components
+  - font script
+  - relative fontSize token (quote, sup, sub)
+  - breakpoints
+- useLocalStorage hook for dark mode
 - QR
   - moins flou
 - image caching
@@ -17,3 +20,8 @@
 - testing
   - Vitest browser mode playwright
 - RSS
+- backpressure
+  - max length for file (chars, tokens)
+  - use style tokens
+  - no UUID in files
+  - react compiler checks

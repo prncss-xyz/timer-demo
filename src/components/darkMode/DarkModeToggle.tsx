@@ -3,7 +3,13 @@
 import * as stylex from '@stylexjs/stylex'
 import { FiSun, FiMoon, FiMonitor } from 'react-icons/fi'
 
-import { colors } from '@/layouts/tokens.stylex'
+import {
+	colors,
+	borderRadius,
+	borderWidth,
+	sizes,
+	spaces,
+} from '@/layouts/tokens.stylex'
 
 import { useDarkModeToggle } from './useDarkModeToggle'
 
@@ -12,9 +18,9 @@ const styles = stylex.create({
 		alignItems: 'center',
 		display: 'inline-flex',
 		backgroundColor: colors.btnBg,
-		padding: '4px',
-		borderRadius: '9999px',
-		borderWidth: '1px',
+		padding: spaces[3],
+		borderRadius: borderRadius.full,
+		borderWidth: borderWidth.thin,
 		borderStyle: 'solid',
 		borderColor: colors.border,
 		boxShadow: 'inset 0 2px 4px 0 rgba(0,0,0,0.04)',
@@ -27,9 +33,9 @@ const styles = stylex.create({
 		justifyContent: 'center',
 		position: 'relative',
 		zIndex: 2,
-		height: '38px',
-		width: '38px',
-		borderRadius: '9999px',
+		height: sizes.toggleButton,
+		width: sizes.toggleButton,
+		borderRadius: borderRadius.full,
 		color: {
 			default: colors.textMuted,
 			':hover': colors.text,
@@ -45,12 +51,12 @@ const styles = stylex.create({
 		position: 'absolute',
 		left: '4px',
 		top: '4px',
-		height: '38px',
-		borderRadius: '9999px',
-		width: '38px',
+		height: sizes.toggleButton,
+		borderRadius: borderRadius.full,
+		width: sizes.toggleButton,
 		backgroundColor: colors.cardBg,
 		boxShadow: colors.shadow,
-		borderWidth: '1px',
+		borderWidth: borderWidth.thin,
 		borderStyle: 'solid',
 		borderColor: colors.border,
 		zIndex: 1,
@@ -72,11 +78,11 @@ const styles = stylex.create({
 		position: 'absolute',
 		height: '1px',
 		width: '1px',
-		padding: '0',
+		padding: spaces.none,
 		margin: '-1px',
 		overflow: 'hidden',
 		clip: 'rect(0, 0, 0, 0)',
-		borderWidth: '0',
+		borderWidth: borderWidth.none,
 		whiteSpace: 'nowrap',
 	},
 })

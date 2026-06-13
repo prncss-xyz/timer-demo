@@ -1,12 +1,14 @@
 import * as stylex from '@stylexjs/stylex'
 
+import { spaces } from './tokens.stylex'
+
 const styles = stylex.create({
 	footer: {
 		bottom: {
 			default: null,
 			'@media (min-width: 1024px)': 0,
 		},
-		padding: '1.5rem',
+		padding: spaces[5],
 		left: {
 			'@media (min-width: 1024px)': 0,
 			default: null,
@@ -20,7 +22,7 @@ const styles = stylex.create({
 		color: 'inherit',
 		display: 'inline-block',
 		textDecoration: 'underline',
-		marginTop: '1rem',
+		marginTop: spaces[5],
 	},
 })
 

@@ -1,13 +1,13 @@
 import { create, props } from '@stylexjs/stylex'
 import { Link } from 'waku'
 
-import { fontSizes } from '../tokens.stylex'
+import { fontSizes, fontWeights } from '../tokens.stylex'
 import { ElemProps } from './types'
 
 const styles = create({
 	base: {
 		fontSize: fontSizes[2],
-		fontWeight: 'bold',
+		fontWeight: fontWeights.bold,
 	},
 })
 

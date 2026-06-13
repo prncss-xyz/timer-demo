@@ -1,15 +1,15 @@
 import { create, props } from '@stylexjs/stylex'
 import { ElementType } from 'react'
 
-import { fontFamilies, fontSizes } from '../tokens.stylex'
+import { fontFamilies, fontSizes, fontWeights, spaces } from '../tokens.stylex'
 import { ElemProps } from './types'
 
 const styles = create({
 	base: {
 		fontFamily: fontFamilies.heading,
-		fontWeight: 'bold',
+		fontWeight: fontWeights.bold,
 		textAlign: 'center',
-		marginTop: '0.67lh',
+		marginTop: spaces[5],
 	},
 })
 

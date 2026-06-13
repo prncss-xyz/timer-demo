@@ -1,15 +1,16 @@
 import { create, props } from '@stylexjs/stylex'
 
-import { fontSizes } from '../tokens.stylex'
+import { fontSizes, borderWidth, spaces, colors } from '../tokens.stylex'
 import { ElemProps } from './types'
 
 const styles = create({
 	base: {
-		backgroundColor: 'lightgray',
-		borderLeftColor: 'black',
+		backgroundColor: colors.btnBg,
+		borderLeftColor: colors.primary,
+		borderLeftStyle: 'solid',
 		fontSize: fontSizes[2],
-		borderLeftWidth: '0.25rem',
-		paddingLeft: '0.75rem',
+		borderLeftWidth: borderWidth.thick,
+		paddingLeft: spaces[4],
 	},
 })
 

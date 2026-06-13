@@ -3,7 +3,7 @@ import qr from 'qrcode'
 
 import { Col } from '@/layouts/Box'
 import { A } from '@/layouts/elements/A'
-import { fontSizes } from '@/layouts/tokens.stylex'
+import { fontSizes, sizes } from '@/layouts/tokens.stylex'
 
 const styles = create({
 	legend: {
@@ -11,7 +11,7 @@ const styles = create({
 	},
 	qr: {
 		objectFit: 'cover',
-		width: '50vh',
+		width: sizes.halfScreenHeight,
 	},
 })
 

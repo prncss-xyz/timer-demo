@@ -1,11 +1,12 @@
 import { create, props } from '@stylexjs/stylex'
 
+import { spaces } from '../tokens.stylex'
 import { ElemProps } from './types'
 
 const styles = create({
 	base: {
-		marginBottom: '1rem',
-		marginTop: '1rem',
+		marginBottom: spaces[5],
+		marginTop: spaces[5],
 	},
 })
 

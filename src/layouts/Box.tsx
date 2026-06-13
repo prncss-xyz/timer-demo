@@ -2,18 +2,18 @@
 // source: https://github.com/kripod/react-polymorphic-box
 import { create, props, StyleXStyles } from '@stylexjs/stylex'
 
-import { spaces } from './tokens.stylex'
+import { spaces, sizes } from './tokens.stylex'
 
 const sizeVariants = create({
 	fullHeight: {
-		height: '100%',
+		height: sizes.full,
 	},
 	fullSize: {
-		height: '100%',
-		width: '100%',
+		height: sizes.full,
+		width: sizes.full,
 	},
 	fullWidth: {
-		width: '100%',
+		width: sizes.full,
 	},
 })
 

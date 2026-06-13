@@ -1,10 +1,11 @@
 import { create, props } from '@stylexjs/stylex'
 
+import { spaces } from '../tokens.stylex'
 import { ElemProps } from './types'
 
 const styles = create({
 	base: {
-		paddingLeft: '2.4rem',
+		paddingLeft: spaces[6],
 	},
 })
 

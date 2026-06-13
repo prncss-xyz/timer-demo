@@ -2,6 +2,7 @@ import * as stylex from '@stylexjs/stylex'
 
 import { baseUrl, title } from '@/basePath'
 import { QR } from '@/components/QR'
+import { sizes } from '@/layouts/tokens.stylex'
 
 const styles = stylex.create({
 	container: {
@@ -9,8 +10,8 @@ const styles = stylex.create({
 		display: 'flex',
 		flexDirection: 'column',
 		justifyContent: 'center',
-		minHeight: '16rem',
-		minWidth: '16rem',
+		minHeight: sizes.qrContainer,
+		minWidth: sizes.qrContainer,
 	},
 })
 
