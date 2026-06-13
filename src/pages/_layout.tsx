@@ -1,3 +1,4 @@
+import './fonts.css'
 import './reset.css'
 import * as stylex from '@stylexjs/stylex'
 import type { ReactNode } from 'react'

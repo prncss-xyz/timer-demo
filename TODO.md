@@ -1,10 +1,9 @@
+- use BaseUI
 - styling
-  - color palette
   - enforce design tokens
-  - font script
+  - color palette
   - relative fontSize token (quote, sup, sub)
 - useLocalStorage hook for dark mode
-- use BaseUI
 - QR
   - moins flou
 - image caching
