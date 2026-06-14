@@ -6,7 +6,6 @@ import contentCollections from '@content-collections/vite'
 import babel from '@rolldown/plugin-babel'
 import stylex from '@stylexjs/unplugin'
 import react, { reactCompilerPreset } from '@vitejs/plugin-react'
-import { playwright } from '@vitest/browser-playwright'
 import { ViteWebfontDownload } from 'vite-plugin-webfont-dl'
 import { defineConfig } from 'vite-plus'
 
@@ -260,7 +259,8 @@ export default defineConfig({
 	run: {
 		tasks: {
 			ci: {
-				command: 'vp check && vpr build && vpr knip && vpr tsc && vpr test',
+				command:
+					'vp check && vpr build && vpr knip && vpr tsc && vpr test:units && vpr test:components',
 			},
 			commitlint: {
 				command: 'commitlint --edit',
@@ -270,21 +270,22 @@ export default defineConfig({
 			},
 			pre_commit: {
 				command:
-					'vp staged && vpr build && vpr knip && vpr tsc && vpr test --changed',
+					'vp staged && vpr build && vpr knip && vpr tsc && vpr test:units --changed && vpr test:components --only-changed',
 			},
-			test: {
+			'test:components': {
 				cache: true,
-				command: 'vp test',
+				command: 'playwright test -c playwright-ct.config.ts',
 				input: [
 					'vite.config.ts',
+					'playwright-ct.config.ts',
 					'package.json',
 					'pnpm-workspace.yaml',
 					'**/src/**/*.{js,ts,jsx,tsx}',
 				],
 			},
-			'test:coverage': {
+			'test:units': {
 				cache: true,
-				command: 'vp test run --coverage',
+				command: 'vp test',
 				input: [
 					'vite.config.ts',
 					'package.json',
@@ -309,19 +310,13 @@ export default defineConfig({
 	},
 	test: {
 		coverage: {
-			exclude: ['**/*.test.*'],
-			include: ['**/src/**/*.{js,ts,jsx,tsx}'],
+			exclude: ['**/src/**/*.test.{js,ts,jsx,tsx}', '**/src/test.setup.ts'],
 			provider: 'v8',
 			reporter: ['text', 'json'],
 		},
-		browser: {
-			enabled: true,
-			provider: playwright(),
-			instances: [{ browser: 'chromium' }],
-			headless: true,
-		},
+		globals: true,
 		include: ['**/src/**/*.test.{js,ts,jsx,tsx}'],
 		passWithNoTests: true,
-		setupFiles: ['./src/test.setup.ts'],
+		pool: 'forks',
 	},
 })
