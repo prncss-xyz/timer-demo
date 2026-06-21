@@ -1,8 +1,9 @@
-// oxlint-disable typescript/no-unsafe-function-type
+import { AnyFunction, fromInit, Init, Prettify } from './utils'
 
-// TODO: multiLang enfore same types
+// TODO: multiLang enforce same types
 // TODO: MDX
 // TODO: inject dumper
+// TODO: extend method
 
 export function configSingle<Locale extends string>(
 	locale: Locale,
@@ -10,12 +11,10 @@ export function configSingle<Locale extends string>(
 	dump: (...args: unknown[]) => string = dump0,
 ) {
 	const core = test ? createDump(locale, dump) : coreLocale
-	return <Ctx extends object, O extends AnyMessages<Ctx>>(ctx: Ctx, conf: O) =>
-		core(ctx, conf)
-}
-
-type Prettify<T> = unknown & {
-	[K in keyof T]: T[K]
+	return <Ctx extends object, O extends AnyMessages<Ctx>>(
+		ctx: Init<Ctx, [Locale]>,
+		conf: O,
+	) => core(fromInit(ctx, locale), conf)
 }
 
 type AnyMessages<Ctx> = Record<
@@ -47,7 +46,7 @@ function coreLocale<Ctx extends object, O extends AnyMessages<Ctx>>(
 	conf: O,
 ): Prettify<
 	{
-		[K in keyof O]: O[K] extends Function
+		[K in keyof O]: O[K] extends AnyFunction
 			? O[K] extends (ctx: Ctx, ...args: infer Args) => infer R
 				? (...args: Args) => R
 				: never
@@ -72,7 +71,7 @@ function createDump(locale: string, dump: (...args: unknown[]) => string) {
 		conf: O,
 	): Prettify<
 		{
-			[K in keyof O]: O[K] extends Function
+			[K in keyof O]: O[K] extends AnyFunction
 				? O[K] extends (ctx: Ctx, ...args: infer Args) => infer R
 					? (...args: Args) => R
 					: never
