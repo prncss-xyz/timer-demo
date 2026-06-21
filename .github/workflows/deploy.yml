@@ -50,7 +50,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-content-collections-
 
-      - name: Build site
+      - name: Check, build (with basePath), and run e2e against it
         run: vpr ci
         env:
           VITE_GITHUB_REPOSITORY: ${{ github.repository }}

@@ -2,7 +2,8 @@ import { test, expect } from '@playwright/test'
 
 test.describe('useLocalStorage (via DarkModeToggle)', () => {
 	test.beforeEach(async ({ page }) => {
-		await page.goto('/')
+		// Relative to baseURL so the route resolves under VITE_BASE_PATH.
+		await page.goto('./')
 		await page.evaluate(() => localStorage.clear())
 	})
 
