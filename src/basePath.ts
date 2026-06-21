@@ -1,0 +1,10 @@
+/**
+ * Compute the waku/router basePath as `VITE_BASE_PATH + '/'`.
+ *
+ * Pure and runner-agnostic: the caller passes the env map it can actually
+ * see. This keeps the formula in one place so app code (Vite, via
+ * `import.meta.env`) and Playwright config (Node, via `process.env`)
+ * can't drift apart — without coupling this module to either source.
+ */
+export const buildBasePath = (env: { VITE_BASE_PATH?: string }): string =>
+	(env.VITE_BASE_PATH ?? '') + '/'

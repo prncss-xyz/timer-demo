@@ -1,10 +1,14 @@
 import { defineConfig, devices } from '@playwright/test'
 
-// Mirror src/meta.ts: the waku basePath is VITE_BASE_PATH + '/'.
-// Playwright polls and navigates relative to this prefix so e2e works
-// against the same basePath-baked build that ships to GitHub Pages.
+import { buildBasePath } from './src/basePath'
+
+// Playwright runs in Node, not Vite, so it reads VITE_BASE_PATH from
+// process.env (set by the workflow) and reuses the same formula as
+// src/meta.ts via buildBasePath. Tests poll and navigate relative to
+// this prefix so e2e runs against the same basePath-baked build that
+// ships to GitHub Pages.
 const host = 'http://localhost:8080'
-const root = host + ((process.env.VITE_BASE_PATH ?? '') + '/')
+const root = host + buildBasePath(process.env)
 
 export default defineConfig({
 	testDir: './src',
@@ -22,7 +26,9 @@ export default defineConfig({
 		trace: 'on-first-retry',
 	},
 	webServer: {
-		command: 'pnpm run build-start',
+		command: process.env.CI
+			? './node_modules/.bin/waku start'
+			: 'pnpm run build-start',
 		url: root,
 		timeout: 120 * 1000,
 		reuseExistingServer: !process.env.CI,

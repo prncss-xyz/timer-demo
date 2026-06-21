@@ -1,9 +1,15 @@
 import { test, expect } from '@playwright/test'
 
+import { buildBasePath } from '../../basePath'
+
+// Path-absolute route under the waku basePath (VITE_BASE_PATH + '/').
+// Resolves against Playwright's baseURL, which itself is built from
+// the same VITE_BASE_PATH via buildBasePath in playwright.config.ts.
+const root = buildBasePath(process.env)
+
 test.describe('DarkModeToggle', () => {
 	test.beforeEach(async ({ page }) => {
-		// Relative to baseURL so the route resolves under VITE_BASE_PATH.
-		await page.goto('./')
+		await page.goto(root)
 		await page.evaluate(() => {
 			document.documentElement.className = ''
 			localStorage.clear()
