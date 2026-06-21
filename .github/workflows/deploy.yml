@@ -33,7 +33,7 @@ jobs:
           run-install: true
 
       - name: Install Playwright browser
-        run: playwright install --with-deps chromium
+        run: ./node_modules/.bin/playwright install --with-deps chromium
 
       - name: Setup Pages
         id: pages
