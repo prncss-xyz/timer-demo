@@ -1,52 +1,33 @@
-import { test, expect } from '@playwright/experimental-ct-react'
+import { test, expect } from '@playwright/test'
 
-import { TestComponent } from './useLocalStorage.story'
-
-test.describe('useLocalStorage', () => {
+test.describe('useLocalStorage (via DarkModeToggle)', () => {
 	test.beforeEach(async ({ page }) => {
-		await page.evaluate(() => {
-			localStorage.clear()
-		})
+		await page.goto('/')
+		await page.evaluate(() => localStorage.clear())
 	})
 
-	test('should read initial value from localStorage if present', async ({
-		page,
-		mount,
-	}) => {
-		await page.evaluate(() => {
-			localStorage.setItem('test-key', 'stored-value')
-		})
+	test('reads theme from localStorage on load', async ({ page }) => {
+		await page.evaluate(() => localStorage.setItem('dark-mode', 'dark'))
+		await page.reload()
 
-		const component = await mount(<TestComponent storageKey='test-key' />)
-
-		await expect(component.locator('#value-container')).toHaveText(
-			'stored-value',
+		await expect(page.getByTitle('Dark theme')).toHaveAttribute(
+			'aria-checked',
+			'true',
 		)
 	})
 
-	test('should return parsed default value if key is not present', async ({
-		mount,
-	}) => {
-		const component = await mount(<TestComponent storageKey='test-key' />)
-
-		await expect(component.locator('#value-container')).toHaveText('default')
+	test('defaults to system when localStorage is empty', async ({ page }) => {
+		// beforeEach already cleared localStorage and navigated
+		await expect(page.getByTitle('System theme')).toHaveAttribute(
+			'aria-checked',
+			'true',
+		)
 	})
 
-	test('should update value and localStorage when setValue is called', async ({
-		page,
-		mount,
-	}) => {
-		const component = await mount(<TestComponent storageKey='test-key' />)
+	test('persists theme choice to localStorage', async ({ page }) => {
+		await page.getByTitle('Light theme').click()
 
-		await expect(component.locator('#value-container')).toHaveText('default')
-
-		await component.locator('#update-btn').click()
-
-		await expect(component.locator('#value-container')).toHaveText('new-value')
-
-		const storedValue = await page.evaluate(() =>
-			localStorage.getItem('test-key'),
-		)
-		expect(storedValue).toBe('new-value')
+		const stored = await page.evaluate(() => localStorage.getItem('dark-mode'))
+		expect(stored).toBe('light')
 	})
 })
