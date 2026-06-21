@@ -16,7 +16,9 @@ export default defineConfig({
 		trace: 'on-first-retry',
 	},
 	webServer: {
-		command: process.env.CI ? 'pnpm run start' : 'pnpm run build-start',
+		command: process.env.CI
+			? './node_modules/.bin/waku start'
+			: 'pnpm run build-start',
 		url: 'http://localhost:8080',
 		timeout: 120 * 1000,
 		reuseExistingServer: !process.env.CI,
