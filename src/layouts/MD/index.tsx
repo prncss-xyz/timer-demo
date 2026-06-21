@@ -21,6 +21,7 @@ const elems = {
 	sup: Sup,
 	ul: Ul,
 }
+
 export const MD = createMD(elems)
 
 function Frag({ children }: { children?: ReactNode }) {
