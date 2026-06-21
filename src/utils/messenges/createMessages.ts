@@ -1,18 +1,16 @@
-import { AnyFunction, cached, fromInit, Init, Prettify } from './utils'
+import { AnyFunction, cached, fromInit, id, Init, Prettify } from './utils'
 
-// TODO: inject dumper
 // TODO: extend method
 
 export function configSingle<Locale extends string>(
 	locale: Locale,
-	test: boolean,
-	dump: (...args: unknown[]) => string = dump0,
+	dumper?: Dumper | false,
 ) {
-	const core = test ? createDump(locale, dump) : coreLocale
+	const d = dumper ? dumper(locale) : id
 	return <Ctx extends object, O extends AnyMessages<Ctx>>(
 		ctx: Init<Ctx, [Locale]>,
 		conf: O,
-	) => core(fromInit(ctx, locale), conf)
+	) => d(coreLocale(fromInit(ctx, locale), conf))
 }
 
 type AnyMessages<Ctx> = Record<
@@ -22,25 +20,16 @@ type AnyMessages<Ctx> = Record<
 
 export function configMulti<Locale extends string>(
 	_locales: Locale[],
-	test: boolean,
-	dump: (...args: unknown[]) => string = dump0,
+	dumper?: Dumper | false,
 ) {
-	return <
-		Ctx extends object,
-		K extends string,
-		O extends AnyMessages<Ctx>,
-	>(
+	return <Ctx extends object, K extends string, O extends AnyMessages<Ctx>>(
 		genCtx: (locale: Locale) => Ctx,
 		conf: Record<Locale, O & Record<K, unknown>>,
 	) =>
 		cached((locale: Locale) => {
-			const core = test ? createDump(locale, dump) : coreLocale
-			return core(genCtx(locale), conf[locale])
+			const d = dumper ? dumper(locale) : id
+			return d(coreLocale(genCtx(locale), conf[locale]))
 		})
-}
-
-function dump0(...args: unknown[]) {
-	return JSON.stringify(args)
 }
 
 function coreLocale<Ctx extends object, O extends AnyMessages<Ctx>>(
@@ -67,29 +56,23 @@ function coreLocale<Ctx extends object, O extends AnyMessages<Ctx>>(
 	})
 }
 
-function createDump(locale: string, dump: (...args: unknown[]) => string) {
-	return function <Ctx extends object, O extends AnyMessages<Ctx>>(
-		ctx: Ctx,
-		conf: O,
-	): Prettify<
-		{
-			[K in keyof O]: O[K] extends AnyFunction
-				? O[K] extends (ctx: Ctx, ...args: infer Args) => infer R
-					? (...args: Args) => R
-					: never
-				: O[K]
-		} & Ctx
-	> {
-		return new Proxy({} as any, {
-			get(_, k: string) {
-				if (k in conf || k in ctx) {
+function dump0(...args: unknown[]) {
+	return JSON.stringify(args)
+}
+
+type Dumper = (locale: string) => <O>(conf: O) => O
+
+export function dumper(dump: (...args: unknown[]) => string = dump0) {
+	return function (locale: string) {
+		return function <O>(conf: O): O {
+			return new Proxy({} as any, {
+				get(_, k: string) {
 					const m = (conf as any)[k]
 					if (typeof m === 'function')
 						return (...args: any[]) => dump(locale, k, ...args)
 					return dump(locale, k)
-				}
-				throw new Error(`unexpected key ${k}`)
-			},
-		})
+				},
+			})
+		}
 	}
 }
