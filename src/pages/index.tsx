@@ -1,10 +1,9 @@
 import * as stylex from '@stylexjs/stylex'
 
 import { Col } from '@/layouts/Box'
-import { H2 } from '@/layouts/elements/Heading'
-import { Li, Ul } from '@/layouts/elements/list'
-import { P } from '@/layouts/elements/P'
+import { MD } from '@/layouts/MD'
 import { sizes } from '@/layouts/tokens/sizes.stylex'
+import { createMessages, globalMessages } from '@/messages'
 
 const styles = stylex.create({
 	txt: {
@@ -12,22 +11,26 @@ const styles = stylex.create({
 	},
 })
 
+const messages = createMessages(globalMessages, {
+	Main: () => (
+		<MD>{`
+## Dark Mode Demo
+
+A gorgeous web application showcasing a persisted three-state dark mode
+toggle (Light, Dark, and System theme synchronization) built using StyleX and Waku.
+
+-  3-State Persistence (Light / Dark / System)
+-  Zero Flash of Unthemed Content (FOUC)
+-  System theme auto-update listeners
+-  Premium responsive interface using StyleX
+`}</MD>
+	),
+})
+
 export default async function HomePage() {
 	return (
 		<Col gap={6} style={styles.txt}>
-			<H2>Dark Mode Demo</H2>
-			<P>
-				A gorgeous web application showcasing a persisted three-state dark mode
-				toggle (Light, Dark, and System theme synchronization) built using
-				StyleX and Waku.
-			</P>
-
-			<Ul>
-				<Li>3-State Persistence (Light / Dark / System)</Li>
-				<Li>Zero Flash of Unthemed Content (FOUC)</Li>
-				<Li>System theme auto-update listeners</Li>
-				<Li>Premium responsive interface using StyleX</Li>
-			</Ul>
+			<messages.Main />
 		</Col>
 	)
 }
