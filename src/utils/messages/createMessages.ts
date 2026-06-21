@@ -1,7 +1,5 @@
 import { AnyFunction, cached, fromInit, id, Init, Prettify } from './utils'
 
-// TODO: extend method
-
 export function configSingle<Locale extends string>(
 	locale: Locale,
 	dumper?: Dumper | false,
