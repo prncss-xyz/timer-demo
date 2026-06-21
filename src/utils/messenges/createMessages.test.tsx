@@ -3,6 +3,10 @@ import { describe, expect, expectTypeOf, test } from 'vite-plus/test'
 import { intl, createMessageCtx, plural } from './createMessageCtx'
 import { configMulti, configSingle } from './createMessages'
 
+function render(x: string) {
+	return <div>{x}</div>
+}
+
 const getCtx = createMessageCtx({
 	plural: plural(),
 	number: intl('NumberFormat', {}, 'format'),
@@ -42,9 +46,11 @@ describe('multi', () => {
 		const globalMessages = createMessages(getCtx, {
 			en: {
 				hi: 'Hi!',
+				div: () => render('toto'),
 			},
 			fr: {
 				hi: 'Allô!',
+				div: () => render('toto'),
 			},
 		})
 		expect(globalMessages('en').hi).toBe('Hi!')
@@ -60,6 +66,7 @@ describe('multi', () => {
 		expectTypeOf(localMessages('en')).toMatchObjectType<{
 			hi: string
 			bye: string
+			div: () => React.JSX.Element
 		}>()
 		expect(globalMessages('en').hi).toBe('["en","hi"]')
 	})

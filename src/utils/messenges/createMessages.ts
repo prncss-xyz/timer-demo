@@ -1,7 +1,7 @@
 import { AnyFunction, fromInit, Init, Prettify } from './utils'
 
-// TODO: multiLang enforce same types
 // TODO: MDX
+// TODO: multiLang enforce same types
 // TODO: inject dumper
 // TODO: extend method
 

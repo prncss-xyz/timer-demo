@@ -1,4 +1,5 @@
 export type AnyFunction = (...args: any[]) => any
+export type NonFunction<T> = T extends AnyFunction ? never : T
 
 export function isFunction(u: unknown): u is AnyFunction {
 	return typeof u === 'function'
