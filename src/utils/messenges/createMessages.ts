@@ -1,7 +1,5 @@
-import { AnyFunction, fromInit, Init, Prettify } from './utils'
+import { AnyFunction, cached, fromInit, Init, Prettify } from './utils'
 
-// TODO: MDX
-// TODO: multiLang enforce same types
 // TODO: inject dumper
 // TODO: extend method
 
@@ -27,9 +25,13 @@ export function configMulti<Locale extends string>(
 	test: boolean,
 	dump: (...args: unknown[]) => string = dump0,
 ) {
-	return <Ctx extends object, O extends AnyMessages<Ctx>>(
+	return <
+		Ctx extends object,
+		K extends string,
+		O extends AnyMessages<Ctx>,
+	>(
 		genCtx: (locale: Locale) => Ctx,
-		conf: Record<Locale, O>,
+		conf: Record<Locale, O & Record<K, unknown>>,
 	) =>
 		cached((locale: Locale) => {
 			const core = test ? createDump(locale, dump) : coreLocale
@@ -89,15 +91,5 @@ function createDump(locale: string, dump: (...args: unknown[]) => string) {
 				throw new Error(`unexpected key ${k}`)
 			},
 		})
-	}
-}
-
-function cached<K, V>(cb: (k: K) => V) {
-	const cache = new Map<K, V>()
-	return (k: K) => {
-		if (cache.has(k)) return cache.get(k) as V
-		const res = cb(k)
-		cache.set(k, res)
-		return res
 	}
 }

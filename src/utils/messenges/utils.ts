@@ -21,3 +21,13 @@ export function fromInit<Res, Args extends any[] = []>(
 export type Prettify<T> = unknown & {
 	[K in keyof T]: T[K]
 }
+
+export function cached<K, V>(cb: (k: K) => V) {
+	const cache = new Map<K, V>()
+	return (k: K) => {
+		if (cache.has(k)) return cache.get(k) as V
+		const res = cb(k)
+		cache.set(k, res)
+		return res
+	}
+}
