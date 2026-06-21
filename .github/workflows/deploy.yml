@@ -50,8 +50,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-content-collections-
 
+      # `vpr ci` would run `vpr test:e2e`, which spawns `playwright` in a
+      # hermetic env that strips VITE_* — so playwright.config.ts would see
+      # VITE_BASE_PATH=undefined and poll '/' against a basePath-baked server.
+      # Invoke playwright directly so it inherits VITE_BASE_PATH from this step.
       - name: Check, build (with basePath), and run e2e against it
-        run: vpr ci
+        run: |
+          vp check && vpr build && vpr knip && vpr tsc && vpr test:units
+          ./node_modules/.bin/playwright test
         env:
           VITE_GITHUB_REPOSITORY: ${{ github.repository }}
           VITE_BASE_URL: ${{ steps.pages.outputs.base_url }}
