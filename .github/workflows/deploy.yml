@@ -33,7 +33,7 @@ jobs:
           run-install: true
 
       - name: Install Playwright browser
-        run: pnpm exec playwright install --with-deps chromium
+        run: playwright install --with-deps chromium
 
       - name: Setup Pages
         id: pages
@@ -43,7 +43,10 @@ jobs:
         uses: actions/cache@v5
         with:
           path: .content-collections/cache
-          key: ${{ runner.os }}-content-collections-${{ hashFiles('content-collections.ts') }}
+          key: >-
+            ${{ runner.os }}-content-collections-${{
+            hashFiles('content-collections.ts')
+            }}
           restore-keys: |
             ${{ runner.os }}-content-collections-
 
