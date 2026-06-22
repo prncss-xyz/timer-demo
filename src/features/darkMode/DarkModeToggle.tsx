@@ -12,8 +12,16 @@ import { borderWidth } from '@/layouts/tokens/borderWidth.stylex'
 import { colors } from '@/layouts/tokens/colors.stylex'
 import { sizes } from '@/layouts/tokens/sizes.stylex'
 import { spaces } from '@/layouts/tokens/spaces.stylex'
+import { createMessages, globalMessages } from '@/messages'
 
 import { useDarkModeToggle } from './useDarkModeToggle'
+
+const messages = createMessages(globalMessages, {
+	chooseTheme: 'Choose appearance theme',
+	lightTheme: 'Light theme',
+	darkTheme: 'Dark theme',
+	systemTheme: 'System theme',
+})
 
 const styles = stylex.create({
 	container: {
@@ -80,17 +88,6 @@ const styles = stylex.create({
 	system: {
 		transform: 'translateX(76px)',
 	},
-	srOnly: {
-		position: 'absolute',
-		height: '1px',
-		width: '1px',
-		padding: spaces.none,
-		margin: '-1px',
-		overflow: 'hidden',
-		clip: 'rect(0, 0, 0, 0)',
-		borderWidth: borderWidth.none,
-		whiteSpace: 'nowrap',
-	},
 })
 
 export function DarkModeToggle() {
@@ -98,11 +95,9 @@ export function DarkModeToggle() {
 
 	return (
 		<RadioGroup
-			aria-label='Choose appearance theme'
+			aria-label={messages.chooseTheme}
 			value={theme}
-			onValueChange={(val) => {
-				if (val) updateTheme(val)
-			}}
+			onValueChange={updateTheme}
 			{...stylex.props([styles.container])}
 		>
 			<div
@@ -118,19 +113,16 @@ export function DarkModeToggle() {
 				value='light'
 				nativeButton
 				render={(buttonProps) => (
-					<label>
-						<button
-							{...buttonProps}
-							title='Light theme'
-							{...stylex.props([
-								styles.button,
-								theme === 'light' && styles.activeButton,
-							])}
-						>
-							<span {...stylex.props([styles.srOnly])}>Light theme</span>
-							<FiSun size={18} />
-						</button>
-					</label>
+					<button
+						{...buttonProps}
+						title={messages.lightTheme}
+						{...stylex.props([
+							styles.button,
+							buttonProps['aria-checked'] && styles.activeButton,
+						])}
+					>
+						<FiSun size={18} />
+					</button>
 				)}
 			/>
 
@@ -138,19 +130,16 @@ export function DarkModeToggle() {
 				value='dark'
 				nativeButton
 				render={(buttonProps) => (
-					<label>
-						<button
-							{...buttonProps}
-							title='Dark theme'
-							{...stylex.props([
-								styles.button,
-								theme === 'dark' && styles.activeButton,
-							])}
-						>
-							<span {...stylex.props([styles.srOnly])}>Dark theme</span>
-							<FiMoon size={18} />
-						</button>
-					</label>
+					<button
+						{...buttonProps}
+						title={messages.darkTheme}
+						{...stylex.props([
+							styles.button,
+							buttonProps['aria-checked'] && styles.activeButton,
+						])}
+					>
+						<FiMoon size={18} />
+					</button>
 				)}
 			/>
 
@@ -158,19 +147,16 @@ export function DarkModeToggle() {
 				value='system'
 				nativeButton
 				render={(buttonProps) => (
-					<label>
-						<button
-							{...buttonProps}
-							title='System theme'
-							{...stylex.props([
-								styles.button,
-								theme === 'system' && styles.activeButton,
-							])}
-						>
-							<span {...stylex.props([styles.srOnly])}>System theme</span>
-							<FiMonitor size={18} />
-						</button>
-					</label>
+					<button
+						{...buttonProps}
+						title={messages.systemTheme}
+						{...stylex.props([
+							styles.button,
+							buttonProps['aria-checked'] && styles.activeButton,
+						])}
+					>
+						<FiMonitor size={18} />
+					</button>
 				)}
 			/>
 		</RadioGroup>

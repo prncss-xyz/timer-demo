@@ -15,12 +15,13 @@
 		"build-start": "waku build; waku start",
 		"typegen": "waku router typegen",
 		"prepare": "vp config",
-		"dev:test:units": "vpr test:units --watch",
-		"check:test:units": "vpr test:units",
+		"dev:test:units": "vp run test:units --watch",
+		"check:test:units": "vp run test:units",
 		"check:test:e2e": "playwright test",
 		"check:test:e2e:ui": "playwright test --ui",
-		"check:tsc": "vpr tsc",
-		"check:knip": "vpr knip",
+		"check:test:e2e:report": "playwright show-report",
+		"check:tsc": "vp run tsc",
+		"check:knip": "vp run knip",
 		"fix": "vp check --fix"
 	},
 	"dependencies": {
@@ -44,6 +45,7 @@
 		"waku": "1.0.0-beta.2"
 	},
 	"devDependencies": {
+		"@axe-core/playwright": "^4.10.1",
 		"@commitlint/cli": "^21.0.2",
 		"@commitlint/config-conventional": "^21.0.2",
 		"@commitlint/types": "^21.0.1",

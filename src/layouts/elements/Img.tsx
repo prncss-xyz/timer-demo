@@ -24,5 +24,5 @@ export async function Img({
 			<OptimizedImage image={image} {...rest} style={[styles.base, style]} />
 		)
 	}
-	return <img {...rest} {...stylex.props([styles.base, style])} />
+	return <img alt={alt} {...rest} {...stylex.props([styles.base, style])} />
 }
