@@ -1,6 +1,4 @@
-import { expect } from '@playwright/test'
-
-import { test } from '@/fixtures/a11y'
+import { expect, test } from '@/fixtures/a11y'
 
 import { buildBasePath } from './basePath'
 
@@ -10,33 +8,33 @@ import { buildBasePath } from './basePath'
 const root = buildBasePath(process.env)
 
 test.describe('accessibility (axe)', () => {
-	test('home (/) has no WCAG violations', async ({ page, makeAxeBuilder }) => {
+	test('home (/) has no WCAG violations', async ({ page, analyzeAxe }) => {
 		await page.goto(root)
-		const { violations } = await makeAxeBuilder().analyze()
+		const { violations } = await analyzeAxe()
 		expect(violations).toEqual([])
 	})
 
 	test('posts index (/posts) has no WCAG violations', async ({
 		page,
-		makeAxeBuilder,
+		analyzeAxe,
 	}) => {
 		await page.goto(`${root}posts`)
-		const { violations } = await makeAxeBuilder().analyze()
+		const { violations } = await analyzeAxe()
 		expect(violations).toEqual([])
 	})
 
 	test('post detail (/posts/hello-world) has no WCAG violations', async ({
 		page,
-		makeAxeBuilder,
+		analyzeAxe,
 	}) => {
 		await page.goto(`${root}posts/hello-world`)
-		const { violations } = await makeAxeBuilder().analyze()
+		const { violations } = await analyzeAxe()
 		expect(violations).toEqual([])
 	})
 
-	test('qr (/qr) has no WCAG violations', async ({ page, makeAxeBuilder }) => {
+	test('qr (/qr) has no WCAG violations', async ({ page, analyzeAxe }) => {
 		await page.goto(`${root}qr`)
-		const { violations } = await makeAxeBuilder().analyze()
+		const { violations } = await analyzeAxe()
 		expect(violations).toEqual([])
 	})
 })

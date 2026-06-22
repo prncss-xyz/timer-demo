@@ -1,4 +1,9 @@
 - image caching
+- storybook
+- styling
+  - color palette
+  - extract layouts
+  - animations: move to framer motion
 - mdx
   - code hike
     - codeblocks
@@ -8,12 +13,10 @@
 - menu
 - RSS
 - improve guidance
-- styling
-  - color palette
 - backpressure
   - max length for file (chars, tokens)
   - no UUID in files
-  - react compiler checks
+  - react compiler linting when available
   - enforce style tokens
 
 ## Reference

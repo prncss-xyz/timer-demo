@@ -8,3 +8,7 @@ dist
 *.pem
 .content-collections
 playwright-report
+lighthouse-report
+lighthouse-reports
+axe-reports
+test-results

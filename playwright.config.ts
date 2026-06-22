@@ -14,12 +14,16 @@ export default defineConfig({
 	testDir: './src',
 	testMatch: '**/*.spec.tsx',
 	snapshotDir: './__snapshots__',
+	outputDir: 'test-results',
 	timeout: 10 * 1000,
 	fullyParallel: true,
 	forbidOnly: !!process.env.CI,
 	retries: process.env.CI ? 2 : 0,
 	workers: process.env.CI ? 1 : undefined,
-	reporter: 'html',
+	reporter: [
+		['html'],
+		['json', { outputFile: 'playwright-report/results.json' }],
+	],
 	use: {
 		baseURL: root,
 		headless: true,
