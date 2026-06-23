@@ -1,54 +1,40 @@
 import './fonts.css'
 import './reset.css'
-import * as stylex from '@stylexjs/stylex'
 import type { ReactNode } from 'react'
 
-import { MEDIA } from '@/layouts/breakpoints.stylex'
+import { Col } from '@/layouts/Box'
 import { DevStyleXInject } from '@/layouts/DevStyleXInject'
 import { Footer } from '@/layouts/footer'
 import { Header } from '@/layouts/header'
-import { sizes } from '@/layouts/tokens/sizes.stylex'
-import { spaces } from '@/layouts/tokens/spaces.stylex'
 import { basePath, title } from '@/meta'
 
-const styles = stylex.create({
-	main: {
-		alignItems: 'center',
-		display: 'flex',
-		justifyContent: {
-			default: null,
-			[MEDIA.lg]: 'center',
-		},
-		paddingBottom: spaces[7],
-		paddingTop: spaces[7],
-		boxSizing: 'border-box',
-		margin: {
-			default: spaces[5],
-			[MEDIA.lg]: spaces.none,
-		},
-		minHeight: sizes.screenHeight,
-	},
-	root: {
-		fontFamily: 'Nunito',
-	},
-})
-
 type RootLayoutProps = { children: ReactNode }
+
+import { Link } from 'waku'
+
+import { DarkModeToggle } from '@/features/darkMode/DarkModeToggle'
+import { H1 } from '@/layouts/elements/Heading'
 
 export default async function RootLayout({ children }: RootLayoutProps) {
 	const data = await getData()
 
 	return (
-		<div {...stylex.props([styles.root])}>
+		<Col fontFamily='base' minH='screen' align='center' justify='between'>
 			<title>{data.title}</title>
 			<meta name='description' content={data.description} />
 			<link rel='icon' type='image/png' href={data.icon} />
-
 			<DevStyleXInject />
-			<Header />
-			<main {...stylex.props([styles.main])}>{children}</main>
+			<Header>
+				<H1>
+					<Link to='/'>{title}</Link>
+				</H1>
+				<DarkModeToggle />
+			</Header>
+			<Col pt={8} pb={4} minW='readable' grow={1} as='main'>
+				{children}
+			</Col>
 			<Footer />
-		</div>
+		</Col>
 	)
 }
 

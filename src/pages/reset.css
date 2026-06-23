@@ -105,6 +105,17 @@ a {
 	text-decoration: none;
 	color: inherit;
 }
+
+/* 10. Reset list styling */
+ul,
+ol {
+	list-style: none;
+	padding: 0;
+}
+
+li {
+	margin: 0;
+}
 button {
 	background: transparent;
 	appearance: none;
@@ -112,4 +123,20 @@ button {
 	font: inherit;
 	cursor: pointer;
 	color: inherit;
+}
+
+sub {
+	top: 0.5rem;
+}
+sup {
+	bottom: 0.5rem;
+}
+small,
+sub,
+sup {
+	font-size: 83%;
+}
+
+blockquote {
+	font-size: 92%;
 }

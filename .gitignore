@@ -11,3 +11,4 @@ playwright-report
 axe-reports
 test-results
 debug-storybook.log
+gen

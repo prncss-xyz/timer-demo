@@ -2,7 +2,6 @@ import * as stylex from '@stylexjs/stylex'
 
 import { borderWidth } from '../tokens/borderWidth.stylex'
 import { colors } from '../tokens/colors.stylex'
-import { fontSizes } from '../tokens/fontSizes.stylex'
 import { spaces } from '../tokens/spaces.stylex'
 import { ElemProps } from './types'
 
@@ -11,7 +10,6 @@ const styles = stylex.create({
 		backgroundColor: colors.btnBg,
 		borderLeftColor: colors.primary,
 		borderLeftStyle: 'solid',
-		fontSize: fontSizes.blockquote,
 		borderLeftWidth: borderWidth.thick,
 		paddingLeft: spaces[4],
 	},

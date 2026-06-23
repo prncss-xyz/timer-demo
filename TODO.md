@@ -1,5 +1,4 @@
 - image caching
-- storybook
 - styling
   - color palette
   - extract layouts

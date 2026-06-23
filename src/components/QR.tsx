@@ -1,30 +1,32 @@
 import * as stylex from '@stylexjs/stylex'
 import qr from 'qrcode'
 
-import { Col } from '@/layouts/Box'
-import { A } from '@/layouts/elements/A'
-import { fontSizes } from '@/layouts/tokens/fontSizes.stylex'
-import { sizes } from '@/layouts/tokens/sizes.stylex'
+import { Box, Col } from '@/layouts/Box'
 
 const styles = stylex.create({
-	legend: {
-		fontSize: fontSizes[3],
-	},
 	qr: {
 		objectFit: 'cover',
-		width: sizes.halfScreenHeight,
 	},
 })
 
-export async function QR({ href, name }: { href: string; name: string }) {
+async function QRCode({ href, name }: { href: string; name: string }) {
 	const svgString = await qr.toString(href, { type: 'svg' })
-	const src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svgString)}`
 	return (
-		<Col align='center' gap={5}>
-			<img alt={name} src={src} {...stylex.props([styles.qr])} />
-			<A href={href} style={styles.legend}>
+		<img
+			alt={name}
+			src={`data:image/svg+xml;charset=utf-8,${encodeURIComponent(svgString)}`}
+			{...stylex.props([styles.qr])}
+		/>
+	)
+}
+
+export function QRView({ href, name }: { href: string; name: string }) {
+	return (
+		<Col align='center' gap={5} w='halfScreen' h='halfScreen'>
+			<QRCode href={href} name={name} />
+			<Box fontSize={4} fontWeight='bold' as='a' href={href}>
 				{name}
-			</A>
+			</Box>
 		</Col>
 	)
 }

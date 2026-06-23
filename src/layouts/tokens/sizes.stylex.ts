@@ -6,8 +6,6 @@ export const sizes = defineVars({
 	readable: '60ch',
 	toggleButton: '38px',
 	qrContainer: '16rem',
-	halfScreenHeight: '50vh',
 	descriptionMaxWidth: '480px',
 	containerMaxWidth: '600px',
-	screenHeight: '100svh',
 })

@@ -1,19 +1,8 @@
-import * as stylex from '@stylexjs/stylex'
 import { allPosts } from 'content-collections'
 import { Link } from 'waku'
 
-import { Ul } from '@/layouts/elements/list'
-import { spaces } from '@/layouts/tokens/spaces.stylex'
-
-const styles = stylex.create({
-	item: {
-		marginBottom: spaces[5],
-	},
-	title: {
-		margin: spaces.none,
-		textDecoration: 'underline',
-	},
-})
+import { Col } from '@/layouts/Box'
+import { H1, H2 } from '@/layouts/elements/Heading'
 
 export default async function PostsIndex() {
 	// Sort posts by date from latest to oldest
@@ -24,17 +13,17 @@ export default async function PostsIndex() {
 	return (
 		<div>
 			<title>All Posts</title>
-			<h1>Posts</h1>
-			<Ul>
+			<H1>Posts</H1>
+			<Col as='ul' gap={4}>
 				{sortedPosts.map((post) => (
-					<li key={post._meta.path} {...stylex.props([styles.item])}>
-						<Link to={`/posts/${post._meta.path}`}>
-							<h2 {...stylex.props([styles.title])}>{post.title}</h2>
-						</Link>
-						<div>{post.date}</div>
-					</li>
+					<Link to={`/posts/${post._meta.path}`}>
+						<Col key={post._meta.path} as='li'>
+							<H2>{post.title}</H2>
+							<div>{post.date}</div>
+						</Col>
+					</Link>
 				))}
-			</Ul>
+			</Col>
 		</div>
 	)
 }

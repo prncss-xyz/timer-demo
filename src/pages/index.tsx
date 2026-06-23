@@ -1,15 +1,6 @@
-import * as stylex from '@stylexjs/stylex'
-
 import { Col } from '@/layouts/Box'
 import { MD } from '@/layouts/MD'
-import { sizes } from '@/layouts/tokens/sizes.stylex'
 import { createMessages, globalMessages } from '@/messages'
-
-const styles = stylex.create({
-	txt: {
-		width: sizes.readable,
-	},
-})
 
 const messages = createMessages(globalMessages, {
 	Main: () => (
@@ -29,7 +20,7 @@ toggle (Light, Dark, and System theme synchronization) built using StyleX and Wa
 
 export default async function HomePage() {
 	return (
-		<Col gap={6} style={styles.txt}>
+		<Col gap={6} w='readable'>
 			<messages.Main />
 		</Col>
 	)

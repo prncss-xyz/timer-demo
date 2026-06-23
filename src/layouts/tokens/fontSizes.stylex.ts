@@ -8,6 +8,4 @@ export const fontSizes = defineVars({
 	4: '1.17rem',
 	5: '1.5rem',
 	6: '2rem',
-	small: '80%',
-	blockquote: '90%',
 })
