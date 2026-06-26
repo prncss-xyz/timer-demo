@@ -1,61 +1,32 @@
-import * as stylex from '@stylexjs/stylex'
 import { ElementType } from 'react'
 
-import { fontFamilies } from '../tokens/fontFamilies.stylex'
-import { fontSizes } from '../tokens/fontSizes.stylex'
-import { fontWeights } from '../tokens/fontWeights.stylex'
-import { spaces } from '../tokens/spaces.stylex'
-import { ElemProps } from './types'
+import { Box, BoxProps } from '../Box'
 
-const styles = stylex.create({
-	base: {
-		fontFamily: fontFamilies.heading,
-		fontWeight: fontWeights.bold,
-		textAlign: 'center',
-		marginTop: spaces[5],
-	},
-})
+// TODO: margins
 
-const sizeVariants = stylex.create({
-	1: {
-		fontSize: fontSizes[6],
-	},
-	2: {
-		fontSize: fontSizes[5],
-	},
-	3: {
-		fontSize: fontSizes[4],
-	},
-	4: {
-		fontSize: fontSizes[3],
-	},
-	5: {
-		fontSize: fontSizes[2],
-	},
-	6: {
-		fontSize: fontSizes[1],
-	},
-})
+const fontSizes = {
+	1: 6,
+	2: 5,
+	3: 4,
+	4: 3,
+	5: 2,
+	6: 1,
+} as const
 
 function createHeading(
 	baseElement: ElementType,
-	baseSize: keyof typeof sizeVariants,
+	baseSize: 1 | 2 | 3 | 4 | 5 | 6,
 ) {
-	return function Heading<E extends ElementType>({
-		as,
-		size,
-		style,
-		...rest
-	}: Omit<ElemProps<'h1'>, 'style'> & {
-		as?: E
-		size?: keyof typeof sizeVariants
-		style?: stylex.StyleXStyles
-	}) {
-		const E = as ?? baseElement
+	return function Heading({ ...rest }: BoxProps<ElementType>) {
 		return (
-			<E
+			<Box
+				as={baseElement}
+				fontFamily='heading'
+				fontWeight='bold'
+				marginTop='5'
+				textAlign='center'
+				fontSize={fontSizes[baseSize]}
 				{...rest}
-				{...stylex.props([styles.base, sizeVariants[size ?? baseSize], style])}
 			/>
 		)
 	}

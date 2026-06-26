@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { Suspense, useEffect } from 'react'
 import type { Preview, Decorator } from '@storybook/react'
 
 import "../src/pages/reset.css"
@@ -43,6 +43,20 @@ const withDarkMode: Decorator = (Story, context) => {
 	return <Story />
 }
 
+/**
+ * Wraps every story in <Suspense> so that async (server) components
+ * can render. React 19 supports async components natively when they
+ * are a descendant of a Suspense boundary.
+ *
+ * Stories for synchronous / client-only components are unaffected;
+ * they pass through Suspense synchronously.
+ */
+const withSuspense: Decorator = (Story) => (
+	<Suspense fallback={null}>
+		<Story />
+	</Suspense>
+)
+
 const preview: Preview = {
 	parameters: {
 		controls: {
@@ -52,7 +66,7 @@ const preview: Preview = {
 			},
 		},
 	},
-	decorators: [withStyleX, withDarkMode],
+	decorators: [withSuspense, withStyleX, withDarkMode],
 }
 
 export default preview

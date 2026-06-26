@@ -292,6 +292,11 @@ const growVariants = stylex.create({
 	1: { flexGrow: 1 },
 })
 
+const textAlignVariants = stylex.create({
+	center: { textAlign: 'center' },
+	left: { textAlign: 'left' },
+})
+
 export type BoxBaseProps<E extends React.ElementType = React.ElementType> = {
 	align?: keyof typeof alignVariants
 	as?: E
@@ -310,6 +315,7 @@ export type BoxBaseProps<E extends React.ElementType = React.ElementType> = {
 	maxW?: keyof typeof maxWidthVariants
 	minH?: keyof typeof minHeightVariants
 	minW?: keyof typeof minWidthVariants
+	textAlign?: keyof typeof textAlignVariants
 	w?: keyof typeof widthVariants
 	p?: keyof typeof pVariants
 	pb?: keyof typeof pbVariants
@@ -321,7 +327,7 @@ export type BoxBaseProps<E extends React.ElementType = React.ElementType> = {
 	style?: stylex.StyleXStyles
 }
 
-type BoxProps<E extends React.ElementType> = BoxBaseProps<E> &
+export type BoxProps<E extends React.ElementType> = BoxBaseProps<E> &
 	Omit<React.ComponentProps<E>, keyof BoxBaseProps>
 
 const defaultElement = 'div'
@@ -344,6 +350,7 @@ export function Box<E extends React.ElementType = typeof defaultElement>({
 	maxW,
 	minH,
 	minW,
+	textAlign,
 	w,
 	p,
 	pb,
@@ -384,6 +391,7 @@ export function Box<E extends React.ElementType = typeof defaultElement>({
 				grow && growVariants[grow],
 				align && alignVariants[align],
 				justify && justifyVariants[justify],
+				textAlign && textAlignVariants[textAlign],
 				style,
 			])}
 		/>

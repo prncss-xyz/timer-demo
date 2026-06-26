@@ -13,12 +13,12 @@ export default async function PostsIndex() {
 	return (
 		<div>
 			<title>All Posts</title>
-			<H1>Posts</H1>
-			<Col as='ul' gap={4}>
+			<H1 pb={7}>Posts</H1>
+			<Col as='ul' gap={6}>
 				{sortedPosts.map((post) => (
 					<Link to={`/posts/${post._meta.path}`}>
 						<Col key={post._meta.path} as='li'>
-							<H2>{post.title}</H2>
+							<H2 textAlign='left'>{post.title}</H2>
 							<div>{post.date}</div>
 						</Col>
 					</Link>

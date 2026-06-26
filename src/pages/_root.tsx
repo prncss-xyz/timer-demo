@@ -1,7 +1,6 @@
 import * as stylex from '@stylexjs/stylex'
 import type { ReactNode } from 'react'
 
-import { DarkModeScript } from '@/features/darkMode/DarkModeScript'
 import { colors } from '@/layouts/tokens/colors.stylex'
 import { lang } from '@/meta'
 
@@ -17,9 +16,6 @@ const styles = stylex.create({
 export default async function RootElement({ children }: RootElementProps) {
 	return (
 		<html lang={lang} {...stylex.props(styles.root)}>
-			<head>
-				<DarkModeScript />
-			</head>
 			<body>{children}</body>
 		</html>
 	)

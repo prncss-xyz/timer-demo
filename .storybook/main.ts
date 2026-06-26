@@ -44,11 +44,17 @@ const config: StorybookConfig = {
 			}),
 		)
 
-		// Ensure path alias for @/
+		// Ensure path aliases
 		const resolve = (baseConfig.resolve ??= {})
 		resolve.alias = {
 			...(resolve.alias as Record<string, string>),
 			'@': fileURLToPath(new URL('../src', import.meta.url)),
+			// Waku depends on react-server-dom-webpack which references
+			// __webpack_require__ — not available in Vite. Replace Waku
+			// client exports with lightweight stubs for Storybook.
+			'waku': fileURLToPath(
+				new URL('./mocks/waku.tsx', import.meta.url),
+			),
 		}
 
 		return baseConfig
