@@ -1,33 +1,5 @@
 /* CSS Reset */
 
-:root {
-	--background: #f8fafc;
-	--text: #0f172a;
-	--text-muted: #64748b;
-	--primary: #6366f1;
-	--primary-hover: #4f46e5;
-	--card-bg: #ffffff;
-	--border: #e2e8f0;
-	--btn-bg: #f1f5f9;
-	--btn-bg-hover: #e2e8f0;
-	--shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
-	--header-bg: rgba(248, 250, 252, 0.8);
-}
-
-:root.dark {
-	--background: #090d16;
-	--text: #f8fafc;
-	--text-muted: #94a3b8;
-	--primary: #818cf8;
-	--primary-hover: #a5b4fc;
-	--card-bg: #111827;
-	--border: #1f2937;
-	--btn-bg: #1f2937;
-	--btn-bg-hover: #374151;
-	--shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
-	--header-bg: rgba(9, 13, 22, 0.8);
-}
-
 /* 1. Use a more-intuitive box-sizing model */
 *,
 *::before,
