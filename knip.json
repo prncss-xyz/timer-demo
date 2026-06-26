@@ -14,6 +14,8 @@
 		"src/layouts/Box.tsx",
 		"src/layouts/tokens/*.stylex.ts",
 		"src/utils/messages/*",
+		"src/utils/logger.ts",
+		"src/features/darkMode/*",
 		"src/fixtures/*",
 		"src/**/*.story.{ts,tsx}",
 		"src/test.setup.ts"
