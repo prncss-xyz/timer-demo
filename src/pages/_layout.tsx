@@ -2,7 +2,7 @@ import './fonts.css'
 import './reset.css'
 import type { ReactNode } from 'react'
 
-import { Col } from '@/layouts/Box'
+import { Col, Row } from '@/layouts/Box'
 import { DevStyleXInject } from '@/layouts/DevStyleXInject'
 import { Footer } from '@/layouts/footer'
 import { Header } from '@/layouts/header'
@@ -12,7 +12,7 @@ type RootLayoutProps = { children: ReactNode }
 
 import { Link } from 'waku'
 
-import { DarkModeToggle } from '@/features/darkMode/DarkModeToggle'
+import { Menu } from '@/components/Menu'
 import { H1 } from '@/layouts/elements/Heading'
 
 export default async function RootLayout({ children }: RootLayoutProps) {
@@ -25,10 +25,17 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 			<link rel='icon' type='image/png' href={data.icon} />
 			<DevStyleXInject />
 			<Header>
-				<H1>
-					<Link to='/'>{title}</Link>
-				</H1>
-				<DarkModeToggle />
+				<Row align='baseline' justify='between'>
+					<H1>
+						<Link to='/'>{title}</Link>
+					</H1>
+					<Menu
+						entries={[
+							{ to: '/', title: 'Home' },
+							{ to: '/posts', title: 'Blog' },
+						]}
+					/>
+				</Row>
 			</Header>
 			<Col pt={8} pb={4} minW='readable' grow={1} as='main'>
 				{children}

@@ -12,9 +12,6 @@ const height = 64
 const styles = stylex.create({
 	header: {
 		height,
-		alignItems: 'center',
-		display: 'flex',
-		justifyContent: 'space-between',
 		left: 0,
 		paddingBlock: spaces[4],
 		paddingInline: spaces[6],

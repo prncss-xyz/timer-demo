@@ -265,6 +265,18 @@ const fontWeightVariants = stylex.create({
 	bold: { fontWeight: fontWeights.bold },
 })
 
+const italicVariants = stylex.create({
+	true: { fontStyle: 'italic' },
+})
+
+const boldVariants = stylex.create({
+	true: { fontWeight: fontWeights.bold },
+})
+
+const underlineVariants = stylex.create({
+	true: { textDecoration: 'underline' },
+})
+
 const gapVariants = stylex.create({
 	1: { gap: spaces[1] },
 	2: { gap: spaces[2] },
@@ -284,9 +296,12 @@ export type BoxBaseProps<E extends React.ElementType = React.ElementType> = {
 	align?: keyof typeof alignVariants
 	as?: E
 	flex?: keyof typeof flexVariants
+	bold?: boolean
 	fontFamily?: keyof typeof fontFamilyVariants
 	fontSize?: keyof typeof fontSizeVariants
 	fontWeight?: keyof typeof fontWeightVariants
+	italic?: boolean
+	underline?: boolean
 	gap?: keyof typeof gapVariants
 	grow?: keyof typeof growVariants
 	h?: keyof typeof heightVariants
@@ -315,9 +330,12 @@ export function Box<E extends React.ElementType = typeof defaultElement>({
 	align,
 	as,
 	flex,
+	bold,
 	fontFamily,
 	fontSize,
 	fontWeight,
+	italic,
+	underline,
 	gap,
 	grow,
 	h,
@@ -350,13 +368,16 @@ export function Box<E extends React.ElementType = typeof defaultElement>({
 				minW && minWidthVariants[minW],
 				w && widthVariants[w],
 				p && pVariants[p],
-			pb && pbVariants[pb],
-			pl && plVariants[pl],
-			pr && prVariants[pr],
-			pt && ptVariants[pt],
+				pb && pbVariants[pb],
+				pl && plVariants[pl],
+				pr && prVariants[pr],
+				pt && ptVariants[pt],
 				fontFamily && fontFamilyVariants[fontFamily],
 				fontSize && fontSizeVariants[fontSize],
+				bold && boldVariants.true,
 				fontWeight && fontWeightVariants[fontWeight],
+				italic && italicVariants.true,
+				underline && underlineVariants.true,
 				px && pxVariants[px],
 				py && pyVariants[py],
 				gap && gapVariants[gap],
