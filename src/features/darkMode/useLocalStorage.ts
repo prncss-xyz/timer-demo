@@ -1,7 +1,5 @@
 import { useSyncExternalStore } from 'react'
 
-import { logger } from '@/utils/logger'
-
 export function useLocalStorage<T extends string = string>(
 	key: string,
 	parse: (value: string | null) => T,
@@ -47,14 +45,10 @@ export function useLocalStorage<T>(
 	const value = parse(rawValue)
 
 	const setValue = (newValue: any) => {
-		try {
-			const nextValue =
-				typeof newValue === 'function' ? newValue(value) : newValue
-			localStorage.setItem(key, serialize(nextValue))
-			window.dispatchEvent(new Event('local-storage-update'))
-		} catch (e) {
-			logger.error(e)
-		}
+		const nextValue =
+			typeof newValue === 'function' ? newValue(value) : newValue
+		localStorage.setItem(key, serialize(nextValue))
+		window.dispatchEvent(new Event('local-storage-update'))
 	}
 
 	return [value, setValue] as const
