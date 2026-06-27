@@ -3,8 +3,8 @@ import type { ReactNode } from 'react'
 
 import { colors } from '@/layouts/tokens/colors.stylex'
 
-import './fonts.css'
 import './reset.css'
+import './fonts.css'
 
 type RootElementProps = { children: ReactNode }
 
@@ -12,6 +12,7 @@ const styles = stylex.create({
 	root: {
 		backgroundColor: colors.background,
 		color: colors.text,
+    colorScheme: 'light dark',
 	},
 })
 
