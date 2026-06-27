@@ -12,7 +12,7 @@ const config: StorybookConfig = {
 		name: '@storybook/react-vite',
 		options: {},
 	},
-	async viteFinal(baseConfig) {
+	viteFinal(baseConfig) {
 		// Remove only project-specific plugins that conflict with Storybook.
 		// Keep Storybook's own plugins (@storybook/builder-vite, etc.) intact.
 		const toRemove = new Set([
@@ -20,6 +20,7 @@ const config: StorybookConfig = {
 			'vite-plugin-webfont-dl',
 			'inject-webfont-to-css',
 			'rolldown-plugin-babel',
+			'@stylexjs/unplugin',
 		])
 
 		baseConfig.plugins = (baseConfig.plugins ?? []).filter((p: any) => {
@@ -29,15 +30,22 @@ const config: StorybookConfig = {
 			return !toRemove.has(name)
 		})
 
-		// Add StyleX plugin matching the project config.
-		// DevStyleXInject (included in preview decorator) handles
-		// loading the compiled CSS via the virtual module.
+		// Add StyleX plugin matching the Waku dev config.
+		// DevStyleXInject (included in preview decorator) loads the
+		// compiled CSS from /virtual:stylex.css.
+		// Keep light-dark() native: Storybook's dev CSS doesn't include
+		// Lightning CSS's selector vars for its downlevel transform.
 		baseConfig.plugins.push(
 			stylex.vite({
 				aliases: {
 					'@/*': [fileURLToPath(new URL('../src/*', import.meta.url))],
 				},
-				runtimeInjection: true,
+				devMode: 'css-only',
+				devPersistToDisk: true,
+				lightningcssOptions: {
+					exclude: 1048576,
+				},
+				runtimeInjection: false,
 				useCSSLayers: true,
 			}),
 		)

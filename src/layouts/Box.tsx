@@ -363,37 +363,46 @@ export function Box<E extends React.ElementType = typeof defaultElement>({
 	...rest
 }: BoxProps<E>) {
 	const Element = as || defaultElement
+	const { className, ...elementProps } = rest as typeof rest & {
+		className?: string
+	}
+	const styleProps = stylex.props([
+		flex && flexVariants[flex],
+		h && heightVariants[h],
+		maxH && maxHeightVariants[maxH],
+		maxW && maxWidthVariants[maxW],
+		minH && minHeightVariants[minH],
+		minW && minWidthVariants[minW],
+		w && widthVariants[w],
+		p && pVariants[p],
+		pb && pbVariants[pb],
+		pl && plVariants[pl],
+		pr && prVariants[pr],
+		pt && ptVariants[pt],
+		fontFamily && fontFamilyVariants[fontFamily],
+		fontSize && fontSizeVariants[fontSize],
+		bold && boldVariants.true,
+		fontWeight && fontWeightVariants[fontWeight],
+		italic && italicVariants.true,
+		underline && underlineVariants.true,
+		px && pxVariants[px],
+		py && pyVariants[py],
+		gap && gapVariants[gap],
+		grow && growVariants[grow],
+		align && alignVariants[align],
+		justify && justifyVariants[justify],
+		textAlign && textAlignVariants[textAlign],
+		style,
+	])
+	const mergedClassName = [className, styleProps.className]
+		.filter(Boolean)
+		.join(' ')
+
 	return (
 		<Element
-			{...rest}
-			{...stylex.props([
-				flex && flexVariants[flex],
-				h && heightVariants[h],
-				maxH && maxHeightVariants[maxH],
-				maxW && maxWidthVariants[maxW],
-				minH && minHeightVariants[minH],
-				minW && minWidthVariants[minW],
-				w && widthVariants[w],
-				p && pVariants[p],
-				pb && pbVariants[pb],
-				pl && plVariants[pl],
-				pr && prVariants[pr],
-				pt && ptVariants[pt],
-				fontFamily && fontFamilyVariants[fontFamily],
-				fontSize && fontSizeVariants[fontSize],
-				bold && boldVariants.true,
-				fontWeight && fontWeightVariants[fontWeight],
-				italic && italicVariants.true,
-				underline && underlineVariants.true,
-				px && pxVariants[px],
-				py && pyVariants[py],
-				gap && gapVariants[gap],
-				grow && growVariants[grow],
-				align && alignVariants[align],
-				justify && justifyVariants[justify],
-				textAlign && textAlignVariants[textAlign],
-				style,
-			])}
+			{...elementProps}
+			{...styleProps}
+			className={mergedClassName || undefined}
 		/>
 	)
 }
