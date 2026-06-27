@@ -1,10 +1,10 @@
 import { defineCollection, defineConfig } from '@content-collections/core'
 import { z } from 'zod'
 
-const posts = defineCollection({
-	directory: 'src/posts',
+const blog = defineCollection({
+	directory: 'blog',
 	include: '**/*.md',
-	name: 'posts',
+	name: 'blog',
 	schema: z.object({
 		date: z.string(),
 		title: z.string(),
@@ -13,5 +13,5 @@ const posts = defineCollection({
 })
 
 export default defineConfig({
-	content: [posts],
+	content: [blog],
 })

@@ -12,4 +12,8 @@ const getCtx = createMessageCtx({
 	number: intl('NumberFormat', {}, 'format'),
 })
 
-export const globalMessages = createMessages(getCtx, {})
+export const globalMessages = createMessages(getCtx, {
+	home: 'Home',
+	blog: 'Blog',
+	blogNotFound: 'Blog not found.',
+})

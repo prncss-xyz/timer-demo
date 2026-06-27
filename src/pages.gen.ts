@@ -6,20 +6,20 @@ import type { PathsForPages, GetConfigResponse } from 'waku/router';
 // prettier-ignore
 import type { getConfig as File_Root_getConfig } from './pages/_root';
 // prettier-ignore
+import type { getConfig as File_BlogSlug_getConfig } from './pages/blog/[slug]';
+// prettier-ignore
+import type { getConfig as File_BlogIndex_getConfig } from './pages/blog/index';
+// prettier-ignore
 import type { getConfig as File_Index_getConfig } from './pages/index';
-// prettier-ignore
-import type { getConfig as File_PostsSlug_getConfig } from './pages/posts/[slug]';
-// prettier-ignore
-import type { getConfig as File_PostsIndex_getConfig } from './pages/posts/index';
 // prettier-ignore
 import type { getConfig as File_Qr_getConfig } from './pages/qr';
 
 // prettier-ignore
 type Page =
 | ({ path: '/_root' } & GetConfigResponse<typeof File_Root_getConfig>)
+| ({ path: '/blog/[slug]' } & GetConfigResponse<typeof File_BlogSlug_getConfig>)
+| ({ path: '/blog' } & GetConfigResponse<typeof File_BlogIndex_getConfig>)
 | ({ path: '/' } & GetConfigResponse<typeof File_Index_getConfig>)
-| ({ path: '/posts/[slug]' } & GetConfigResponse<typeof File_PostsSlug_getConfig>)
-| ({ path: '/posts' } & GetConfigResponse<typeof File_PostsIndex_getConfig>)
 | ({ path: '/qr' } & GetConfigResponse<typeof File_Qr_getConfig>);
 
 // prettier-ignore
