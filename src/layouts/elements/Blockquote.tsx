@@ -18,6 +18,8 @@ const styles = stylex.create({
 export function Blockquote({
 	style,
 	...rest
-}: Omit<ElemProps<'blockquote'>, 'style'> & { style?: stylex.StyleXStyles }) {
+}: Omit<ElemProps<'blockquote'>, 'style' | 'classname'> & {
+	style?: stylex.StyleXStyles
+}) {
 	return <blockquote {...rest} {...stylex.props([styles.base, style])} />
 }

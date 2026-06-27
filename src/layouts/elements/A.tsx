@@ -12,7 +12,9 @@ const styles = stylex.create({
 	},
 })
 
-type BoxProps = Omit<ElemProps<'a'>, 'style'> & { style?: stylex.StyleXStyles }
+type BoxProps = Omit<ElemProps<'a'>, 'style' | 'classname'> & {
+	style?: stylex.StyleXStyles
+}
 
 export function A({ children, href, style, ...rest }: BoxProps) {
 	if (href && (href.startsWith('/') || href.startsWith('.')))

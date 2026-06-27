@@ -16,8 +16,10 @@ export async function Img({
 	src,
 	style,
 	...rest
-}: Omit<ElemProps<'div'>, 'style'> &
-	Omit<ElemProps<'img'>, 'style'> & { style?: stylex.StyleXStyles }) {
+}: Omit<ElemProps<'div'>, 'style' | 'classname'> &
+	Omit<ElemProps<'img'>, 'style' | 'classname'> & {
+		style?: stylex.StyleXStyles
+	}) {
 	if (src) {
 		const image = await getResponsiveImage(src, alt)
 		return (

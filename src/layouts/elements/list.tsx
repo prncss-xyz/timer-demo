@@ -7,39 +7,41 @@ import styles from './list.module.css'
 
 function mergeStyles(
 	baseClass: string,
-	className: string | undefined,
 	style: stylex.StyleXStyles | undefined,
 ) {
 	const { className: sxClass, style: sxStyle } = stylex.props(style)
 	return {
-		className: [baseClass, className, sxClass].filter(Boolean).join(' '),
+		className: [baseClass, sxClass].filter(Boolean).join(' '),
 		style: sxStyle,
 	}
 }
 
 export function Ol({
 	style,
-	className,
 	...rest
-}: Omit<ElemProps<'ol'>, 'style'> & { style?: stylex.StyleXStyles }) {
-	const merged = mergeStyles(styles.ol, className, style)
+}: Omit<ElemProps<'ol'>, 'style' | 'classname'> & {
+	style?: stylex.StyleXStyles
+}) {
+	const merged = mergeStyles(styles.ol, style)
 	return <ol {...rest} className={merged.className} style={merged.style} />
 }
 
 export function Ul({
 	style,
-	className,
 	...rest
-}: Omit<ElemProps<'ul'>, 'style'> & { style?: stylex.StyleXStyles }) {
-	const merged = mergeStyles(styles.ul, className, style)
+}: Omit<ElemProps<'ul'>, 'style' | 'classname'> & {
+	style?: stylex.StyleXStyles
+}) {
+	const merged = mergeStyles(styles.ul, style)
 	return <ul {...rest} className={merged.className} style={merged.style} />
 }
 
 export function Li({
 	style,
-	className,
 	...rest
-}: Omit<ElemProps<'li'>, 'style'> & { style?: stylex.StyleXStyles }) {
-	const merged = mergeStyles(styles.li, className, style)
+}: Omit<ElemProps<'li'>, 'style' | 'classname'> & {
+	style?: stylex.StyleXStyles
+}) {
+	const merged = mergeStyles(styles.li, style)
 	return <li {...rest} className={merged.className} style={merged.style} />
 }

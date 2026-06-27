@@ -13,6 +13,8 @@ const styles = stylex.create({
 export function P({
 	style,
 	...rest
-}: Omit<ElemProps<'p'>, 'style'> & { style?: stylex.StyleXStyles }) {
+}: Omit<ElemProps<'p'>, 'style' | 'classname'> & {
+	style?: stylex.StyleXStyles
+}) {
 	return <p {...rest} {...stylex.props([styles.base, style])} />
 }

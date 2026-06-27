@@ -28,7 +28,7 @@ type Story = StoryObj<typeof Box>
 /** A plain block element. */
 export const Basic: Story = {
 	render: () => (
-		<Box {...stylex.props([swatch.box])} p={5}>
+		<Box style={swatch.box} p={5}>
 			A simple box
 		</Box>
 	),
@@ -38,13 +38,13 @@ export const Basic: Story = {
 export const RowWithGap: Story = {
 	render: () => (
 		<Row gap={5} align='center'>
-			<Box {...stylex.props([swatch.box])} p={4}>
+			<Box style={swatch.box} p={4}>
 				One
 			</Box>
-			<Box {...stylex.props([swatch.box])} p={4}>
+			<Box style={swatch.box} p={4}>
 				Two
 			</Box>
-			<Box {...stylex.props([swatch.box])} p={4}>
+			<Box style={swatch.box} p={4}>
 				Three
 			</Box>
 		</Row>
@@ -55,13 +55,13 @@ export const RowWithGap: Story = {
 export const ColWithGap: Story = {
 	render: () => (
 		<Col gap={4} align='start'>
-			<Box {...stylex.props([swatch.box])} p={4}>
+			<Box style={swatch.box} p={4}>
 				Top
 			</Box>
-			<Box {...stylex.props([swatch.box])} p={4}>
+			<Box style={swatch.box} p={4}>
 				Middle
 			</Box>
-			<Box {...stylex.props([swatch.box])} p={4}>
+			<Box style={swatch.box} p={4}>
 				Bottom
 			</Box>
 		</Col>
@@ -72,10 +72,10 @@ export const ColWithGap: Story = {
 export const JustifyBetween: Story = {
 	render: () => (
 		<Row justify='between' w='halfScreen' align='center'>
-			<Box {...stylex.props([swatch.box])} p={4}>
+			<Box style={swatch.box} p={4}>
 				Left
 			</Box>
-			<Box {...stylex.props([swatch.box])} p={4}>
+			<Box style={swatch.box} p={4}>
 				Right
 			</Box>
 		</Row>
@@ -85,7 +85,7 @@ export const JustifyBetween: Story = {
 /** Polymorphic rendering via the `as` prop. */
 export const Polymorphic: Story = {
 	render: () => (
-		<Box as='span' {...stylex.props([swatch.box])} p={4}>
+		<Box as='span' style={swatch.box} p={4}>
 			A box rendered as a &lt;span&gt;
 		</Box>
 	),
@@ -114,7 +114,7 @@ export const PaddingScale: Story = {
 		<Col gap={5} align='start'>
 			{([3, 5, 6] as const).map((p) => (
 				<Row key={p} gap={4} align='center'>
-					<Box {...stylex.props([swatch.box])} p={p}>
+					<Box style={swatch.box} p={p}>
 						p={p}
 					</Box>
 				</Row>

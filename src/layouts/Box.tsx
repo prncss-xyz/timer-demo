@@ -328,7 +328,7 @@ export type BoxBaseProps<E extends React.ElementType = React.ElementType> = {
 }
 
 export type BoxProps<E extends React.ElementType> = BoxBaseProps<E> &
-	Omit<React.ComponentProps<E>, keyof BoxBaseProps>
+	Omit<React.ComponentProps<E>, keyof BoxBaseProps | 'className' | 'style'>
 
 const defaultElement = 'div'
 
@@ -363,9 +363,7 @@ export function Box<E extends React.ElementType = typeof defaultElement>({
 	...rest
 }: BoxProps<E>) {
 	const Element = as || defaultElement
-	const { className, ...elementProps } = rest as typeof rest & {
-		className?: string
-	}
+	const { ...elementProps } = rest as typeof rest
 	const styleProps = stylex.props([
 		flex && flexVariants[flex],
 		h && heightVariants[h],
@@ -394,17 +392,8 @@ export function Box<E extends React.ElementType = typeof defaultElement>({
 		textAlign && textAlignVariants[textAlign],
 		style,
 	])
-	const mergedClassName = [className, styleProps.className]
-		.filter(Boolean)
-		.join(' ')
 
-	return (
-		<Element
-			{...elementProps}
-			{...styleProps}
-			className={mergedClassName || undefined}
-		/>
-	)
+	return <Element {...elementProps} {...styleProps} />
 }
 
 export function Row<E extends React.ElementType = typeof defaultElement>(
