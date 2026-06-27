@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 import { A } from '../elements/A'
 import { Blockquote } from '../elements/Blockquote'
 import { H1, H2, H3 } from '../elements/Heading'
-import { Ol, Ul } from '../elements/list'
+import { Li, Ol, Ul } from '../elements/list'
 import { P } from '../elements/P'
 import { Small, Sub, Sup } from '../elements/Small'
 import { createMD } from './createMD'
@@ -14,6 +14,7 @@ const elems = {
 	h1: H1,
 	h2: H2,
 	h3: H3,
+	li: Li,
 	ol: Ol,
 	p: P,
 	small: Small,

@@ -1,6 +1,5 @@
 import * as stylex from '@stylexjs/stylex'
 
-import { spaces } from '../tokens/spaces.stylex'
 import { ElemProps } from './types'
 
 // Recreate the list styles canceled by the global reset (`ul, ol { list-style: none; padding: 0 }`, `li { margin: 0 }`).
@@ -8,14 +7,15 @@ import { ElemProps } from './types'
 const styles = stylex.create({
 	ol: {
 		listStyleType: 'decimal',
-		paddingLeft: spaces[6],
+		paddingLeft: '1.4em',
 	},
 	ul: {
 		listStyleType: 'disc',
-		paddingLeft: spaces[6],
+		paddingLeft: '1.4em',
 	},
 	li: {
 		display: 'list-item',
+		paddingInlineStart: '0.6em',
 	},
 })
 

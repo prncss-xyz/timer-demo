@@ -14,46 +14,84 @@ export default meta
 
 type Story = StoryObj<typeof Ul>
 
-/** Unordered (bulleted) list. */
+/** Unordered (bulleted) list with 3 levels of nesting. */
 export const Unordered: Story = {
 	render: () => (
 		<Col w='readable' align='stretch'>
 			<Ul>
-				<Li>First item</Li>
-				<Li>Second item</Li>
-				<Li>Third item</Li>
+				<Li>
+					Documents
+					<Ul>
+						<Li>
+							Projects
+							<Ul>
+								<Li>Architecture diagrams</Li>
+								<Li>Meeting notes</Li>
+							</Ul>
+						</Li>
+						<Li>
+							Photos
+							<Ul>
+								<Li>Vacation album</Li>
+								<Li>Screenshots</Li>
+							</Ul>
+						</Li>
+					</Ul>
+				</Li>
+				<Li>
+					Downloads
+					<Ul>
+						<Li>
+							Tools
+							<Ul>
+								<Li>Package managers</Li>
+								<Li>CLI utilities</Li>
+							</Ul>
+						</Li>
+					</Ul>
+				</Li>
 			</Ul>
 		</Col>
 	),
 }
 
-/** Ordered (numbered) list. */
+/** Ordered (numbered) list with 3 levels of nesting. */
 export const Ordered: Story = {
 	render: () => (
 		<Col w='readable' align='stretch'>
 			<Ol>
-				<Li>Build the style system</Li>
-				<Li>Compose layout primitives</Li>
-				<Li>Ship the page</Li>
-			</Ol>
-		</Col>
-	),
-}
-
-/** Nested lists mixing ordered and unordered markers. */
-export const Nested: Story = {
-	render: () => (
-		<Col w='readable' align='stretch'>
-			<Ol>
-				<Li>Gather ingredients</Li>
 				<Li>
-					Prepare
-					<Ul>
-						<Li>Wash the vegetables</Li>
-						<Li>Chop finely</Li>
-					</Ul>
+					Plan the feature
+					<Ol>
+						<Li>
+							Research
+							<Ol>
+								<Li>Gather requirements</Li>
+								<Li>Review existing patterns</Li>
+							</Ol>
+						</Li>
+						<Li>
+							Design
+							<Ol>
+								<Li>Wireframe the UI</Li>
+								<Li>Define data model</Li>
+							</Ol>
+						</Li>
+					</Ol>
 				</Li>
-				<Li>Cook and serve</Li>
+				<Li>
+					Implement
+					<Ol>
+						<Li>
+							Build components
+							<Ol>
+								<Li>Create styled primitives</Li>
+								<Li>Compose page layout</Li>
+							</Ol>
+						</Li>
+					</Ol>
+				</Li>
+				<Li>Ship to production</Li>
 			</Ol>
 		</Col>
 	),

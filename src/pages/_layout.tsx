@@ -1,13 +1,10 @@
 import * as stylex from '@stylexjs/stylex'
 import type { ReactNode } from 'react'
 
+import { Header } from '@/components/Header'
 import { Col, Row } from '@/layouts/Box'
 import { DevStyleXInject } from '@/layouts/DevStyleXInject'
 import { Footer } from '@/layouts/footer'
-import { Header } from '@/layouts/header'
-
-import './fonts.css'
-import './reset.css'
 import { basePath, title, description } from '@/meta'
 
 type RootLayoutProps = { children: ReactNode }
