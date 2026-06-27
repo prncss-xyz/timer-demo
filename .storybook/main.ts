@@ -37,9 +37,7 @@ const config: StorybookConfig = {
 				aliases: {
 					'@/*': [fileURLToPath(new URL('../src/*', import.meta.url))],
 				},
-				devMode: 'css-only',
-				devPersistToDisk: true,
-				runtimeInjection: false,
+				runtimeInjection: true,
 				useCSSLayers: true,
 			}),
 		)
