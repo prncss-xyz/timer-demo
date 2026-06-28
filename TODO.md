@@ -2,7 +2,6 @@
   - caching (processing)
   - image in markdown
   - why sharp as an os/arch specific dependency
-- fix storybook build
 - styling
   - color palette
     - harmonize with shiki and mermaid
