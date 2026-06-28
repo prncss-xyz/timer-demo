@@ -1,0 +1,151 @@
+{
+  "total_files": 85,
+  "total_words": 13803,
+  "scan_root": "/home/prncss/projects/storybook",
+  "skipped_sensitive": [
+    ".mcp.json"
+  ],
+  "files": {
+    "code": [
+      ".content-collections/cache/content-collection-config.mjs",
+      ".content-collections/generated/allBlogs.js",
+      ".content-collections/generated/index.d.ts",
+      ".content-collections/generated/index.js",
+      ".storybook/env.d.ts",
+      ".storybook/main.ts",
+      ".storybook/mocks/waku.tsx",
+      ".storybook/preview.tsx",
+      "commitlint.config.ts",
+      "content-collections.ts",
+      "playwright.config.ts",
+      "src/a11y.spec.tsx",
+      "src/ambient.d.ts",
+      "src/basePath.ts",
+      "src/components/Header.tsx",
+      "src/components/Menu.tsx",
+      "src/components/QR.stories.tsx",
+      "src/components/QR.tsx",
+      "src/fixtures/a11y.ts",
+      "src/layouts/Box.stories.tsx",
+      "src/layouts/Box.tsx",
+      "src/layouts/DevStyleXInject.tsx",
+      "src/layouts/MD/createMD.test.ts",
+      "src/layouts/MD/createMD.ts",
+      "src/layouts/MD/index.tsx",
+      "src/layouts/elements/A.stories.tsx",
+      "src/layouts/elements/A.tsx",
+      "src/layouts/elements/Blockquote.stories.tsx",
+      "src/layouts/elements/Blockquote.tsx",
+      "src/layouts/elements/Heading.stories.tsx",
+      "src/layouts/elements/Heading.tsx",
+      "src/layouts/elements/Img.tsx",
+      "src/layouts/elements/P.stories.tsx",
+      "src/layouts/elements/P.tsx",
+      "src/layouts/elements/Small.stories.tsx",
+      "src/layouts/elements/Small.tsx",
+      "src/layouts/elements/list.stories.tsx",
+      "src/layouts/elements/list.tsx",
+      "src/layouts/elements/types.tsx",
+      "src/layouts/images/OptimizedImage.tsx",
+      "src/layouts/images/getResponsiveImage.ts",
+      "src/layouts/tokens/animationDurations.stylex.ts",
+      "src/layouts/tokens/animationTimings.stylex.ts",
+      "src/layouts/tokens/borderRadius.stylex.ts",
+      "src/layouts/tokens/borderWidth.stylex.ts",
+      "src/layouts/tokens/colors.stylex.ts",
+      "src/layouts/tokens/fontFamilies.stylex.ts",
+      "src/layouts/tokens/fontSizes.stylex.ts",
+      "src/layouts/tokens/fontWeights.stylex.ts",
+      "src/layouts/tokens/sizes.stylex.ts",
+      "src/layouts/tokens/spaces.stylex.ts",
+      "src/messages.ts",
+      "src/meta.ts",
+      "src/pages/_layout.tsx",
+      "src/pages/_root.tsx",
+      "src/pages/blog/[slug].tsx",
+      "src/pages/blog/index.tsx",
+      "src/pages/index.tsx",
+      "src/pages/qr.tsx",
+      "src/pages.gen.ts",
+      "src/test.setup.ts",
+      "src/utils/messages/createMessageCtx.ts",
+      "src/utils/messages/createMessages.test.tsx",
+      "src/utils/messages/createMessages.ts",
+      "src/utils/messages/utils.ts",
+      "src/waku.server.tsx",
+      "stylex.config.ts",
+      "vite.config.ts",
+      "waku.config.ts"
+    ],
+    "document": [
+      ".storybook/RSC.md",
+      "AGENT.md",
+      "TODO.md",
+      "patch.md",
+      "public/robots.txt",
+      "sources/blog/hello-world.md",
+      "sources/blog/markdown.md",
+      "sources/blog/older-post.md"
+    ],
+    "paper": [],
+    "image": [],
+    "video": []
+  },
+  "counts": {
+    "code": 69,
+    "document": 8,
+    "style": 4,
+    "json": 3,
+    "other": 0
+  },
+  "communities": {
+    "(root)": {
+      "label": "Project Config",
+      "size": 12
+    },
+    ".content-collections": {
+      "label": ".content-collections",
+      "size": 1
+    },
+    ".content-collections/generated": {
+      "label": "Generated Content",
+      "size": 3
+    },
+    ".storybook": {
+      "label": "Storybook Setup",
+      "size": 5
+    },
+    "public": {
+      "label": "public",
+      "size": 1
+    },
+    "sources/blog": {
+      "label": "Blog Sources",
+      "size": 3
+    },
+    "src": {
+      "label": "Source Root",
+      "size": 8
+    },
+    "src/components": {
+      "label": "Shared Components",
+      "size": 4
+    },
+    "src/fixtures": {
+      "label": "Fixtures & Test Data",
+      "size": 1
+    },
+    "src/layouts": {
+      "label": "Layouts & Markdown",
+      "size": 33
+    },
+    "src/pages": {
+      "label": "Pages & Routes",
+      "size": 9
+    },
+    "src/utils": {
+      "label": "Utilities & Messages",
+      "size": 4
+    }
+  }
+}
