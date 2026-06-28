@@ -101,6 +101,9 @@ export const Typography: Story = {
 			<Box fontSize={3} italic>
 				Italic body
 			</Box>
+			<Box fontSize={3} monospace>
+				Monospace body
+			</Box>
 			<Box fontSize={2} underline>
 				Underlined small
 			</Box>
