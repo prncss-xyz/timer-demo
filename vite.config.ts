@@ -9,6 +9,8 @@ import react, { reactCompilerPreset } from '@vitejs/plugin-react'
 import { ViteWebfontDownload } from 'vite-plugin-webfont-dl'
 import { defineConfig } from 'vite-plus'
 
+import { stylexLightningCssOptions } from './stylex.config'
+
 export default defineConfig({
 	build: {
 		rollupOptions: {
@@ -234,6 +236,7 @@ export default defineConfig({
 					},
 					devMode: 'css-only',
 					devPersistToDisk: true,
+					lightningcssOptions: stylexLightningCssOptions,
 					runtimeInjection: false,
 					useCSSLayers: true,
 				}),
