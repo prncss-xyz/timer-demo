@@ -5,6 +5,7 @@ import { colors } from '@/layouts/tokens/colors.stylex'
 
 import './reset.css'
 import './fonts.css'
+import './syntax-highlighting.css'
 
 type RootElementProps = { children: ReactNode }
 
