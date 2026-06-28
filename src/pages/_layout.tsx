@@ -4,7 +4,6 @@ import type { ReactNode } from 'react'
 import { Header } from '@/components/Header'
 import { Col, Row } from '@/layouts/Box'
 import { DevStyleXInject } from '@/layouts/DevStyleXInject'
-import { Footer } from '@/layouts/footer'
 import { basePath, title, description } from '@/meta'
 
 type RootLayoutProps = { children: ReactNode }
@@ -12,6 +11,7 @@ type RootLayoutProps = { children: ReactNode }
 import { Link } from 'waku'
 
 import { Menu } from '@/components/Menu'
+import { A } from '@/layouts/elements/A'
 import { H1 } from '@/layouts/elements/Heading'
 import { borderWidth } from '@/layouts/tokens/borderWidth.stylex'
 import { colors } from '@/layouts/tokens/colors.stylex'
@@ -60,7 +60,12 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 			<Col pt={8} pb={4} minW='readable' grow={1} as='main'>
 				{children}
 			</Col>
-			<Footer />
+			<Row gap={3} as='footer'>
+				<A href='https://waku.gg/' target='_blank' rel='noreferrer'>
+					waku.gg
+				</A>
+				<div>to learn more</div>
+			</Row>
 		</Col>
 	)
 }

@@ -23,7 +23,7 @@ function createHeading(
 				as={baseElement}
 				fontFamily='heading'
 				fontWeight='bold'
-				marginTop='5'
+				pt={3}
 				textAlign='center'
 				fontSize={fontSizes[baseSize]}
 				{...rest}
