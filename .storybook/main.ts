@@ -2,7 +2,10 @@ import { fileURLToPath } from 'node:url'
 import stylex from '@stylexjs/unplugin'
 import type { StorybookConfig } from '@storybook/react-vite'
 
-import { stylexLightningCssOptions } from '../stylex.config'
+import {
+	stylexLightningCssOptions,
+	stylexStorybookCssInjectionTarget,
+} from '../stylex.config'
 
 const config: StorybookConfig = {
 	stories: ['../src/**/*.stories.@(ts|tsx)'],
@@ -44,6 +47,7 @@ const config: StorybookConfig = {
 				},
 				devMode: 'css-only',
 				devPersistToDisk: true,
+				cssInjectionTarget: stylexStorybookCssInjectionTarget,
 				lightningcssOptions: stylexLightningCssOptions,
 				runtimeInjection: false,
 				useCSSLayers: true,
