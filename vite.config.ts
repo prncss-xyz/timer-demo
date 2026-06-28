@@ -14,7 +14,13 @@ import { stylexLightningCssOptions } from './stylex.config'
 export default defineConfig({
 	build: {
 		rollupOptions: {
-			external: ['virtual:stylex:css-only'],
+			external: (id) =>
+				[
+					'virtual:stylex:css-only',
+					'rehype-mermaid',
+					'mermaid-isomorphic',
+					'playwright-core',
+				].some((pkg) => id === pkg || id.startsWith(`${pkg}/`)),
 		},
 	},
 	fmt: {

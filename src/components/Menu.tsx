@@ -17,7 +17,7 @@ export function Menu({
 	return (
 		<Row fontSize={4} gap={5}>
 			{entries.map(({ to, title }) => (
-				<Box italic={path === to} as={Link} key={to} to={to}>
+				<Box italic={path === to} as={Link} key={String(to)} to={to}>
 					{title}
 				</Box>
 			))}

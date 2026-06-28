@@ -1,4 +1,5 @@
 import * as prod from 'react/jsx-runtime'
+import rehypeMermaid from 'rehype-mermaid'
 import rehypePrettyCode, {
 	Options as PrettyCodeOptions,
 } from 'rehype-pretty-code'
@@ -48,6 +49,12 @@ function createParser() {
 		.use(breaks)
 		.use(remarkRehype, {})
 		.use(rehypeSanitize)
+		.use(rehypeMermaid, {
+			strategy: 'inline-svg',
+			launchOptions: {
+				...(!process.env.CI && { executablePath: '/usr/bin/chromium' }),
+			},
+		})
 		.use(rehypePrettyCode, prettyCodeOptions)
 	return parser
 }

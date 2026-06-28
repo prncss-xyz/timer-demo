@@ -43,7 +43,7 @@ export default defineConfig({
 			use: {
 				...devices['Desktop Chrome'],
 				// Use system browser locally; Playwright managed browser in CI
-				...(!process.env.CI && { executablePath: '/usr/bin/chromium-browser' }),
+				...(!process.env.CI && { executablePath: '/usr/bin/chromium' }),
 			},
 		},
 	],

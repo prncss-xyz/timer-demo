@@ -18,4 +18,14 @@ describe('mdToHtml', () => {
 		expect(css).toContain('color: var(--shiki-light)')
 		expect(css).toContain('color: var(--shiki-dark)')
 	})
+
+	test('renders mermaid diagrams on the server', async () => {
+		const html = await mdToHtml(
+			'a test paragraph\n\n```mermaid\nflowchart TD\n  Start([Start]) --> Timer[Start the timer]\n  Timer --> Decide{Need a break?}\n  Decide -- Yes --> Pause[Pause]\n  Decide -- No --> Done[Done]\n```',
+		)
+
+		expect(html).toContain('<svg')
+		expect(html).toContain('Start the timer')
+		expect(html).not.toContain('<pre><code')
+	})
 })

@@ -1,17 +1,14 @@
-- image caching
+- images
+  - caching (processing)
+  - image in markdown
+  - why sharp as an os/arch specific dependency
+- fix storybook build
 - styling
   - color palette
-  - extract layouts
-  - animations: move to framer motion
-- mdx
-  - code hike
-    - codeblocks
-    - mermaid
-  - search
-- intl/msg
-- menu
+    - harmonize with shiki and mermaid
 - RSS
-- improve guidance
+- bluesky comments integration
+- ai: improve guidance
 - backpressure
   - max length for file (chars, tokens)
   - no UUID in files

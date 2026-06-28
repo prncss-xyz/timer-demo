@@ -20,7 +20,7 @@
 		"src/test.setup.ts"
 	],
 	"ignoreDependencies": [
-		"@fontsource/nunito",
+		"playwright-core",
 		"@commitlint/cli",
 		"@base-ui/react",
 		"@sindresorhus/slugify",
