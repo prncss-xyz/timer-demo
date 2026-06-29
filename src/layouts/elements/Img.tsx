@@ -1,13 +1,28 @@
 import * as stylex from '@stylexjs/stylex'
 
+import { BoxProps } from '../Box'
 import { getResponsiveImage } from '../images/getResponsiveImage'
-import { OptimizedImage } from '../images/OptimizedImage'
-import { spaces } from '../tokens/spaces.stylex'
-import { ElemProps } from './types'
+import { Image } from '../images/OptimizedImage'
 
 const styles = stylex.create({
-	base: {
-		padding: spaces[4],
+	container: {
+		flexGrow: 0,
+	},
+	image: {
+		display: 'block',
+		height: 'auto',
+		maxHeight: 'inherit',
+		maxWidth: '100%',
+		objectFit: 'contain',
+		width: 'auto',
+	},
+	fallbackImage: {
+		display: 'block',
+		height: 'auto',
+		maxHeight: '50vh',
+		maxWidth: '100%',
+		objectFit: 'contain',
+		width: 'auto',
 	},
 })
 
@@ -16,15 +31,25 @@ export async function Img({
 	src,
 	style,
 	...rest
-}: Omit<ElemProps<'div'>, 'style' | 'classname'> &
-	Omit<ElemProps<'img'>, 'style' | 'classname'> & {
-		style?: stylex.StyleXStyles
-	}) {
+}: BoxProps<'span'> & BoxProps<'img'>) {
 	if (src) {
-		const image = await getResponsiveImage(src, alt)
-		return (
-			<OptimizedImage image={image} {...rest} style={[styles.base, style]} />
+		const image = await getResponsiveImage(src, alt).catch(() => null)
+		return image ? (
+			<Image
+				image={image}
+				imgStyle={styles.image}
+				maxH='halfScreen'
+				{...rest}
+				style={[styles.container, style]}
+			/>
+		) : (
+			<img
+				alt={alt}
+				src={src}
+				{...rest}
+				{...stylex.props([styles.fallbackImage, style])}
+			/>
 		)
 	}
-	return <img alt={alt} {...rest} {...stylex.props([styles.base, style])} />
+	return null
 }

@@ -19,10 +19,10 @@ import { globalMessages } from '@/messages'
 
 const styles = stylex.create({
 	header: {
-		backgroundColor: 'var(--header-bg)',
+		backgroundColor: colors.headerBg,
 		borderBottomWidth: borderWidth.thin,
 		borderBottomStyle: 'solid',
-		borderBottomColor: colors.border,
+		borderBottomColor: colors.accent,
 		backdropFilter: 'blur(12px)',
 	},
 })

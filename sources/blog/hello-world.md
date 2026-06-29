@@ -9,6 +9,8 @@ This is the content of the post.
 const x = 3
 ```
 
+![cat](https://www.newworldencyclopedia.org/d/images/3/3a/Cat03.jpg)
+
 ## Mermaid example
 
 ```mermaid

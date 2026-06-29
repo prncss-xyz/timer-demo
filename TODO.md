@@ -1,7 +1,5 @@
-- styling
-  - color palette
-    - harmonize with shiki and mermaid
 - images
+  - fetch: retry
   - caching (processing)
   - image in markdown
   - why sharp as an os/arch specific dependency

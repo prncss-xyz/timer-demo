@@ -7,7 +7,7 @@ import { ElemProps } from './types'
 
 const styles = stylex.create({
 	base: {
-		backgroundColor: colors.btnBg,
+		backgroundColor: colors.accentBg,
 		borderLeftColor: colors.primary,
 		borderLeftStyle: 'solid',
 		borderLeftWidth: borderWidth.thick,

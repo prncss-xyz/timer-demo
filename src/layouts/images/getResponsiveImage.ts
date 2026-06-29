@@ -12,6 +12,9 @@ const { dest, prefix } =
 		? { dest: './public/gen/', prefix: basePath + 'gen/' }
 		: { dest: './dist/public/gen/', prefix: basePath + 'gen/' }
 
+const widths = [640, 1024, 1920]
+const defaultWidth = 1024
+
 async function getHash(input: string): Promise<string> {
 	const msgUint8 = new TextEncoder().encode(input)
 	const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8)
@@ -22,6 +25,17 @@ async function getHash(input: string): Promise<string> {
 		.slice(0, 12)
 }
 
+const getName = (hash: string, width: number) => `${hash}-${width}.webp`
+const getSource = (hash: string, width: number) =>
+	`${prefix}${getName(hash, width)} ${width}w`
+const getPlaceholder = (input: Buffer | string) =>
+	sharp(input)
+		.resize(20)
+		.blur()
+		.webp()
+		.toBuffer()
+		.then((buffer) => `data:image/webp;base64,${buffer.toString('base64')}`)
+
 export interface ResponsiveImage {
 	alt?: string | undefined
 	height: number
@@ -31,27 +45,44 @@ export interface ResponsiveImage {
 	width: number
 }
 
+async function getCachedResponsiveImage(hash: string, alt?: string) {
+	const name = getName(hash, defaultWidth)
+	const outputPath = path.join(dest, name)
+	const [{ height, width }, placeholder] = await Promise.all([
+		sharp(outputPath).metadata(),
+		getPlaceholder(outputPath),
+	])
+
+	return {
+		alt,
+		height,
+		placeholder,
+		src: `${prefix}${name}`,
+		srcSet: widths.map((w) => getSource(hash, w)).join(', '),
+		width,
+	} satisfies ResponsiveImage
+}
+
 export async function getResponsiveImage(remoteUrl: string, alt?: string) {
 	await fs.mkdir(dest, { recursive: true })
 	const hash = await getHash(remoteUrl)
 
-	const widths = [640, 1024, 1920]
-	const response = await fetch(remoteUrl)
-	const buffer = Buffer.from(await response.arrayBuffer())
+	let buffer: Buffer
+	try {
+		const response = await fetch(remoteUrl)
+		buffer = Buffer.from(await response.arrayBuffer())
+	} catch {
+		return getCachedResponsiveImage(hash, alt)
+	}
 
 	const s = sharp(buffer)
 
 	const [{ height, width }, placeholder, sources] = await Promise.all([
 		s.metadata(),
-		s
-			.resize(20)
-			.blur()
-			.webp()
-			.toBuffer()
-			.then((buffer) => `data:image/png;base64,${buffer.toString('base64')}`),
+		getPlaceholder(buffer),
 		Promise.all(
 			widths.map(async (w) => {
-				const name = `${hash}-${w}.webp`
+				const name = getName(hash, w)
 				const outputPath = path.join(dest, name)
 				// Only process if it doesn't exist to speed up builds
 				try {
@@ -59,7 +90,7 @@ export async function getResponsiveImage(remoteUrl: string, alt?: string) {
 				} catch {
 					await s.resize(w).webp().toFile(outputPath)
 				}
-				return `${prefix}${name} ${w}w`
+				return getSource(hash, w)
 			}),
 		),
 	])
@@ -68,7 +99,7 @@ export async function getResponsiveImage(remoteUrl: string, alt?: string) {
 		alt,
 		height,
 		placeholder,
-		src: `${basePath}${hash}-${widths[1]}.webp`,
+		src: `${prefix}${getName(hash, defaultWidth)}`,
 		srcSet: sources.join(', '),
 		width,
 	}

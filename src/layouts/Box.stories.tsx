@@ -6,8 +6,8 @@ import { colors } from './tokens/colors.stylex'
 
 const swatch = stylex.create({
 	box: {
-		backgroundColor: colors.btnBg,
-		borderColor: colors.border,
+		backgroundColor: colors.accentBg,
+		borderColor: colors.accent,
 		borderStyle: 'solid',
 		borderWidth: '1px',
 		color: colors.text,

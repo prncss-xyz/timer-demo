@@ -3,6 +3,7 @@ import { ReactNode } from 'react'
 import { A } from '../elements/A'
 import { Blockquote } from '../elements/Blockquote'
 import { H1, H2, H3 } from '../elements/Heading'
+import { Img } from '../elements/Img'
 import { Li, Ol, Ul } from '../elements/list'
 import { P } from '../elements/P'
 import { Small, Sub, Sup } from '../elements/Small'
@@ -21,6 +22,7 @@ const elems = {
 	sub: Sub,
 	sup: Sup,
 	ul: Ul,
+	img: Img,
 }
 
 export const MD = createMD(elems)
