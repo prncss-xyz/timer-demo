@@ -14,13 +14,9 @@ const styles = stylex.create({
 		gridColumnStart: '1',
 		gridRowStart: '1',
 	},
-	placeholder: {
-		height: '100%',
-		objectFit: 'contain',
-		width: '100%',
-	},
-	invisible: {
-		zIndex: -1,
+	hidden: {
+		opacity: 0,
+		pointerEvents: 'none',
 	},
 })
 
@@ -48,12 +44,7 @@ export function Image({
 				height={height}
 				src={placeholder}
 				width={width}
-				{...stylex.props([
-					styles.content,
-					imgStyle,
-					styles.placeholder,
-					loaded && styles.invisible,
-				])}
+				{...stylex.props([styles.content, imgStyle, loaded && styles.hidden])}
 			/>
 			<img
 				alt={alt}
@@ -64,11 +55,7 @@ export function Image({
 				src={src}
 				srcSet={srcSet}
 				width={width}
-				{...stylex.props([
-					styles.content,
-					imgStyle,
-					!loaded && styles.invisible,
-				])}
+				{...stylex.props([styles.content, imgStyle, !loaded && styles.hidden])}
 			/>
 		</Box>
 	)

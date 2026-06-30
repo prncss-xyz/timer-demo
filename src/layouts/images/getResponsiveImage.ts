@@ -28,13 +28,16 @@ async function getHash(input: string): Promise<string> {
 const getName = (hash: string, width: number) => `${hash}-${width}.webp`
 const getSource = (hash: string, width: number) =>
 	`${prefix}${getName(hash, width)} ${width}w`
-const getPlaceholder = (input: Buffer | string) =>
-	sharp(input)
-		.resize(20)
-		.blur()
-		.webp()
-		.toBuffer()
-		.then((buffer) => `data:image/webp;base64,${buffer.toString('base64')}`)
+const getPlaceholder = async (
+	input: Buffer | string,
+	width: number,
+	height: number,
+) => {
+	const buffer = await sharp(input).resize(20).blur().webp().toBuffer()
+	const href = `data:image/webp;base64,${buffer.toString('base64')}`
+	const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}"><image href="${href}" width="${width}" height="${height}" preserveAspectRatio="xMidYMid slice"/></svg>`
+	return `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`
+}
 
 export interface ResponsiveImage {
 	alt?: string | undefined
@@ -48,10 +51,8 @@ export interface ResponsiveImage {
 async function getCachedResponsiveImage(hash: string, alt?: string) {
 	const name = getName(hash, defaultWidth)
 	const outputPath = path.join(dest, name)
-	const [{ height, width }, placeholder] = await Promise.all([
-		sharp(outputPath).metadata(),
-		getPlaceholder(outputPath),
-	])
+	const { height = 1, width = 1 } = await sharp(outputPath).metadata()
+	const placeholder = await getPlaceholder(outputPath, width, height)
 
 	return {
 		alt,
@@ -76,10 +77,10 @@ export async function getResponsiveImage(remoteUrl: string, alt?: string) {
 	}
 
 	const s = sharp(buffer)
+	const { height = 1, width = 1 } = await s.metadata()
 
-	const [{ height, width }, placeholder, sources] = await Promise.all([
-		s.metadata(),
-		getPlaceholder(buffer),
+	const [placeholder, sources] = await Promise.all([
+		getPlaceholder(buffer, width, height),
 		Promise.all(
 			widths.map(async (w) => {
 				const name = getName(hash, w)
