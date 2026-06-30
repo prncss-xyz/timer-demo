@@ -31,7 +31,10 @@ const isInternalPageUrl = (href: string, origin: string, rootPath: string) => {
 }
 
 test.describe('accessibility (axe)', () => {
-	test('crawled pages have no WCAG violations', async ({ page, analyzeAxe }) => {
+	test('crawled pages have no WCAG violations', async ({
+		page,
+		analyzeAxe,
+	}) => {
 		await page.goto(root)
 
 		const startUrl = new URL(page.url())
@@ -46,6 +49,8 @@ test.describe('accessibility (axe)', () => {
 
 			if (visited.has(key)) continue
 			visited.add(key)
+			// oxlint-disable-next-line no-console
+			console.log('visiting', key)
 
 			await page.goto(url)
 			const { violations } = await analyzeAxe()
