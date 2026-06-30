@@ -1,6 +1,5 @@
 - playwright
   - make build dependent of it
-  - crawl the site for accessibility (instead of hard-coded list)
 - markdown
     - tweak styling
     - list styling
