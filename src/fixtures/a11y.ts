@@ -3,7 +3,8 @@ import path from 'node:path'
 
 import { AxeBuilder } from '@axe-core/playwright'
 import { test as base, expect } from '@playwright/test'
-import type { AxeResults } from 'axe-core'
+
+type AxeResults = Awaited<ReturnType<AxeBuilder['analyze']>>
 
 // Extends the base Playwright test with:
 //  - makeAxeBuilder: returns a fresh AxeBuilder bound to the page

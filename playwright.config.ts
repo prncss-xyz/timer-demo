@@ -1,3 +1,5 @@
+import { execSync } from 'node:child_process'
+
 import { defineConfig, devices } from '@playwright/test'
 
 import { buildBasePath } from './src/basePath'
@@ -9,6 +11,13 @@ import { buildBasePath } from './src/basePath'
 // ships to GitHub Pages.
 const host = 'http://localhost:8080'
 const root = host + buildBasePath(process.env)
+const chromiumPath = (() => {
+	try {
+		return execSync('which chromium', { encoding: 'utf8' }).trim()
+	} catch {
+		return undefined
+	}
+})()
 
 export default defineConfig({
 	testDir: './src',
@@ -30,9 +39,7 @@ export default defineConfig({
 		trace: 'on-first-retry',
 	},
 	webServer: {
-		command: process.env.CI
-			? './node_modules/.bin/waku start'
-			: 'pnpm run build-start',
+		command: './node_modules/.bin/waku start',
 		url: root,
 		timeout: 120 * 1000,
 		reuseExistingServer: !process.env.CI,
@@ -42,8 +49,10 @@ export default defineConfig({
 			name: 'chromium',
 			use: {
 				...devices['Desktop Chrome'],
-				// Use system browser locally; Playwright managed browser in CI
-				...(!process.env.CI && { executablePath: '/usr/bin/chromium' }),
+				// Use a system browser when available; otherwise fall back to Playwright's bundled one.
+				...(chromiumPath && {
+					launchOptions: { executablePath: chromiumPath },
+				}),
 			},
 		},
 	],

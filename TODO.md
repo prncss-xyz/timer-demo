@@ -1,12 +1,18 @@
+- playwright
+  - make build dependent of it
+  - crawl the site for accessibility (instead of hard-coded list)
+- bug: css lost when reloading from non-idex page
 - images
   - fetch: retry
+  - pooling
   - caching (processing)
   - image in markdown
   - why sharp as an os/arch specific dependency
 - tweak markdown styling
 - RSS
+- JSON Dump component
 - bluesky comments integration
-- embbed waku slinces in markdown
+- embbed waku components in markdown
   - possibly https://github.com/remark-embedder/core
 - ai: improve guidance
 - backpressure

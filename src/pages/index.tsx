@@ -1,6 +1,6 @@
 import { Col } from '@/layouts/Box'
 import { Blockquote } from '@/layouts/elements/Blockquote'
-import { Li, Ol, Ul } from '@/layouts/elements/list'
+import { Li, Ol } from '@/layouts/elements/list'
 import { MD } from '@/layouts/MD'
 import { createMessages, globalMessages } from '@/messages'
 
@@ -25,29 +25,21 @@ export default async function HomePage() {
 	return (
 		<Col gap={6} w='readable'>
 			<messages.Main />
-			<Ul>
-				<Li>1</Li>
-				<Li>2</Li>
-				<Ul>
-					<Li>1</Li>
-					<Li>2</Li>
-					<Ul>
-						<Li>1</Li>
-						<Li>2</Li>
-					</Ul>
-				</Ul>
-			</Ul>
 			<Ol>
 				<Li>1</Li>
 				<Li>2</Li>
-				<Ol>
-					<Li>1</Li>
-					<Li>2</Li>
+				<Li>
 					<Ol>
 						<Li>1</Li>
 						<Li>2</Li>
+						<Li>
+							<Ol>
+								<Li>1</Li>
+								<Li>2</Li>
+							</Ol>
+						</Li>
 					</Ol>
-				</Ol>
+				</Li>
 			</Ol>
 			<Blockquote>quote</Blockquote>
 		</Col>

@@ -306,7 +306,7 @@ export default defineConfig({
 		tasks: {
 			ci: {
 				command:
-					'vp check && vpr build && vpr knip && vpr tsc && vpr test:units && vpr test:e2e',
+					'vp check && vpr build && vpr knip && vpr tsc && vpr test:units',
 			},
 			commitlint: {
 				command: 'commitlint --edit',
@@ -316,11 +316,22 @@ export default defineConfig({
 			},
 			pre_commit: {
 				command:
-					'vp staged && vpr build && vpr knip && vpr tsc && vpr test:units --changed && vpr test:e2e --only-changed',
+					'vp staged && vpr build && vpr knip && vpr tsc && vpr test:units --changed',
 			},
 			'test:e2e': {
 				cache: true,
 				command: 'playwright test',
+				input: [
+					'vite.config.ts',
+					'playwright.config.ts',
+					'package.json',
+					'pnpm-workspace.yaml',
+					'**/src/**/*.{js,ts,jsx,tsx}',
+				],
+			},
+			'test:e2e--only-changed': {
+				cache: true,
+				command: 'playwright test --only-changed',
 				input: [
 					'vite.config.ts',
 					'playwright.config.ts',

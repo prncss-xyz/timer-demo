@@ -13,21 +13,20 @@ test.describe('accessibility (axe)', () => {
 		const { violations } = await analyzeAxe()
 		expect(violations).toEqual([])
 	})
-
-	test('posts index (/posts) has no WCAG violations', async ({
+	test('blog index (/blog) has no WCAG violations', async ({
 		page,
 		analyzeAxe,
 	}) => {
-		await page.goto(`${root}posts`)
+		await page.goto(`${root}blog`)
 		const { violations } = await analyzeAxe()
 		expect(violations).toEqual([])
 	})
 
-	test('post detail (/posts/hello-world) has no WCAG violations', async ({
+	test('blog detail (/blog/hello-world) has no WCAG violations', async ({
 		page,
 		analyzeAxe,
 	}) => {
-		await page.goto(`${root}posts/hello-world`)
+		await page.goto(`${root}blog/hello-world`)
 		const { violations } = await analyzeAxe()
 		expect(violations).toEqual([])
 	})

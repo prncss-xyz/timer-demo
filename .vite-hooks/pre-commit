@@ -1,2 +1,3 @@
-vpr pre_commit
 vp staged
+vpr pre_commit
+vpr test:e2e--only-changed

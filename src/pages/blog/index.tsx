@@ -17,12 +17,14 @@ export default async function PostsIndex() {
 			<H1 pb={7}>{globalMessages.blog}</H1>
 			<Col as='ul' gap={6}>
 				{sortedBlogs.map((post) => (
-					<Link to={`/blog/${post._meta.path}`}>
-						<Col key={post._meta.path} as='li'>
-							<H2 textAlign='left'>{post.title}</H2>
-							<div>{post.date}</div>
-						</Col>
-					</Link>
+					<li>
+						<Link to={`/blog/${post._meta.path}`}>
+							<Col key={post._meta.path}>
+								<H2 textAlign='left'>{post.title}</H2>
+								<div>{post.date}</div>
+							</Col>
+						</Link>
+					</li>
 				))}
 			</Col>
 		</div>

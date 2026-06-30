@@ -54,15 +54,19 @@ jobs:
       # hermetic env that strips VITE_* — so playwright.config.ts would see
       # VITE_BASE_PATH=undefined and poll '/' against a basePath-baked server.
       # Invoke playwright directly so it inherits VITE_BASE_PATH from this step.
-      - name: Check, build (with basePath), and run e2e against it
+      - name: Check, build (with basePath)
         run: |
           vp check && vpr build && vpr knip && vpr tsc && vpr test:units
-          ./node_modules/.bin/playwright test
         env:
           VITE_GITHUB_REPOSITORY: ${{ github.repository }}
           VITE_BASE_URL: ${{ steps.pages.outputs.base_url }}
           VITE_BASE_PATH: ${{ steps.pages.outputs.base_path }}
-
+      - name: e2e tests
+        run: ./node_modules/.bin/playwright test
+        env:
+          VITE_GITHUB_REPOSITORY: ${{ github.repository }}
+          VITE_BASE_URL: ${{ steps.pages.outputs.base_url }}
+          VITE_BASE_PATH: ${{ steps.pages.outputs.base_path }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
         with:
