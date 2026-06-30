@@ -2,8 +2,11 @@ import * as stylex from '@stylexjs/stylex'
 
 import { ElemProps } from './types'
 
-// this is the only allowed css module in this application
-import styles from './list.module.css'
+const styles = {
+	li: 'mdListLi',
+	ol: 'mdListOl',
+	ul: 'mdListUl',
+} as const
 
 function mergeStyles(
 	baseClass: string,

@@ -1,28 +1,28 @@
-.li {
+.mdListLi {
 	padding-inline-start: 0.6em;
 }
 
-.ul {
+.mdListUl {
 	padding-inline-start: 1.4em;
 	list-style-type: disc;
 }
-.ul .ul {
+.mdListUl .mdListUl {
 	list-style-type: circle;
 }
 
-.ul .ul .ul {
+.mdListUl .mdListUl .mdListUl {
 	list-style-type: square;
 }
 
-.ol {
+.mdListOl {
 	padding-inline-start: 1.4em;
 	list-style-type: decimal;
 }
 
-.ol .ol {
+.mdListOl .mdListOl {
 	list-style-type: lower-alpha;
 }
 
-.ol .ol .ol {
+.mdListOl .mdListOl .mdListOl {
 	list-style-type: lower-roman;
 }

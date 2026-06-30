@@ -1,9 +1,19 @@
+pre[data-theme*=' '],
+code[data-theme*=' '] {
+	background-color: #fff;
+}
+
 code[data-theme*=' '],
 code[data-theme*=' '] span {
 	color: var(--shiki-light);
 }
 
 @media (prefers-color-scheme: dark) {
+	pre[data-theme*=' '],
+	code[data-theme*=' '] {
+		background-color: #0d1117;
+	}
+
 	code[data-theme*=' '],
 	code[data-theme*=' '] span {
 		color: var(--shiki-dark);
