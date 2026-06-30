@@ -1,13 +1,13 @@
 - playwright
   - make build dependent of it
   - crawl the site for accessibility (instead of hard-coded list)
-- mermaid: font mismatch
-- tweak markdown styling
+- markdown
+    - tweak styling
+    - list styling
 - images
   - fetch: retry
   - pooling
   - caching (processing)
-  - image in markdown
   - why sharp as an os/arch specific dependency
 - RSS
 - JSON Dump component

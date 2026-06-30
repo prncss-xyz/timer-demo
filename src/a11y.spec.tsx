@@ -7,33 +7,66 @@ import { buildBasePath } from './basePath'
 // leading slash to avoid double-slashes.
 const root = buildBasePath(process.env)
 
+const normalizePageUrl = (href: string, rootPath: string) => {
+	const url = new URL(href)
+	const pathname =
+		url.pathname !== rootPath && url.pathname.endsWith('/')
+			? url.pathname.slice(0, -1)
+			: url.pathname
+
+	return `${url.origin}${pathname}${url.search}`
+}
+
+const isInternalPageUrl = (href: string, origin: string, rootPath: string) => {
+	try {
+		const url = new URL(href)
+		return (
+			(url.protocol === 'http:' || url.protocol === 'https:') &&
+			url.origin === origin &&
+			url.pathname.startsWith(rootPath)
+		)
+	} catch {
+		return false
+	}
+}
+
 test.describe('accessibility (axe)', () => {
-	test('home (/) has no WCAG violations', async ({ page, analyzeAxe }) => {
+	test('crawled pages have no WCAG violations', async ({ page, analyzeAxe }) => {
 		await page.goto(root)
-		const { violations } = await analyzeAxe()
-		expect(violations).toEqual([])
-	})
-	test('blog index (/blog) has no WCAG violations', async ({
-		page,
-		analyzeAxe,
-	}) => {
-		await page.goto(`${root}blog`)
-		const { violations } = await analyzeAxe()
-		expect(violations).toEqual([])
-	})
 
-	test('blog detail (/blog/hello-world) has no WCAG violations', async ({
-		page,
-		analyzeAxe,
-	}) => {
-		await page.goto(`${root}blog/hello-world`)
-		const { violations } = await analyzeAxe()
-		expect(violations).toEqual([])
-	})
+		const startUrl = new URL(page.url())
+		const origin = startUrl.origin
+		const rootPath = startUrl.pathname
+		const visited = new Set<string>()
+		const queue = [startUrl.href]
 
-	test('qr (/qr) has no WCAG violations', async ({ page, analyzeAxe }) => {
-		await page.goto(`${root}qr`)
-		const { violations } = await analyzeAxe()
-		expect(violations).toEqual([])
+		while (queue.length > 0) {
+			const url = queue.shift()!
+			const key = normalizePageUrl(url, rootPath)
+
+			if (visited.has(key)) continue
+			visited.add(key)
+
+			await page.goto(url)
+			const { violations } = await analyzeAxe()
+			expect(violations).toEqual([])
+
+			const discovered = await page.evaluate(() =>
+				Array.from(
+					document.querySelectorAll<HTMLAnchorElement>('a[href], area[href]'),
+				)
+					.map((element) => element.href)
+					.filter((href) => href !== ''),
+			)
+
+			for (const href of discovered) {
+				if (!isInternalPageUrl(href, origin, rootPath)) continue
+
+				const normalized = normalizePageUrl(href, rootPath)
+				if (!visited.has(normalized)) {
+					queue.push(href)
+				}
+			}
+		}
 	})
 })
