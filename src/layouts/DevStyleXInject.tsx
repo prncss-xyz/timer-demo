@@ -1,16 +1,51 @@
 'use client'
-import { useEffect } from 'react'
+import { useLayoutEffect } from 'react'
 
-function DevStyleXInjectImpl() {
-	useEffect(() => {
-		if (import.meta.env.DEV) {
-			void import(/* @vite-ignore */ 'virtual:stylex:css-only')
-		}
-	}, [])
-	return <link href='/virtual:stylex.css' rel='stylesheet' precedence='high' />
+const LAYER_ORDER_STYLE_ID = 'stylex-layer-order'
+
+/**
+ * In Waku (app) dev and in the Storybook build, the reset stylesheet
+ * (`@layer reset { ... }` from `src/pages/reset.css`) lands before the StyleX
+ * stylesheet, so `@layer reset` is the first-declared cascade layer and ends up
+ * with the lowest precedence — StyleX's `@layer priorityN` rules (and unlayered
+ * priority-0 rules) correctly override the reset.
+ *
+ * In Storybook dev, StyleX's `devMode: 'css-only'` auto-injects the
+ * `/virtual:stylex.css` `<link>` at the very top of `<head>` (Vite prepends it),
+ * which makes `@layer reset` get declared *after* the StyleX layers. That flips
+ * precedence so the reset's `ul, ol { list-style: none; padding: 0 }` wins over
+ * StyleX's list styles — lists render unstyled.
+ *
+ * Fix: guarantee `@layer reset` is declared first by keeping a tiny `<style>`
+ * with that declaration at the very front of `<head>`, reasserting it via a
+ * MutationObserver whenever Vite reorders/repends stylesheets (e.g. on HMR).
+ */
+function ensureResetLayerFirst() {
+	const head = document.head
+	let style = document.getElementById(
+		LAYER_ORDER_STYLE_ID,
+	) as HTMLStyleElement | null
+	if (!style) {
+		style = document.createElement('style')
+		style.id = LAYER_ORDER_STYLE_ID
+		style.textContent = '@layer reset;'
+	}
+	if (head.firstChild !== style) head.insertBefore(style, head.firstChild)
 }
 
 export function DevStyleXInject() {
-	if (import.meta.env.DEV) return <DevStyleXInjectImpl />
+	useLayoutEffect(() => {
+		if (!import.meta.env.DEV) return
+		ensureResetLayerFirst()
+		const observer = new MutationObserver(ensureResetLayerFirst)
+		observer.observe(document.head, { childList: true })
+		return () => observer.disconnect()
+	}, [])
+
+	if (import.meta.env.DEV) {
+		return (
+			<link href='/virtual:stylex.css' rel='stylesheet' precedence='high' />
+		)
+	}
 	return null
 }

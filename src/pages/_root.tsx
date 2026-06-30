@@ -3,7 +3,6 @@ import type { ReactNode } from 'react'
 
 import { colors } from '@/layouts/tokens/colors.stylex'
 
-import '@/layouts/elements/list.css'
 import './reset.css'
 import './fonts.css'
 import './syntax-highlighting.css'

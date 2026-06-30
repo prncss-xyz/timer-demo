@@ -2,41 +2,92 @@ import * as stylex from '@stylexjs/stylex'
 
 import { ElemProps } from './types'
 
-const styles = {
-	li: 'mdListLi',
-	ol: 'mdListOl',
-	ul: 'mdListUl',
-} as const
+const styles = stylex.create({
+	li: { paddingInlineStart: '0.6em' },
+	ol: {
+		paddingInlineStart: '1.4em',
+	},
+	ol0: {
+		listStyleType: 'decimal',
+	},
+	ol1: {
+		listStyleType: 'lower-alpha',
+	},
+	ol2: {
+		listStyleType: 'lower-roman',
+	},
+	ul: {
+		paddingInlineStart: '1.4em',
+	},
+	ul0: {
+		listStyleType: 'disc',
+	},
+	ul1: {
+		listStyleType: 'circle',
+	},
+	ul2: {
+		listStyleType: 'square',
+	},
+})
 
-function mergeStyles(
-	baseClass: string,
-	style: stylex.StyleXStyles | undefined,
-) {
-	const { className: sxClass, style: sxStyle } = stylex.props(style)
-	return {
-		className: [baseClass, sxClass].filter(Boolean).join(' '),
-		style: sxStyle,
+function getDepthOlStyle(dataDepth: number | string | undefined) {
+	switch (Number(dataDepth) % 3) {
+		case 1:
+			return styles.ol1
+		case 2:
+			return styles.ol2
+		default:
+			return styles.ol0
 	}
 }
 
-export function Ol({
-	style,
-	...rest
-}: Omit<ElemProps<'ol'>, 'style' | 'classname'> & {
-	style?: stylex.StyleXStyles
-}) {
-	const merged = mergeStyles(styles.ol, style)
-	return <ol {...rest} className={merged.className} style={merged.style} />
+function getDepthUlStyle(dataDepth: number | string | undefined) {
+	switch (Number(dataDepth) % 3) {
+		case 1:
+			return styles.ul1
+		case 2:
+			return styles.ul2
+		default:
+			return styles.ul0
+	}
+}
+
+interface ListDepthProps {
+	'data-depth'?: string | number
 }
 
 export function Ul({
-	style,
-	...rest
-}: Omit<ElemProps<'ul'>, 'style' | 'classname'> & {
-	style?: stylex.StyleXStyles
-}) {
-	const merged = mergeStyles(styles.ul, style)
-	return <ul {...rest} className={merged.className} style={merged.style} />
+	'data-depth': dataDepth,
+	children,
+	...props
+}: React.HTMLAttributes<HTMLUListElement> & ListDepthProps) {
+	const depth = dataDepth !== undefined ? Number(dataDepth) : 0
+	const depthStyle = getDepthUlStyle(depth)
+
+	return (
+		<ul data-depth={depth} {...props} {...stylex.props(styles.ul, depthStyle)}>
+			{children}
+		</ul>
+	)
+}
+
+export function Ol({
+	'data-depth': dataDepth,
+	children,
+	...props
+}: React.HTMLAttributes<HTMLOListElement> & ListDepthProps) {
+	const depth = dataDepth !== undefined ? Number(dataDepth) : 0
+	const depthStyle = getDepthOlStyle(depth)
+
+	return (
+		<ol
+			data-depth={dataDepth}
+			{...props}
+			{...stylex.props(styles.ol, depthStyle)}
+		>
+			{children}
+		</ol>
+	)
 }
 
 export function Li({
@@ -45,6 +96,5 @@ export function Li({
 }: Omit<ElemProps<'li'>, 'style' | 'classname'> & {
 	style?: stylex.StyleXStyles
 }) {
-	const merged = mergeStyles(styles.li, style)
-	return <li {...rest} className={merged.className} style={merged.style} />
+	return <li {...rest} {...stylex.props(styles.li, style)} />
 }

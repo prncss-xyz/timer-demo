@@ -1,8 +1,9 @@
 - playwright
   - make build dependent of it
 - markdown
-    - tweak styling
-    - list styling
+  - tweak styling
+    - headings
+    - images
 - images
   - fetch: retry
   - pooling

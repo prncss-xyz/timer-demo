@@ -1,6 +1,4 @@
 import { Col } from '@/layouts/Box'
-import { Blockquote } from '@/layouts/elements/Blockquote'
-import { Li, Ol } from '@/layouts/elements/list'
 import { MD } from '@/layouts/MD'
 import { createMessages, globalMessages } from '@/messages'
 
@@ -14,9 +12,14 @@ toggle (Light, Dark, and System theme synchronization) built using StyleX and Wa
 
 - 3-State Persistence (Light / Dark / System)
 - Zero Flash of Unthemed Content (FOUC)
-- System theme auto-update listeners
-- Premium responsive interface using StyleX
+  - System theme auto-update listeners
+    - Premium responsive interface using StyleX
 
+1. a
+    1. b
+        1. c
+
+> quote
 `}</MD>
 	),
 })
@@ -25,23 +28,6 @@ export default async function HomePage() {
 	return (
 		<Col gap={6} w='readable'>
 			<messages.Main />
-			<Ol>
-				<Li>1</Li>
-				<Li>2</Li>
-				<Li>
-					<Ol>
-						<Li>1</Li>
-						<Li>2</Li>
-						<Li>
-							<Ol>
-								<Li>1</Li>
-								<Li>2</Li>
-							</Ol>
-						</Li>
-					</Ol>
-				</Li>
-			</Ol>
-			<Blockquote>quote</Blockquote>
 		</Col>
 	)
 }

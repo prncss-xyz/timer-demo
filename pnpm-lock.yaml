@@ -86,6 +86,9 @@ importers:
       unified:
         specifier: ^11.0.5
         version: 11.0.5
+      unist-util-visit-parents:
+        specifier: ^6.0.2
+        version: 6.0.2
       waku:
         specifier: 1.0.0-beta.5
         version: 1.0.0-beta.5(@rolldown/plugin-babel@0.2.3(@babel/core@7.29.7)(@babel/runtime@7.29.7)(@voidzero-dev/vite-plus-core@0.2.1(@types/node@26.0.1)(esbuild@0.25.12)(jiti@2.7.0)(terser@5.48.0)(typescript@6.0.3)(yaml@2.9.0))(rolldown@1.1.2))(@types/node@26.0.1)(babel-plugin-react-compiler@1.0.0)(esbuild@0.25.12)(jiti@2.7.0)(react-dom@19.2.7(react@19.2.7))(react-server-dom-webpack@19.2.7(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(webpack@5.107.2(esbuild@0.25.12)))(react@19.2.7)(terser@5.48.0)(typescript@6.0.3)(yaml@2.9.0)
@@ -138,6 +141,9 @@ importers:
       '@stylexjs/unplugin':
         specifier: ^0.19.0
         version: 0.19.0(unplugin@2.3.11)
+      '@types/mdast':
+        specifier: ^4.0.4
+        version: 4.0.4
       '@types/qrcode':
         specifier: ^1.5.6
         version: 1.5.6

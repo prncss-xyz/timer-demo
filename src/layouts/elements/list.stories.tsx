@@ -18,20 +18,20 @@ type Story = StoryObj<typeof Ul>
 export const Unordered: Story = {
 	render: () => (
 		<Col w='readable' align='stretch'>
-			<Ul>
+			<Ul data-depth={0}>
 				<Li>
 					Documents
-					<Ul>
+					<Ul data-depth={1}>
 						<Li>
 							Projects
-							<Ul>
+							<Ul data-depth={2}>
 								<Li>Architecture diagrams</Li>
 								<Li>Meeting notes</Li>
 							</Ul>
 						</Li>
 						<Li>
 							Photos
-							<Ul>
+							<Ul data-depth={2}>
 								<Li>Vacation album</Li>
 								<Li>Screenshots</Li>
 							</Ul>
@@ -40,10 +40,10 @@ export const Unordered: Story = {
 				</Li>
 				<Li>
 					Downloads
-					<Ul>
+					<Ul data-depth={1}>
 						<Li>
 							Tools
-							<Ul>
+							<Ul data-depth={2}>
 								<Li>Package managers</Li>
 								<Li>CLI utilities</Li>
 							</Ul>
@@ -59,20 +59,20 @@ export const Unordered: Story = {
 export const Ordered: Story = {
 	render: () => (
 		<Col w='readable' align='stretch'>
-			<Ol>
+			<Ol data-depth={0}>
 				<Li>
 					Plan the feature
-					<Ol>
+					<Ol data-depth={1}>
 						<Li>
 							Research
-							<Ol>
+							<Ol data-depth={2}>
 								<Li>Gather requirements</Li>
 								<Li>Review existing patterns</Li>
 							</Ol>
 						</Li>
 						<Li>
 							Design
-							<Ol>
+							<Ol data-depth={2}>
 								<Li>Wireframe the UI</Li>
 								<Li>Define data model</Li>
 							</Ol>
@@ -81,10 +81,10 @@ export const Ordered: Story = {
 				</Li>
 				<Li>
 					Implement
-					<Ol>
+					<Ol data-depth={1}>
 						<Li>
 							Build components
-							<Ol>
+							<Ol data-depth={2}>
 								<Li>Create styled primitives</Li>
 								<Li>Compose page layout</Li>
 							</Ol>
