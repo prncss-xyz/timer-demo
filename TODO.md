@@ -1,14 +1,14 @@
 - playwright
   - make build dependent of it
   - crawl the site for accessibility (instead of hard-coded list)
-- bug: css lost when reloading from non-idex page
+- mermaid: font mismatch
+- tweak markdown styling
 - images
   - fetch: retry
   - pooling
   - caching (processing)
   - image in markdown
   - why sharp as an os/arch specific dependency
-- tweak markdown styling
 - RSS
 - JSON Dump component
 - bluesky comments integration
