@@ -1,3 +1,6 @@
+import { resolve } from 'node:path'
+import { pathToFileURL } from 'node:url'
+
 import * as prod from 'react/jsx-runtime'
 import rehypeMermaid from 'rehype-mermaid'
 import rehypePrettyCode, {
@@ -12,6 +15,12 @@ import parse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import { createHighlighter } from 'shiki'
 import { unified } from 'unified'
+
+import { siteFontFamily } from '../tokens/fontConstants'
+
+const mermaidFontCss = pathToFileURL(
+	resolve('src/layouts/MD/mermaid-fonts.css'),
+)
 
 const highlighter = createHighlighter({
 	langs: [
@@ -50,6 +59,13 @@ function createParser() {
 		.use(remarkRehype, {})
 		.use(rehypeSanitize)
 		.use(rehypeMermaid, {
+			css: mermaidFontCss,
+			mermaidConfig: {
+				fontFamily: siteFontFamily,
+				themeVariables: {
+					fontFamily: siteFontFamily,
+				},
+			},
 			strategy: 'inline-svg',
 			launchOptions: {
 				...(!process.env.CI && { executablePath: '/usr/bin/chromium' }),
