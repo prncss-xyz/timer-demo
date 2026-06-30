@@ -6,5 +6,8 @@ export const stylexLightningCssOptions = {
 	exclude: LIGHTNING_CSS_FEATURE_LIGHT_DARK,
 } as const
 
+export const stylexRootCssInjectionTarget = (fileName: string) =>
+	/(^|\/)_root-[^/]+\.css$/.test(fileName)
+
 export const stylexStorybookCssInjectionTarget = (fileName: string) =>
 	/(^|\/)preview-[^/]+\.css$/.test(fileName)

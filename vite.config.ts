@@ -9,7 +9,10 @@ import react, { reactCompilerPreset } from '@vitejs/plugin-react'
 import { ViteWebfontDownload } from 'vite-plugin-webfont-dl'
 import { defineConfig } from 'vite-plus'
 
-import { stylexLightningCssOptions } from './stylex.config'
+import {
+	stylexLightningCssOptions,
+	stylexRootCssInjectionTarget,
+} from './stylex.config'
 
 export default defineConfig({
 	build: {
@@ -243,6 +246,7 @@ export default defineConfig({
 					devMode: 'css-only',
 					devPersistToDisk: true,
 					lightningcssOptions: stylexLightningCssOptions,
+					cssInjectionTarget: stylexRootCssInjectionTarget,
 					runtimeInjection: false,
 					useCSSLayers: true,
 				}),

@@ -22,6 +22,3 @@ peerDependencyRules:
   allowedVersions:
     vite: '*'
     vitest: '*'
-
-patchedDependencies:
-  react-server-dom-webpack: patches/react-server-dom-webpack.patch
