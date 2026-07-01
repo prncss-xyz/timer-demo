@@ -329,6 +329,7 @@ export default defineConfig({
 					'pnpm-workspace.yaml',
 					'**/src/**/*.{js,ts,jsx,tsx}',
 				],
+				dependsOn: ['build'],
 			},
 			'test:e2e': {
 				cache: true,
