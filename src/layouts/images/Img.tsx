@@ -1,6 +1,6 @@
 import * as stylex from '@stylexjs/stylex'
 
-import { BoxProps } from '../Box'
+import { Box, BoxProps } from '../Box'
 import { getResponsiveImage } from '../images/getResponsiveImage'
 import { Image } from '../images/OptimizedImage'
 
@@ -43,7 +43,8 @@ export async function Img({
 				style={[styles.container, style]}
 			/>
 		) : (
-			<img
+			<Box
+				as='img'
 				alt={alt}
 				src={src}
 				{...rest}

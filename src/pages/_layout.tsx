@@ -1,8 +1,7 @@
 import * as stylex from '@stylexjs/stylex'
 import type { ReactNode } from 'react'
 
-import { Header } from '@/components/Header'
-import { Col, Row } from '@/layouts/Box'
+import { Box, Col, Row } from '@/layouts/Box'
 import { DevStyleXInject } from '@/layouts/DevStyleXInject'
 import { basePath, title, description } from '@/meta'
 
@@ -11,8 +10,8 @@ type RootLayoutProps = { children: ReactNode }
 import { Link } from 'waku'
 
 import { Menu } from '@/components/Menu'
-import { A } from '@/layouts/elements/A'
 import { H1 } from '@/layouts/elements/Heading'
+import { Header } from '@/layouts/Header'
 import { borderWidth } from '@/layouts/tokens/borderWidth.stylex'
 import { colors } from '@/layouts/tokens/colors.stylex'
 import { globalMessages } from '@/messages'
@@ -61,9 +60,15 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 				{children}
 			</Col>
 			<Row gap={3} as='footer'>
-				<A href='https://waku.gg/' target='_blank' rel='noreferrer'>
+				<Box
+					as='a'
+					href='https://waku.gg/'
+					target='_blank'
+					rel='noreferrer'
+					fontWeight='bold'
+				>
 					waku.gg
-				</A>
+				</Box>
 				<div>to learn more</div>
 			</Row>
 		</Col>

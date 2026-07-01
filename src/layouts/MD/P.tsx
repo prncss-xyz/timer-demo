@@ -1,7 +1,7 @@
 import * as stylex from '@stylexjs/stylex'
 
+import { ReElemProps } from '../MD/types'
 import { spaces } from '../tokens/spaces.stylex'
-import { ElemProps } from './types'
 
 const styles = stylex.create({
 	base: {
@@ -10,11 +10,6 @@ const styles = stylex.create({
 	},
 })
 
-export function P({
-	style,
-	...rest
-}: Omit<ElemProps<'p'>, 'style' | 'classname'> & {
-	style?: stylex.StyleXStyles
-}) {
+export function P({ style, ...rest }: ReElemProps<'p'>) {
 	return <p {...rest} {...stylex.props([styles.base, style])} />
 }

@@ -1,6 +1,6 @@
 import * as stylex from '@stylexjs/stylex'
 
-import { ElemProps } from './types'
+import { Box, BoxProps } from '../Box'
 
 const styles = stylex.create({
 	li: { paddingInlineStart: '0.6em' },
@@ -30,7 +30,13 @@ const styles = stylex.create({
 	},
 })
 
-function getDepthOlStyle(dataDepth: number | string | undefined) {
+type DataDepthProps = {
+	'data-depth'?: string | number
+}
+
+type DataDepth = DataDepthProps['data-depth']
+
+function getDepthOlStyle(dataDepth: DataDepth) {
 	switch (Number(dataDepth) % 3) {
 		case 1:
 			return styles.ol1
@@ -41,7 +47,7 @@ function getDepthOlStyle(dataDepth: number | string | undefined) {
 	}
 }
 
-function getDepthUlStyle(dataDepth: number | string | undefined) {
+function getDepthUlStyle(dataDepth: DataDepth) {
 	switch (Number(dataDepth) % 3) {
 		case 1:
 			return styles.ul1
@@ -52,49 +58,48 @@ function getDepthUlStyle(dataDepth: number | string | undefined) {
 	}
 }
 
-interface ListDepthProps {
-	'data-depth'?: string | number
-}
-
 export function Ul({
 	'data-depth': dataDepth,
 	children,
+	style,
 	...props
-}: React.HTMLAttributes<HTMLUListElement> & ListDepthProps) {
+}: BoxProps<'ul'> & DataDepthProps) {
 	const depth = dataDepth !== undefined ? Number(dataDepth) : 0
 	const depthStyle = getDepthUlStyle(depth)
 
 	return (
-		<ul data-depth={depth} {...props} {...stylex.props(styles.ul, depthStyle)}>
+		<Box
+			as='ul'
+			data-depth={depth}
+			{...props}
+			{...stylex.props(styles.ul, depthStyle, style)}
+		>
 			{children}
-		</ul>
+		</Box>
 	)
 }
 
 export function Ol({
 	'data-depth': dataDepth,
 	children,
+	style,
 	...props
-}: React.HTMLAttributes<HTMLOListElement> & ListDepthProps) {
+}: BoxProps<'ol'> & DataDepthProps) {
 	const depth = dataDepth !== undefined ? Number(dataDepth) : 0
 	const depthStyle = getDepthOlStyle(depth)
 
 	return (
-		<ol
+		<Box
+			as='ol'
 			data-depth={dataDepth}
 			{...props}
-			{...stylex.props(styles.ol, depthStyle)}
+			{...stylex.props(styles.ol, depthStyle, style)}
 		>
 			{children}
-		</ol>
+		</Box>
 	)
 }
 
-export function Li({
-	style,
-	...rest
-}: Omit<ElemProps<'li'>, 'style' | 'classname'> & {
-	style?: stylex.StyleXStyles
-}) {
-	return <li {...rest} {...stylex.props(styles.li, style)} />
+export function Li({ style, ...rest }: BoxProps<'li'>) {
+	return <Box as='li' {...rest} {...stylex.props(styles.li, style)} />
 }

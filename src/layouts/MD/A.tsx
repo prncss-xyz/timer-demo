@@ -3,7 +3,7 @@ import { Link } from 'waku'
 
 import { fontSizes } from '../tokens/fontSizes.stylex'
 import { fontWeights } from '../tokens/fontWeights.stylex'
-import { ElemProps } from './types'
+import { ReElemProps } from './types'
 
 const styles = stylex.create({
 	base: {
@@ -12,11 +12,7 @@ const styles = stylex.create({
 	},
 })
 
-type BoxProps = Omit<ElemProps<'a'>, 'style' | 'classname'> & {
-	style?: stylex.StyleXStyles
-}
-
-export function A({ children, href, style, ...rest }: BoxProps) {
+export function A({ children, href, style, ...rest }: ReElemProps<'a'>) {
 	if (href && (href.startsWith('/') || href.startsWith('.')))
 		return (
 			<Link

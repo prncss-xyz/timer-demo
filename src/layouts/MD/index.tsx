@@ -1,13 +1,13 @@
 import { ReactNode } from 'react'
 
-import { A } from '../elements/A'
 import { Blockquote } from '../elements/Blockquote'
 import { H1, H2, H3 } from '../elements/Heading'
-import { Img } from '../elements/Img'
 import { Li, Ol, Ul } from '../elements/list'
-import { P } from '../elements/P'
-import { Small, Sub, Sup } from '../elements/Small'
+import { Img } from '../images/Img'
+import { A } from './A'
 import { createMD } from './createMD'
+import { P } from './P'
+import { Small, Sub, Sup } from './Small'
 
 const elems = {
 	a: A,
