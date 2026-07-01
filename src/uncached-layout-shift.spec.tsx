@@ -44,11 +44,12 @@ const installHorizontalShiftSampler = async (page: Page) => {
 }
 
 const getHorizontalShiftDeltas = () => {
-	const samples = (
-		window as typeof window & {
-			__horizontalShiftSamples?: LayoutShiftSample[]
-		}
-	).__horizontalShiftSamples ?? []
+	const samples =
+		(
+			window as typeof window & {
+				__horizontalShiftSamples?: LayoutShiftSample[]
+			}
+		).__horizontalShiftSamples ?? []
 	const selectors = [...new Set(samples.map((sample) => sample.selector))]
 
 	return Object.fromEntries(
