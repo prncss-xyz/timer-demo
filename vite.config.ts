@@ -308,9 +308,11 @@ export default defineConfig({
 	},
 	run: {
 		tasks: {
-			ci: {
-				command:
-					'vp check && vpr build && vpr knip && vpr tsc && vpr test:units',
+			check: {
+				command: 'vp check',
+			},
+			staged: {
+				command: 'vp staged',
 			},
 			commitlint: {
 				command: 'commitlint --edit',
@@ -318,9 +320,15 @@ export default defineConfig({
 			knip: {
 				command: 'knip --production --cache',
 			},
-			pre_commit: {
-				command:
-					'vp staged && vpr build && vpr knip && vpr tsc && vpr test:units --changed',
+			tsc: {
+				cache: true,
+				command: 'tsgo --noEmit',
+				input: [
+					'tsconfig.json',
+					'package.json',
+					'pnpm-workspace.yaml',
+					'**/src/**/*.{js,ts,jsx,tsx}',
+				],
 			},
 			'test:e2e': {
 				cache: true,
@@ -332,8 +340,9 @@ export default defineConfig({
 					'pnpm-workspace.yaml',
 					'**/src/**/*.{js,ts,jsx,tsx}',
 				],
+				dependsOn: ['build'],
 			},
-			'test:e2e--only-changed': {
+			'test:e2e:changed': {
 				cache: true,
 				command: 'playwright test --only-changed',
 				input: [
@@ -343,6 +352,7 @@ export default defineConfig({
 					'pnpm-workspace.yaml',
 					'**/src/**/*.{js,ts,jsx,tsx}',
 				],
+				dependsOn: ['build'],
 			},
 			'test:units': {
 				cache: true,
@@ -354,14 +364,23 @@ export default defineConfig({
 					'**/src/**/*.{js,ts,jsx,tsx}',
 				],
 			},
-			tsc: {
+			'test:units:changed': {
 				cache: true,
-				command: 'tsgo --noEmit',
-				input: [
-					'tsconfig.json',
-					'package.json',
-					'pnpm-workspace.yaml',
-					'**/src/**/*.{js,ts,jsx,tsx}',
+				command: 'vp test --changed',
+			},
+			ci: {
+				command: 'true',
+				dependsOn: ['check', 'knip', 'build', 'tsc', 'test:units', 'test:e2e'],
+			},
+			pre_commit: {
+				command: 'true',
+				dependsOn: [
+					'staged',
+					'knip',
+					'build',
+					'tsc',
+					'test:units:changed',
+					'test:e2e:changed',
 				],
 			},
 		},
