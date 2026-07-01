@@ -21,7 +21,7 @@
 		"check:test:e2e:ui": "playwright test --ui",
 		"check:test:e2e:report": "playwright show-report",
 		"check:tsc": "vp run tsc",
-		"check:knip": "vp run knip",
+		"check:knip": "knip --production --cache",
 		"fix": "vp check --fix",
 		"dev:storybook": "storybook dev",
 		"build:storybook": "storybook build"

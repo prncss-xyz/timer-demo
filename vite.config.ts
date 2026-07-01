@@ -317,9 +317,6 @@ export default defineConfig({
 			commitlint: {
 				command: 'commitlint --edit',
 			},
-			knip: {
-				command: 'knip --production --cache',
-			},
 			tsc: {
 				cache: true,
 				command: 'tsgo --noEmit',
@@ -342,6 +339,7 @@ export default defineConfig({
 					'**/src/**/*.{js,ts,jsx,tsx}',
 				],
 				dependsOn: ['build'],
+				env: ['VITE_GITHUB_REPOSITORY', 'VITE_BASE_URL', 'VITE_BASE_PATH'],
 			},
 			'test:e2e:changed': {
 				cache: true,
@@ -354,6 +352,7 @@ export default defineConfig({
 					'**/src/**/*.{js,ts,jsx,tsx}',
 				],
 				dependsOn: ['build'],
+				env: ['VITE_GITHUB_REPOSITORY', 'VITE_BASE_URL', 'VITE_BASE_PATH'],
 			},
 			'test:units': {
 				cache: true,
@@ -369,11 +368,22 @@ export default defineConfig({
 				cache: true,
 				command: 'vp test --changed',
 			},
+			ci: {
+				command: 'true',
+				dependsOn: [
+					'check',
+					'check:knip',
+					'build',
+					'tsc',
+					'test:units',
+					'test:e2e',
+				],
+			},
 			pre_commit: {
 				command: 'true',
 				dependsOn: [
 					'staged',
-					'knip',
+					'check:knip',
 					'build',
 					'tsc',
 					'test:units:changed',
