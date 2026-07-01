@@ -369,10 +369,6 @@ export default defineConfig({
 				cache: true,
 				command: 'vp test --changed',
 			},
-			ci: {
-				command: 'true',
-				dependsOn: ['check', 'knip', 'build', 'tsc', 'test:units', 'test:e2e'],
-			},
 			pre_commit: {
 				command: 'true',
 				dependsOn: [
