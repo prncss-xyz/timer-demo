@@ -7,6 +7,8 @@ import { DevStyleXInject } from '../src/layouts/DevStyleXInject'
 import { colors } from '../src/layouts/tokens/colors.stylex'
 
 import '../src/pages/reset.css'
+import '../src/pages/syntax-highlighting.css'
+
 
 /**
  * Wraps every story in <Suspense> so that async (server) components

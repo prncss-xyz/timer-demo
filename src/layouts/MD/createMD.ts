@@ -7,7 +7,7 @@ import rehypePrettyCode, {
 	Options as PrettyCodeOptions,
 } from 'rehype-pretty-code'
 import rehypeReact, { Components } from 'rehype-react'
-import rehypeSanitize, { defaultSchema } from 'rehype-sanitize'
+import rehypeSanitize from 'rehype-sanitize'
 import rehypeStringify from 'rehype-stringify'
 import breaks from 'remark-breaks'
 import remarkGfm from 'remark-gfm'
@@ -17,7 +17,7 @@ import { createHighlighter } from 'shiki'
 import { unified } from 'unified'
 
 import { siteFontFamily } from '../tokens/fontConstants'
-import { remarkListDepth } from './listDepth'
+import { rehypeListDepth } from './listDepth'
 
 const mermaidFontCss = pathToFileURL(
 	resolve('src/layouts/MD/mermaid-fonts.css'),
@@ -57,16 +57,9 @@ function createParser() {
 		.use(parse)
 		.use(remarkGfm)
 		.use(breaks)
-		.use(remarkListDepth)
 		.use(remarkRehype, {})
-		.use(rehypeSanitize, {
-			...defaultSchema,
-			attributes: {
-				...(defaultSchema.attributes ?? {}),
-				ol: [...(defaultSchema.attributes?.ol ?? []), 'data-depth'],
-				ul: [...(defaultSchema.attributes?.ul ?? []), 'data-depth'],
-			},
-		})
+		.use(rehypeSanitize)
+		.use(rehypeListDepth)
 		.use(rehypeMermaid, {
 			css: mermaidFontCss,
 			mermaidConfig: {

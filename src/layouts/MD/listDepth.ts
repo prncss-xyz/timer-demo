@@ -1,22 +1,51 @@
-import type { Root, List } from 'mdast'
 import type { Plugin } from 'unified'
-import { visitParents } from 'unist-util-visit-parents'
 
-export const remarkListDepth: Plugin<[], Root> = () => {
+type Node = Root | Element | Parent
+
+type Parent = {
+	children?: Node[]
+	type: string
+}
+
+type Root = Parent & {
+	type: 'root'
+}
+
+type Element = Parent & {
+	properties?: Record<string, unknown>
+	tagName: string
+	type: 'element'
+}
+
+const listTags = new Set(['ol', 'ul'])
+
+function isElement(node: Node): node is Element {
+	return node.type === 'element'
+}
+
+function isListElement(node: Node): node is Element {
+	return isElement(node) && listTags.has(node.tagName)
+}
+
+function countListAncestors(ancestors: Node[]) {
+	return ancestors.filter(isListElement).length
+}
+
+function visitListElements(node: Node, ancestors: Node[]) {
+	if (isListElement(node)) {
+		node.properties = {
+			...node.properties,
+			'data-depth': countListAncestors(ancestors),
+		}
+	}
+
+	for (const child of node.children ?? []) {
+		visitListElements(child, [...ancestors, node])
+	}
+}
+
+export const rehypeListDepth: Plugin<[], Root> = () => {
 	return (tree: Root) => {
-		visitParents(tree, 'list', (node: List, ancestors) => {
-			// Count how many 'list' nodes are in the ancestors array to determine current depth
-			const depth = ancestors.filter(
-				(ancestor) => ancestor.type === 'list',
-			).length
-
-			// Initialize the data object if it doesn't exist
-			node.data = node.data || {}
-			node.data.hProperties =
-				(node.data.hProperties as Record<string, any>) || {}
-
-			// Inject data-depth attribute for rehype/react-markdown to consume
-			node.data.hProperties['data-depth'] = depth
-		})
+		visitListElements(tree, [])
 	}
 }

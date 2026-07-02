@@ -1,5 +1,3 @@
-- playwright
-  - make build dependent of it
 - markdown
   - tweak styling
     - headings
@@ -9,6 +7,7 @@
   - pooling
   - caching (processing)
   - why sharp as an os/arch specific dependency
+  - maybe just use CDN
 - RSS
 - JSON Dump component
 - bluesky comments integration
