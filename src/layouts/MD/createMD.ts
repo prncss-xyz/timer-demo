@@ -16,6 +16,7 @@ import remarkRehype from 'remark-rehype'
 import { createHighlighter } from 'shiki'
 import { unified } from 'unified'
 
+import { shikiThemes } from '../shiki'
 import { siteFontFamily } from '../tokens/fontConstants'
 import { rehypeListDepth } from './listDepth'
 
@@ -46,10 +47,7 @@ const prettyCodeOptions = {
 	},
 	getHighlighter: () => highlighter,
 	keepBackground: false,
-	theme: {
-		dark: 'github-dark',
-		light: 'github-light',
-	},
+	theme: shikiThemes,
 } satisfies PrettyCodeOptions
 
 function createParser() {

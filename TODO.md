@@ -9,7 +9,6 @@
   - why sharp as an os/arch specific dependency
   - maybe just use CDN
 - RSS
-- JSON Dump component
 - bluesky comments integration
 - embbed waku components in markdown
   - possibly https://github.com/remark-embedder/core
