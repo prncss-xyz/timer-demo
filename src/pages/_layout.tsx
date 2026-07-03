@@ -58,7 +58,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 						/>
 						<Row
 							as='a'
-							href='/rss.xml'
+							href={basePath + 'rss.xml'}
 							title='RSS feed'
 							aria-label='RSS feed'
 							type='application/rss+xml'
