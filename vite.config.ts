@@ -311,6 +311,9 @@ export default defineConfig({
 			check: {
 				command: 'vp check',
 			},
+			staged: {
+				command: 'vp staged',
+			},
 			commitlint: {
 				command: 'commitlint --edit',
 			},
@@ -379,6 +382,7 @@ export default defineConfig({
 			pre_commit: {
 				command: 'true',
 				dependsOn: [
+					'staged',
 					'check:knip',
 					'build',
 					'tsc',
