@@ -7,6 +7,7 @@ import { basePath, title, description } from '@/meta'
 
 type RootLayoutProps = { children: ReactNode }
 
+import { FaRss } from 'react-icons/fa6'
 import { Link } from 'waku'
 
 import { Menu } from '@/components/Menu'
@@ -41,19 +42,35 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 				<Row
 					px={6}
 					py={4}
-					align='baseline'
+					align='center'
 					justify='between'
 					style={styles.header}
 				>
 					<H1>
 						<Link to='/'>{title}</Link>
 					</H1>
-					<Menu
-						entries={[
-							{ to: '/', title: globalMessages.home },
-							{ to: '/blog', title: globalMessages.blog },
-						]}
-					/>
+					<Row align='center' gap={2}>
+						<Menu
+							entries={[
+								{ to: '/', title: globalMessages.home },
+								{ to: '/blog', title: globalMessages.blog },
+							]}
+						/>
+						<Row
+							as='a'
+							href='/rss.xml'
+							title='RSS feed'
+							aria-label='RSS feed'
+							type='application/rss+xml'
+							w='toggleButton'
+							h='toggleButton'
+							align='center'
+							justify='center'
+							color='muted'
+						>
+							<FaRss aria-hidden='true' focusable='false' size={18} />
+						</Row>
+					</Row>
 				</Row>
 			</Header>
 			<Col pt={8} pb={4} minW='readable' grow={1} as='main'>

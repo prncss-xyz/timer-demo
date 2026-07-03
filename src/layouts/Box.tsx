@@ -291,6 +291,18 @@ const textAlignVariants = stylex.create({
 	left: { textAlign: 'left' },
 })
 
+const colorVariants = stylex.create({
+	color: (color: React.CSSProperties['color']) => ({ color }),
+})
+
+const backgroundColorVariants = stylex.create({
+	backgroundColor: (
+		backgroundColor: React.CSSProperties['backgroundColor'],
+	) => ({
+		backgroundColor,
+	}),
+})
+
 export type BoxBaseProps<E extends React.ElementType = React.ElementType> = {
 	align?: keyof typeof alignVariants
 	as?: E
@@ -310,6 +322,8 @@ export type BoxBaseProps<E extends React.ElementType = React.ElementType> = {
 	minH?: keyof typeof minHeightVariants
 	minW?: keyof typeof minWidthVariants
 	textAlign?: keyof typeof textAlignVariants
+	color?: React.CSSProperties['color']
+	backgroundColor?: React.CSSProperties['backgroundColor']
 	w?: keyof typeof widthVariants
 	p?: keyof typeof pVariants
 	pb?: keyof typeof pbVariants
@@ -345,6 +359,8 @@ export function Box<E extends React.ElementType = typeof defaultElement>({
 	minH,
 	minW,
 	textAlign,
+	color,
+	backgroundColor,
 	w,
 	p,
 	pb,
@@ -384,6 +400,8 @@ export function Box<E extends React.ElementType = typeof defaultElement>({
 		align && alignVariants[align],
 		justify && justifyVariants[justify],
 		textAlign && textAlignVariants[textAlign],
+		color && colorVariants.color(color),
+		backgroundColor && backgroundColorVariants.backgroundColor(backgroundColor),
 		style,
 	])
 

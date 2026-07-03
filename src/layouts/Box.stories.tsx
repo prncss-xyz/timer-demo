@@ -34,6 +34,15 @@ export const Basic: Story = {
 	),
 }
 
+/** Direct color props backed by StyleX vars. */
+export const ColorAndBackground: Story = {
+	render: () => (
+		<Box backgroundColor={colors.accentBg} color={colors.text} p={5}>
+			Styled with color and backgroundColor
+		</Box>
+	),
+}
+
 /** Horizontal flex layout with a gap. */
 export const RowWithGap: Story = {
 	render: () => (

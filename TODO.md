@@ -5,8 +5,7 @@
   - caching (processing)
   - why sharp as an os/arch specific dependency
   - maybe just use CDN
-- RSS
-- embbed waku components in markdown
+- embed waku components in markdown
   - possibly https://github.com/remark-embedder/core
 - ai: improve guidance
 - backpressure
