@@ -2,7 +2,15 @@ import { readFile } from 'node:fs/promises'
 
 import { describe, expect, test } from 'vitest'
 
-import { mdToHtml } from './createMD'
+import { mdToHtml, mdToText } from './createMD'
+
+describe('mdToText', async () => {
+	test('converts markdown to plain text', async () => {
+		expect(await mdToText('# Hello **world**\n\n- one\n- two')).toBe(
+			'Hello world\n\none\ntwo\n',
+		)
+	})
+})
 
 describe('mdToHtml', () => {
 	test('wires dual-theme token variables to visible syntax colors', async () => {

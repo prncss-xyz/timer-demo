@@ -1,6 +1,7 @@
 import { resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 
+import { toString as hastToString } from 'hast-util-to-string'
 import * as prod from 'react/jsx-runtime'
 import rehypeMermaid from 'rehype-mermaid'
 import rehypePrettyCode, {
@@ -50,12 +51,19 @@ const prettyCodeOptions = {
 	theme: shikiThemes,
 } satisfies PrettyCodeOptions
 
+function createMdParser() {
+	return unified().use(parse).use(remarkGfm).use(breaks).use(remarkRehype, {})
+}
+
+const toTextParser = createMdParser()
+
+export async function mdToText(children: string) {
+	const tree = await toTextParser.run(toTextParser.parse(children))
+	return hastToString(tree)
+}
+
 function createParser() {
-	const parser = unified()
-		.use(parse)
-		.use(remarkGfm)
-		.use(breaks)
-		.use(remarkRehype, {})
+	const parser = createMdParser()
 		.use(rehypeSanitize)
 		.use(rehypeListDepth)
 		.use(rehypeMermaid, {

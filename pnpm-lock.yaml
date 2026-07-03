@@ -29,6 +29,12 @@ importers:
       '@stylexjs/stylex':
         specifier: ^0.19.0
         version: 0.19.0
+      feed:
+        specifier: ^5.2.1
+        version: 5.2.1
+      hast-util-to-string:
+        specifier: ^3.0.1
+        version: 3.0.1
       playwright:
         specifier: 1.61.1
         version: 1.61.1
@@ -2930,6 +2936,10 @@ packages:
       picomatch:
         optional: true
 
+  feed@5.2.1:
+    resolution: {integrity: sha512-jTynzYPWs9ALjro0GW8j7sv9y7cJBeOdD4Y88kVqYy/eyusIX3g+499JiTDIlD9Ge/unebx57T4Uzo6vpYvMtA==}
+    engines: {node: '>=20', pnpm: '>=10'}
+
   fill-range@7.1.1:
     resolution: {integrity: sha512-YsGpe3WHLK8ZYi4tWDg2Jy3ebRz2rXowDxnld4bkQB00cc/1Zw9AWnC0i9ztDJitivtQvaI9KaLyKrc+hBW0yg==}
     engines: {node: '>=8'}
@@ -4025,6 +4035,10 @@ packages:
   safer-buffer@2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
 
+  sax@1.6.0:
+    resolution: {integrity: sha512-6R3J5M4AcbtLUdZmRv2SygeVaM7IhrLXu9BmnOGmmACak8fiUtOsYNWUS4uK7upbmHIBbLBeFeI//477BKLBzA==}
+    engines: {node: '>=11.0.0'}
+
   scheduler@0.27.0:
     resolution: {integrity: sha512-eNv+WrVbKu1f3vbYJT/xtiF5syA5HPIMtf9IgY/nKg0sWqzAUEvqY/xm7OcZc/qafLx/iO9FgOmeSAp4v5ti/Q==}
 
@@ -4528,6 +4542,10 @@ packages:
         optional: true
       utf-8-validate:
         optional: true
+
+  xml-js@1.6.11:
+    resolution: {integrity: sha512-7rVi2KMfwfWFl+GpPg6m80IVMWXLRjO+PxTq7V2CDhoGak0wzYzFgUY2m4XJ47OGdXd8eLE8EmwfAmdjw7lC1g==}
+    hasBin: true
 
   y18n@4.0.3:
     resolution: {integrity: sha512-JKhqTOwSrqNA1NY5lSztJ1GrBiUodLMmIZuLiDaMRJ+itFd+ABVE8XBjOvIWL+rSqNDC74LCSFmlb/U4UZ4hJQ==}
@@ -7073,6 +7091,10 @@ snapshots:
     optionalDependencies:
       picomatch: 4.0.4
 
+  feed@5.2.1:
+    dependencies:
+      xml-js: 1.6.11
+
   fill-range@7.1.1:
     dependencies:
       to-regex-range: 5.0.1
@@ -8510,6 +8532,8 @@ snapshots:
 
   safer-buffer@2.1.2: {}
 
+  sax@1.6.0: {}
+
   scheduler@0.27.0: {}
 
   schema-utils@4.3.3:
@@ -9095,6 +9119,10 @@ snapshots:
       strip-ansi: 7.2.0
 
   ws@8.21.0: {}
+
+  xml-js@1.6.11:
+    dependencies:
+      sax: 1.6.0
 
   y18n@4.0.3: {}
 

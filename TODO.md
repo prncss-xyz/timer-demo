@@ -1,7 +1,4 @@
-- markdown
-  - tweak styling
-    - headings
-    - images
+- build task
 - images
   - fetch: retry
   - pooling
@@ -9,7 +6,6 @@
   - why sharp as an os/arch specific dependency
   - maybe just use CDN
 - RSS
-- bluesky comments integration
 - embbed waku components in markdown
   - possibly https://github.com/remark-embedder/core
 - ai: improve guidance
@@ -18,6 +14,11 @@
   - no UUID in files
   - react compiler linting when available
   - enforce style tokens
+- bluesky comments integration
+- markdown
+  - tweak styling
+    - headings
+    - images
 
 ## Reference
 
