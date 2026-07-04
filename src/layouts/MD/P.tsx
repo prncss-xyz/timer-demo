@@ -1,6 +1,6 @@
 import * as stylex from '@stylexjs/stylex'
 
-import { ReElemProps } from '../MD/types'
+import { type ReElemProps } from '../MD/types'
 import { spaces } from '../tokens/spaces.stylex'
 
 const styles = stylex.create({

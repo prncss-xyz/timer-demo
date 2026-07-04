@@ -5,6 +5,8 @@ import sharp from 'sharp'
 
 import { basePath } from '@/meta'
 
+import type { ResponsiveImage } from './responsiveImage'
+
 // TODO: cache images
 
 const { dest, prefix } =
@@ -37,15 +39,6 @@ const getPlaceholder = async (
 	const href = `data:image/webp;base64,${buffer.toString('base64')}`
 	const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}"><image href="${href}" width="${width}" height="${height}" preserveAspectRatio="xMidYMid slice"/></svg>`
 	return `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`
-}
-
-export interface ResponsiveImage {
-	alt?: string | undefined
-	height: number
-	placeholder: string
-	src: string
-	srcSet: string
-	width: number
 }
 
 async function getCachedResponsiveImage(hash: string, alt?: string) {

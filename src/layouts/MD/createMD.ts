@@ -5,9 +5,9 @@ import { toString as hastToString } from 'hast-util-to-string'
 import * as prod from 'react/jsx-runtime'
 import rehypeMermaid from 'rehype-mermaid'
 import rehypePrettyCode, {
-	Options as PrettyCodeOptions,
+	type Options as PrettyCodeOptions,
 } from 'rehype-pretty-code'
-import rehypeReact, { Components } from 'rehype-react'
+import rehypeReact, { type Components } from 'rehype-react'
 import rehypeSanitize from 'rehype-sanitize'
 import rehypeStringify from 'rehype-stringify'
 import breaks from 'remark-breaks'

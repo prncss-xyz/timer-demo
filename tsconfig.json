@@ -11,6 +11,7 @@
 		"skipLibCheck": true,
 		"noUncheckedIndexedAccess": true,
 		"erasableSyntaxOnly": true,
+		"verbatimModuleSyntax": true,
 		"exactOptionalPropertyTypes": false,
 		"jsx": "react-jsx",
 		"paths": {

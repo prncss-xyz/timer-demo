@@ -1,6 +1,6 @@
 import * as stylex from '@stylexjs/stylex'
 
-import { Box, BoxProps } from '../Box'
+import { Box, type BoxProps } from '../Box'
 
 const styles = stylex.create({
 	li: { paddingInlineStart: '0.6em' },

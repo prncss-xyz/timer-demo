@@ -1,5 +1,5 @@
 'use client'
-import { ReactNode } from 'react'
+import { type ReactNode } from 'react'
 import { Link, useRouter } from 'waku'
 
 import { Box, Row } from '@/layouts/Box'

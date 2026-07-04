@@ -1,5 +1,5 @@
 import * as stylex from '@stylexjs/stylex'
-import { ReactNode } from 'react'
+import { type ReactNode } from 'react'
 
 const styles = stylex.create({
 	header: {

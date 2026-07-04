@@ -1,5 +1,5 @@
 import * as stylex from '@stylexjs/stylex'
-import { ComponentProps } from 'react'
+import { type ComponentProps } from 'react'
 
 export type ElemProps<
 	T extends

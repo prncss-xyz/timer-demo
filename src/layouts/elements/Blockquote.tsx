@@ -1,6 +1,6 @@
 import * as stylex from '@stylexjs/stylex'
 
-import { Box, BoxProps } from '../Box'
+import { Box, type BoxProps } from '../Box'
 import { borderWidth } from '../tokens/borderWidth.stylex'
 import { colors } from '../tokens/colors.stylex'
 import { spaces } from '../tokens/spaces.stylex'

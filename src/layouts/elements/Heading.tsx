@@ -1,6 +1,6 @@
-import { ElementType } from 'react'
+import { type ElementType } from 'react'
 
-import { Box, BoxProps } from '../Box'
+import { Box, type BoxProps } from '../Box'
 
 // TODO: margins
 

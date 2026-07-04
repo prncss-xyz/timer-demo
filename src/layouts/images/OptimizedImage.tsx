@@ -2,8 +2,8 @@
 import * as stylex from '@stylexjs/stylex'
 import { useEffect, useRef, useState } from 'react'
 
-import { Box, BoxProps } from '../Box'
-import { ResponsiveImage } from './getResponsiveImage'
+import { Box, type BoxProps } from '../Box'
+import { type ResponsiveImage } from './responsiveImage'
 
 const styles = stylex.create({
 	container: {

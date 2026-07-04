@@ -1,10 +1,10 @@
 'use client'
 
 import * as stylex from '@stylexjs/stylex'
-import { ReactNode, useEffect, useState } from 'react'
+import { type ReactNode, useEffect, useState } from 'react'
 import { createHighlighter } from 'shiki'
 
-import { Box, BoxProps } from '../Box'
+import { Box, type BoxProps } from '../Box'
 import { shikiThemes } from '../shiki'
 
 type Highlighter = Awaited<ReturnType<typeof createHighlighter>>

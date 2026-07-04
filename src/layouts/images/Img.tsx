@@ -1,6 +1,6 @@
 import * as stylex from '@stylexjs/stylex'
 
-import { Box, BoxProps } from '../Box'
+import { Box, type BoxProps } from '../Box'
 import { getResponsiveImage } from '../images/getResponsiveImage'
 import { Image } from '../images/OptimizedImage'
 

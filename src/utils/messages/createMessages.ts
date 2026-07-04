@@ -1,4 +1,11 @@
-import { AnyFunction, cached, fromInit, id, Init, Prettify } from './utils'
+import {
+	type AnyFunction,
+	cached,
+	fromInit,
+	id,
+	type Init,
+	type Prettify,
+} from './utils'
 
 export function configSingle<Locale extends string>(
 	locale: Locale,

@@ -3,7 +3,7 @@ import { Link } from 'waku'
 
 import { fontSizes } from '../tokens/fontSizes.stylex'
 import { fontWeights } from '../tokens/fontWeights.stylex'
-import { ReElemProps } from './types'
+import { type ReElemProps } from './types'
 
 const styles = stylex.create({
 	base: {

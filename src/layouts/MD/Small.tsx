@@ -1,6 +1,6 @@
 import * as stylex from '@stylexjs/stylex'
 
-import { ReElemProps } from './types'
+import { type ReElemProps } from './types'
 
 export function Small({ style, ...rest }: ReElemProps<'small'>) {
 	return <small {...rest} {...stylex.props(style)} />
