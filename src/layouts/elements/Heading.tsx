@@ -2,8 +2,6 @@ import { type ElementType } from 'react'
 
 import { Box, type BoxProps } from '../Box'
 
-// TODO: margins
-
 const fontSizes = {
 	1: 6,
 	2: 5,
