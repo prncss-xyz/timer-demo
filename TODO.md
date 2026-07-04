@@ -3,7 +3,6 @@
 - contents
 - ai: improve guidance
 - backpressure
-  - max length for file (chars, tokens)
   - no UUID in files
   - react compiler linting when available
   - enforce style tokens

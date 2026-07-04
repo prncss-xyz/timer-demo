@@ -14,6 +14,10 @@ const lintConfig: OxlintConfig = {
 			name: 'stylex',
 			specifier: '@stylexjs/eslint-plugin',
 		},
+		{
+			name: 'max-file-length',
+			specifier: './oxlint-plugins/max-file-length.ts',
+		},
 	],
 	options: {
 		denyWarnings: true,
@@ -152,6 +156,7 @@ const lintConfig: OxlintConfig = {
 		'typescript/prefer-as-const': 'error',
 		'typescript/prefer-namespace-keyword': 'error',
 		'typescript/triple-slash-reference': 'error',
+		'max-file-length/max-file-length': ['error', { utf16: 20_000 }],
 		'use-isnan': 'error',
 		'valid-typeof': 'error',
 		'jsx-a11y/alt-text': 'error',
