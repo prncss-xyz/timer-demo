@@ -154,11 +154,11 @@ export default defineConfig({
 			pre_commit: {
 				command: 'true',
 				dependsOn: [
-					// 'check:knip',
+					'check:knip',
 					'build',
-					// 'tsc',
-					// 'test:units:changed',
-					// 'test:e2e:changed',
+					'tsc',
+					'test:units:changed',
+					'test:e2e:changed',
 				],
 			},
 		},

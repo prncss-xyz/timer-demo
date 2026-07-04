@@ -1,5 +1,5 @@
 export interface ResponsiveImage {
-	alt: string
+	alt?: string | undefined
 	height: number
 	placeholder: string
 	src: string
