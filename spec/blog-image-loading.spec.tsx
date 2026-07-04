@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 
-import { buildBasePath } from './basePath'
+import { buildBasePath } from '../src/basePath'
 
 const root = buildBasePath(process.env)
 

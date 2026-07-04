@@ -20,7 +20,7 @@ const chromiumPath = (() => {
 })()
 
 export default defineConfig({
-	testDir: './src',
+	testDir: './spec',
 	testMatch: '**/*.spec.tsx',
 	snapshotDir: './__snapshots__',
 	outputDir: 'test-results',

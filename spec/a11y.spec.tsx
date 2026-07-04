@@ -1,6 +1,6 @@
 import { expect, test } from '@/fixtures/a11y'
 
-import { buildBasePath } from './basePath'
+import { buildBasePath } from '../src/basePath'
 
 // Path-absolute route prefix under the waku basePath. `buildBasePath`
 // already appends a trailing '/', so subroutes are joined without a
