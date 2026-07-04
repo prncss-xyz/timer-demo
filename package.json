@@ -10,11 +10,10 @@
 	"type": "module",
 	"scripts": {
 		"dev": "waku dev",
-		"build": "waku build",
-		"start": "waku start",
-		"build-start": "waku build; waku start",
+		"core:build": "vp run build",
+		"dev:start": "vp run start",
 		"typegen": "waku router typegen",
-		"prepare": "pnpm vp config",
+		"prepare": "git config --local --get core.hooksPath >/dev/null 2>&1 || vp config",
 		"dev:test:units": "vp run test:units --watch",
 		"check:test:units": "vp run test:units",
 		"check:test:e2e": "playwright test",
@@ -87,5 +86,11 @@
 		"vitest": "catalog:",
 		"zod": "^4.4.3"
 	},
-	"packageManager": "pnpm@11.5.2"
+	"devEngines": {
+		"packageManager": {
+			"name": "pnpm",
+			"version": "11.9.0",
+			"onFail": "download"
+		}
+	}
 }

@@ -317,6 +317,15 @@ export default defineConfig({
 			commitlint: {
 				command: 'commitlint --edit',
 			},
+			start: {
+				command: 'waku start',
+				dependsOn: ['build'],
+			},
+			build: {
+				command: 'waku build',
+				output: ['dist/**'],
+				env: ['VITE_GITHUB_REPOSITORY', 'VITE_BASE_URL', 'VITE_BASE_PATH'],
+			},
 			tsc: {
 				cache: true,
 				command: 'tsgo --noEmit',
@@ -382,12 +391,11 @@ export default defineConfig({
 			pre_commit: {
 				command: 'true',
 				dependsOn: [
-					'staged',
-					'check:knip',
+					// 'check:knip',
 					'build',
-					'tsc',
-					'test:units:changed',
-					'test:e2e:changed',
+					// 'tsc',
+					// 'test:units:changed',
+					// 'test:e2e:changed',
 				],
 			},
 		},

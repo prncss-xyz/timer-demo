@@ -7,6 +7,7 @@
   - maybe just use CDN
 - embed waku components in markdown
   - possibly https://github.com/remark-embedder/core
+- contents
 - ai: improve guidance
 - backpressure
   - max length for file (chars, tokens)

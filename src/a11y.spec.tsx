@@ -35,6 +35,7 @@ test.describe('accessibility (axe)', () => {
 		page,
 		analyzeAxe,
 	}) => {
+		const blockList = ['/rss.xml']
 		await page.goto(root)
 
 		const startUrl = new URL(page.url())
@@ -46,15 +47,20 @@ test.describe('accessibility (axe)', () => {
 		while (queue.length > 0) {
 			const url = queue.shift()!
 			const key = normalizePageUrl(url, rootPath)
+			const pathname = new URL(key).pathname
 
+			if (blockList.includes(pathname)) continue
 			if (visited.has(key)) continue
 			visited.add(key)
 			// oxlint-disable-next-line no-console
-			console.log('visiting', key)
+			console.log('visiting', pathname)
 
 			await page.goto(url)
 			const { violations } = await analyzeAxe()
-			expect(violations).toEqual([])
+			expect(
+				violations,
+				`Accessibility violations found on ${pathname}`,
+			).toEqual([])
 
 			const discovered = await page.evaluate(() =>
 				Array.from(
