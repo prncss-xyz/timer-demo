@@ -1,6 +1,7 @@
 import { expect, test } from '@/fixtures/a11y'
 
 import { buildBasePath } from './basePath'
+import { basePath } from './meta'
 
 // Path-absolute route prefix under the waku basePath. `buildBasePath`
 // already appends a trailing '/', so subroutes are joined without a
@@ -35,7 +36,7 @@ test.describe('accessibility (axe)', () => {
 		page,
 		analyzeAxe,
 	}) => {
-		const blockList = ['/rss.xml']
+		const blockList = ['rss.xml']
 		await page.goto(root)
 
 		const startUrl = new URL(page.url())
@@ -49,7 +50,7 @@ test.describe('accessibility (axe)', () => {
 			const key = normalizePageUrl(url, rootPath)
 			const pathname = new URL(key).pathname
 
-			if (blockList.includes(pathname)) continue
+			if (blockList.includes(basePath + pathname)) continue
 			if (visited.has(key)) continue
 			visited.add(key)
 			// oxlint-disable-next-line no-console
