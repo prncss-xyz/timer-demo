@@ -9,7 +9,7 @@
 	},
 	"type": "module",
 	"scripts": {
-		"dev": "waku dev",
+		"dev": "waku dev --host ${HOST:-127.0.0.1} --port ${PORT:-6006}",
 		"core:build": "vp run build",
 		"dev:start": "vp run start",
 		"typegen": "waku router typegen",
