@@ -7,6 +7,8 @@ import react, { reactCompilerPreset } from '@vitejs/plugin-react'
 import { ViteWebfontDownload } from 'vite-plugin-webfont-dl'
 import { defineConfig } from 'vite-plus'
 
+import { nunitoWebfontUrl } from '@/layouts/tokens/fontConstants'
+
 import lint from './oxlint.config'
 import {
 	stylexLightningCssOptions,
@@ -59,7 +61,7 @@ export default defineConfig({
 		contentCollections({
 			isEnabled: () => !process.env.VITEST,
 		}),
-		ViteWebfontDownload(),
+		ViteWebfontDownload([nunitoWebfontUrl]),
 		injectWebfontToCss,
 	],
 	resolve: {

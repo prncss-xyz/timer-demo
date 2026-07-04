@@ -1,6 +1,3 @@
-import { resolve } from 'node:path'
-import { pathToFileURL } from 'node:url'
-
 import { toString as hastToString } from 'hast-util-to-string'
 import * as prod from 'react/jsx-runtime'
 import rehypeMermaid from 'rehype-mermaid'
@@ -20,10 +17,6 @@ import { unified } from 'unified'
 import { shikiThemes } from '../shiki'
 import { siteFontFamily } from '../tokens/fontConstants'
 import { rehypeListDepth } from './listDepth'
-
-const mermaidFontCss = pathToFileURL(
-	resolve('src/layouts/MD/mermaid-fonts.css'),
-)
 
 const highlighter = createHighlighter({
 	langs: [
@@ -67,7 +60,6 @@ function createParser() {
 		.use(rehypeSanitize)
 		.use(rehypeListDepth)
 		.use(rehypeMermaid, {
-			css: mermaidFontCss,
 			mermaidConfig: {
 				fontFamily: siteFontFamily,
 				themeVariables: {
