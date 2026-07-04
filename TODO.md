@@ -1,4 +1,3 @@
-- build task
 - images
   - fetch: retry
   - pooling
@@ -9,6 +8,7 @@
   - possibly https://github.com/remark-embedder/core
 - contents
 - ai: improve guidance
+- split vite config
 - backpressure
   - max length for file (chars, tokens)
   - no UUID in files
