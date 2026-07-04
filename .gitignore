@@ -4,6 +4,8 @@ dist
 .env*
 *.tsbuildinfo
 .cache
+.cache/responsive-images/
+public/gen/
 .DS_Store
 *.pem
 .content-collections

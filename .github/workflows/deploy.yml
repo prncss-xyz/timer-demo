@@ -49,6 +49,19 @@ jobs:
             }}
           restore-keys: |
             ${{ runner.os }}-content-collections-
+
+      - name: Cache responsive images
+        uses: actions/cache@v5
+        with:
+          path: .cache/responsive-images
+          key: >-
+            responsive-images-${{ runner.os }}-v1-${{
+            hashFiles('pnpm-lock.yaml')
+            }}
+          restore-keys: |
+            responsive-images-${{ runner.os }}-v1-
+            responsive-images-${{ runner.os }}-
+
       - name: Check, build (with basePath)
         run: vpr ci
         env:
