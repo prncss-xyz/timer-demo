@@ -11,9 +11,9 @@ import { globalMessages } from '@/messages'
 import { getPage } from '@/utils/getPage'
 
 // Sort posts by date from latest to oldest
-const sortedBlogs = allBlogs
-	.filter(({ draft }) => import.meta.env.DEV || !draft)
-	.toSorted((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+const sortedBlogs = allBlogs.toSorted(
+	(a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+)
 
 export default async function PostsIndex() {
 	return (

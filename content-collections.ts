@@ -16,10 +16,15 @@ const blog = defineCollection({
 		content: z.string(),
 		description: z.string().optional(),
 	}),
-	transform: (doc) => ({
-		...doc,
-		slug: doc._meta.path,
-	}),
+	transform: (doc, { skip }) => {
+		if (doc.draft) {
+			return skip('draft post')
+		}
+		return {
+			...doc,
+			slug: doc._meta.path,
+		}
+	},
 })
 
 const pages = defineCollection({
