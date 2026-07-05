@@ -13,7 +13,5 @@ const getCtx = createMessageCtx({
 })
 
 export const globalMessages = createMessages(getCtx, {
-	home: 'Home',
-	blog: 'Blog',
-	blogNotFound: 'Blog not found.',
+	comingSoon: 'Coming soon.',
 })

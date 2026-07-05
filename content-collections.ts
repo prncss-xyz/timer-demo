@@ -3,15 +3,36 @@ import { z } from 'zod'
 
 const blog = defineCollection({
 	directory: 'sources/blog',
-	include: '**/*.md',
+	include: '*.md',
 	name: 'blog',
 	schema: z.object({
 		date: z.string(),
+		draft: z.boolean().default(false),
 		title: z.string(),
 		content: z.string(),
+		description: z.string().optional(),
+	}),
+	transform: (doc) => ({
+		...doc,
+		slug: doc._meta.path,
+	}),
+})
+
+const pages = defineCollection({
+	directory: 'sources/pages',
+	include: '*.md',
+	name: 'pages',
+	schema: z.object({
+		title: z.string(),
+		content: z.string(),
+		description: z.string().optional(),
+	}),
+	transform: (doc) => ({
+		...doc,
+		slug: doc._meta.path,
 	}),
 })
 
 export default defineConfig({
-	content: [blog],
+	content: [blog, pages],
 })

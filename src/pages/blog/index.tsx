@@ -1,37 +1,44 @@
 import { allBlogs } from 'content-collections'
 import { Link } from 'waku'
 
+const page = getPage('blog')
+
+import { PageMeta } from '@/components/PageMeta'
 import { Col } from '@/layouts/Box'
-import { H1, H2 } from '@/layouts/elements/Heading'
+import { H2 } from '@/layouts/elements/Heading'
+import { MD } from '@/layouts/MD'
 import { globalMessages } from '@/messages'
+import { getPage } from '@/utils/getPage'
 
 // Sort posts by date from latest to oldest
-const sortedBlogs = allBlogs.toSorted((a, b) => {
-	return new Date(b.date).getTime() - new Date(a.date).getTime()
-})
+const sortedBlogs = allBlogs
+	.filter(({ draft }) => import.meta.env.DEV || !draft)
+	.toSorted((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
 export default async function PostsIndex() {
 	return (
 		<div>
-			<title>{globalMessages.blog}</title>
-			<H1 pb={7}>{globalMessages.blog}</H1>
+			<PageMeta {...page} />
+			<MD>{page.content}</MD>
 			<Col as='ul' gap={6}>
-				{sortedBlogs.map((post) => (
-					<li>
-						<Link to={`/blog/${post._meta.path}`}>
-							<Col key={post._meta.path}>
-								<H2 textAlign='left'>{post.title}</H2>
-								<div>{post.date}</div>
-							</Col>
-						</Link>
-					</li>
-				))}
+				{sortedBlogs.length
+					? sortedBlogs.map((post) => (
+							<li>
+								<Link to={`/blog/${post._meta.path}`}>
+									<Col key={post.slug}>
+										<H2 textAlign='left'>{post.title}</H2>
+										<div>{post.date}</div>
+									</Col>
+								</Link>
+							</li>
+						))
+					: globalMessages.comingSoon}
 			</Col>
 		</div>
 	)
 }
 
-export const getConfig = async () => {
+export async function getConfig() {
 	return {
 		render: 'static',
 	} as const

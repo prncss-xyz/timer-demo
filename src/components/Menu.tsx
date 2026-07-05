@@ -1,30 +1,35 @@
 'use client'
-import { type ReactNode } from 'react'
 import { Link, useRouter } from 'waku'
 
 import { Box, Row } from '@/layouts/Box'
 
-type Target = Parameters<typeof Link>[0]['to']
-
 export function Menu({
-	entries,
-	children,
+	home,
+	allPages,
 }: {
-	children?: ReactNode
-	entries: {
-		to: Target
+	home: string
+	allPages: {
+		slug: string
 		title: string
 	}[]
 }) {
 	const { path } = useRouter()
 	return (
-		<Row align='baseline' fontSize={4} gap={5}>
-			{entries.map(({ to, title }) => (
-				<Box italic={path === to} as={Link} key={String(to)} to={to}>
-					{title}
-				</Box>
-			))}
-			{children}
+		<Row pt={8} align='baseline' justify='end' fontSize={4}>
+			{allPages.map(({ slug, title }) => {
+				const to = '/' + (slug === home ? '' : slug)
+				return (
+					<Box
+						px={5}
+						color={path === to ? 'primary' : 'muted'}
+						as={Link}
+						key={String(to)}
+						to={to as any}
+					>
+						{title}
+					</Box>
+				)
+			})}
 		</Row>
 	)
 }

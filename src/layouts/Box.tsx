@@ -1,5 +1,6 @@
 import * as stylex from '@stylexjs/stylex'
 
+import { colors } from './tokens/colors.stylex'
 import { fontFamilies } from './tokens/fontFamilies.stylex'
 import { fontSizes } from './tokens/fontSizes.stylex'
 import { fontWeights } from './tokens/fontWeights.stylex'
@@ -292,15 +293,23 @@ const textAlignVariants = stylex.create({
 })
 
 const colorVariants = stylex.create({
-	color: (color: React.CSSProperties['color']) => ({ color }),
+	background: { color: colors.background },
+	text: { color: colors.text },
+	muted: { color: colors.muted },
+	primary: { color: colors.primary },
+	accent: { color: colors.accent },
+	accentBg: { color: colors.accentBg },
+	headerBg: { color: colors.headerBg },
 })
 
-const backgroundColorVariants = stylex.create({
-	backgroundColor: (
-		backgroundColor: React.CSSProperties['backgroundColor'],
-	) => ({
-		backgroundColor,
-	}),
+const backgroundVariants = stylex.create({
+	background: { backgroundColor: colors.background },
+	text: { backgroundColor: colors.text },
+	muted: { backgroundColor: colors.muted },
+	primary: { backgroundColor: colors.primary },
+	accent: { backgroundColor: colors.accent },
+	accentBg: { backgroundColor: colors.accentBg },
+	headerBg: { backgroundColor: colors.headerBg },
 })
 
 export type BoxBaseProps<E extends React.ElementType = React.ElementType> = {
@@ -322,8 +331,8 @@ export type BoxBaseProps<E extends React.ElementType = React.ElementType> = {
 	minH?: keyof typeof minHeightVariants
 	minW?: keyof typeof minWidthVariants
 	textAlign?: keyof typeof textAlignVariants
-	color?: React.CSSProperties['color']
-	backgroundColor?: React.CSSProperties['backgroundColor']
+	color?: keyof typeof colorVariants
+	background?: keyof typeof backgroundVariants
 	w?: keyof typeof widthVariants
 	p?: keyof typeof pVariants
 	pb?: keyof typeof pbVariants
@@ -336,7 +345,10 @@ export type BoxBaseProps<E extends React.ElementType = React.ElementType> = {
 }
 
 export type BoxProps<E extends React.ElementType> = BoxBaseProps<E> &
-	Omit<React.ComponentProps<E>, keyof BoxBaseProps | 'className' | 'style'>
+	Omit<
+		React.ComponentProps<E>,
+		keyof BoxBaseProps | 'className' | 'style' | 'color' | 'background'
+	>
 
 const defaultElement = 'div'
 
@@ -360,7 +372,7 @@ export function Box<E extends React.ElementType = typeof defaultElement>({
 	minW,
 	textAlign,
 	color,
-	backgroundColor,
+	background,
 	w,
 	p,
 	pb,
@@ -400,8 +412,8 @@ export function Box<E extends React.ElementType = typeof defaultElement>({
 		align && alignVariants[align],
 		justify && justifyVariants[justify],
 		textAlign && textAlignVariants[textAlign],
-		color && colorVariants.color(color),
-		backgroundColor && backgroundColorVariants.backgroundColor(backgroundColor),
+		color && colorVariants[color],
+		background && backgroundVariants[background],
 		style,
 	])
 
