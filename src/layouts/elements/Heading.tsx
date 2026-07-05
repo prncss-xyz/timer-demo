@@ -20,7 +20,7 @@ function createHeading(
 			<Box
 				as={baseElement}
 				fontFamily='heading'
-				fontWeight='bold'
+				fontWeight='semi'
 				pt={3}
 				textAlign='center'
 				fontSize={fontSizes[baseSize]}

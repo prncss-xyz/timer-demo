@@ -1,7 +1,7 @@
-export const siteFontFamily = 'Nunito, sans-serif'
+import { buildGoogleFontsCss2Url } from './src/utils/fontConstants'
+
+export const siteFontFamily = 'Nunito'
 
 export const viteWebfontDownloadConfig = [
-	'https://fonts.googleapis.com/css2' +
-		'?family=Nunito:ital,wght@0,400;0,700;1,400;1,700' +
-		'&display=block',
+	buildGoogleFontsCss2Url(siteFontFamily, [300, 400, 600, 700], [400, 700]),
 ]

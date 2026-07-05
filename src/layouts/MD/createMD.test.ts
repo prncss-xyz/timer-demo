@@ -34,7 +34,7 @@ describe('mdToHtml', () => {
 
 		expect(html).toContain('<svg')
 		expect(html).toContain('Start the timer')
-		expect(html).toContain('font-family:Nunito,sans-serif')
+		expect(html).toContain('font-family:Nunito')
 		expect(html).not.toContain('font-family:arial,sans-serif')
 		expect(html).not.toContain('<pre><code')
 	})

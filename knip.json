@@ -18,7 +18,8 @@
 		"src/features/darkMode/*",
 		"src/fixtures/*",
 		"src/**/*.story.{ts,tsx}",
-		"src/test.setup.ts"
+		"src/test.setup.ts",
+		"src/utils/fontConstants.ts"
 	],
 	"ignoreDependencies": [
 		"playwright-core",
