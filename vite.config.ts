@@ -75,6 +75,7 @@ export default defineConfig({
 		tasks: {
 			check: {
 				command: 'vp check',
+				dependsOn: ['build'],
 			},
 			staged: {
 				command: 'vp staged',
@@ -101,6 +102,20 @@ export default defineConfig({
 				env: ['VITE_GITHUB_REPOSITORY', 'VITE_BASE_URL', 'VITE_BASE_PATH'],
 			},
 			tsc: {
+				cache: true,
+				command: 'tsgo --noEmit',
+				input: [
+					'tsconfig.json',
+					'vite.config.ts',
+					'vite-plugins/**/*.{ts,tsx}',
+					'package.json',
+					'pnpm-workspace.yaml',
+					'content/**',
+					'**/src/**/*.{js,ts,jsx,tsx}',
+				],
+				dependsOn: ['build'],
+			},
+			'tsc:changed': {
 				cache: true,
 				command: 'tsgo --noEmit',
 				input: [
@@ -164,7 +179,7 @@ export default defineConfig({
 				dependsOn: [
 					'check:knip',
 					'build',
-					'tsc',
+					'tsc:changed',
 					'test:units:changed',
 					'test:e2e:changed',
 				],
