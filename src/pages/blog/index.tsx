@@ -4,7 +4,7 @@ import { Link } from 'waku'
 const page = getPage('blog')
 
 import { PageMeta } from '@/components/PageMeta'
-import { Col } from '@/layouts/Box'
+import { Box, Col } from '@/layouts/Box'
 import { H2 } from '@/layouts/elements/Heading'
 import { MD } from '@/layouts/MD'
 import { globalMessages } from '@/messages'
@@ -19,7 +19,9 @@ export default async function PostsIndex() {
 	return (
 		<div>
 			<PageMeta {...page} />
-			<MD>{page.content}</MD>
+			<Box bg='translucent'>
+				<MD>{page.content}</MD>
+			</Box>
 			{sortedBlogs.length ? (
 				<Col as='ul' gap={6}>
 					{sortedBlogs.map((post) => (

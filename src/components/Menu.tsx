@@ -1,21 +1,22 @@
 'use client'
 import { Link, useRouter } from 'waku'
 
-import { Box, Row } from '@/layouts/Box'
+import { Box, Row, type BoxProps } from '@/layouts/Box'
 
 export function Menu({
 	home,
 	allPages,
+	...rest
 }: {
 	home: string
 	allPages: {
 		slug: string
 		title: string
 	}[]
-}) {
+} & BoxProps<'div'>) {
 	const { path } = useRouter()
 	return (
-		<Row pt={8} align='baseline' justify='end' fontSize={4}>
+		<Row {...rest}>
 			{allPages.map(({ slug, title }) => {
 				const to = '/' + (slug === home ? '' : slug)
 				return (

@@ -12,7 +12,7 @@
 		"src/layouts/MD/*",
 		"src/layouts/images/*",
 		"src/layouts/elements/*",
-		"src/layouts/Box.tsx",
+		"src/layouts/Header.tsx",
 		"src/layouts/tokens/*.stylex.ts",
 		"src/utils/messages/*",
 		"src/features/darkMode/*",

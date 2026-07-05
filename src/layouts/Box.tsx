@@ -335,7 +335,7 @@ const borderVariants = stylex.create({
 	around: { borderStyle: 'solid' },
 })
 
-export type BoxBaseProps<E extends React.ElementType = React.ElementType> = {
+type BoxBaseProps<E extends React.ElementType = React.ElementType> = {
 	align?: keyof typeof alignVariants
 	as?: E
 	flex?: keyof typeof flexVariants
