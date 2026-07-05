@@ -1,18 +1,20 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import * as stylex from '@stylexjs/stylex'
 
-import { Box, Col, Row } from './Box'
-import { colors } from './tokens/colors.stylex'
+import { Box, Col, Row, type BoxProps } from './Box'
 
-const swatch = stylex.create({
-	box: {
-		backgroundColor: colors.accentBg,
-		borderColor: colors.accent,
-		borderStyle: 'solid',
-		borderWidth: '1px',
-		color: colors.text,
-	},
-})
+function SwatchBox(props: BoxProps<'div'>) {
+	return (
+		<Box
+			bg='accentBg'
+			borderColor='accent'
+			border='around'
+			borderWidth='thin'
+			color='text'
+			p={5}
+			{...props}
+		/>
+	)
+}
 
 const meta: Meta<typeof Box> = {
 	title: 'Layouts/Box',
@@ -27,17 +29,13 @@ type Story = StoryObj<typeof Box>
 
 /** A plain block element. */
 export const Basic: Story = {
-	render: () => (
-		<Box style={swatch.box} p={5}>
-			A simple box
-		</Box>
-	),
+	render: () => <SwatchBox>A simple box</SwatchBox>,
 }
 
 /** Direct color props backed by StyleX vars. */
 export const ColorAndBackground: Story = {
 	render: () => (
-		<Box background='accentBg' color='text' p={5}>
+		<Box bg='accentBg' color='text' p={5}>
 			Styled with color and backgroundColor
 		</Box>
 	),
@@ -47,15 +45,9 @@ export const ColorAndBackground: Story = {
 export const RowWithGap: Story = {
 	render: () => (
 		<Row gap={5} align='center'>
-			<Box style={swatch.box} p={4}>
-				One
-			</Box>
-			<Box style={swatch.box} p={4}>
-				Two
-			</Box>
-			<Box style={swatch.box} p={4}>
-				Three
-			</Box>
+			<SwatchBox p={4}>One</SwatchBox>
+			<SwatchBox p={4}>Two</SwatchBox>
+			<SwatchBox p={4}>Three</SwatchBox>
 		</Row>
 	),
 }
@@ -64,15 +56,9 @@ export const RowWithGap: Story = {
 export const ColWithGap: Story = {
 	render: () => (
 		<Col gap={4} align='start'>
-			<Box style={swatch.box} p={4}>
-				Top
-			</Box>
-			<Box style={swatch.box} p={4}>
-				Middle
-			</Box>
-			<Box style={swatch.box} p={4}>
-				Bottom
-			</Box>
+			<SwatchBox p={4}>Top</SwatchBox>
+			<SwatchBox p={4}>Middle</SwatchBox>
+			<SwatchBox p={4}>Bottom</SwatchBox>
 		</Col>
 	),
 }
@@ -81,22 +67,9 @@ export const ColWithGap: Story = {
 export const JustifyBetween: Story = {
 	render: () => (
 		<Row justify='between' w='halfScreen' align='center'>
-			<Box style={swatch.box} p={4}>
-				Left
-			</Box>
-			<Box style={swatch.box} p={4}>
-				Right
-			</Box>
+			<SwatchBox p={4}>Left</SwatchBox>
+			<SwatchBox p={4}>Right</SwatchBox>
 		</Row>
-	),
-}
-
-/** Polymorphic rendering via the `as` prop. */
-export const Polymorphic: Story = {
-	render: () => (
-		<Box as='span' style={swatch.box} p={4}>
-			A box rendered as a &lt;span&gt;
-		</Box>
 	),
 }
 
@@ -126,9 +99,7 @@ export const PaddingScale: Story = {
 		<Col gap={5} align='start'>
 			{([3, 5, 6] as const).map((p) => (
 				<Row key={p} gap={4} align='center'>
-					<Box style={swatch.box} p={p}>
-						p={p}
-					</Box>
+					<SwatchBox p={p}>p={p}</SwatchBox>
 				</Row>
 			))}
 		</Col>

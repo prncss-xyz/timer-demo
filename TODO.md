@@ -1,5 +1,5 @@
-- storybook: use a swatch
 - images in markdown
+- OTEL
 - embed waku components in markdown
   - https://github.com/remarkjs/remark-directive
   - possibly https://github.com/remark-embedder/core

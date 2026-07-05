@@ -14,8 +14,8 @@ import remarkRehype from 'remark-rehype'
 import { createHighlighter } from 'shiki'
 import { unified } from 'unified'
 
+import { siteFontFamily } from '../../../fontConstants'
 import { shikiThemes } from '../shiki'
-import { siteFontFamily } from '../tokens/fontConstants'
 import { rehypeListDepth } from './listDepth'
 
 const highlighter = createHighlighter({

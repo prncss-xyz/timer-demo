@@ -1,5 +1,6 @@
 import * as stylex from '@stylexjs/stylex'
 
+import { borderWidth } from './tokens/borderWidth.stylex'
 import { colors } from './tokens/colors.stylex'
 import { fontFamilies } from './tokens/fontFamilies.stylex'
 import { fontSizes } from './tokens/fontSizes.stylex'
@@ -299,7 +300,6 @@ const colorVariants = stylex.create({
 	primary: { color: colors.primary },
 	accent: { color: colors.accent },
 	accentBg: { color: colors.accentBg },
-	headerBg: { color: colors.headerBg },
 })
 
 const backgroundVariants = stylex.create({
@@ -309,7 +309,30 @@ const backgroundVariants = stylex.create({
 	primary: { backgroundColor: colors.primary },
 	accent: { backgroundColor: colors.accent },
 	accentBg: { backgroundColor: colors.accentBg },
-	headerBg: { backgroundColor: colors.headerBg },
+	translucent: {
+		backgroundColor: `color-mix(in srgb, ${colors.background}, transparent 20%)`,
+		backdropFilter: 'blur(12px)',
+	},
+})
+
+const borderColorVariants = stylex.create({
+	background: { borderColor: colors.background },
+	text: { borderColor: colors.text },
+	muted: { borderColor: colors.muted },
+	primary: { borderColor: colors.primary },
+	accent: { borderColor: colors.accent },
+	accentBg: { borderColor: colors.accentBg },
+})
+
+const borderWidthVariants = stylex.create({
+	none: { borderWidth: borderWidth.none },
+	thin: { borderWidth: borderWidth.thin },
+	thick: { borderWidth: borderWidth.thick },
+})
+
+const borderVariants = stylex.create({
+	bottom: { borderBottomStyle: 'solid' },
+	around: { borderStyle: 'solid' },
 })
 
 export type BoxBaseProps<E extends React.ElementType = React.ElementType> = {
@@ -332,7 +355,10 @@ export type BoxBaseProps<E extends React.ElementType = React.ElementType> = {
 	minW?: keyof typeof minWidthVariants
 	textAlign?: keyof typeof textAlignVariants
 	color?: keyof typeof colorVariants
-	background?: keyof typeof backgroundVariants
+	bg?: keyof typeof backgroundVariants
+	borderColor?: keyof typeof borderColorVariants
+	border?: keyof typeof borderVariants
+	borderWidth?: keyof typeof borderWidthVariants
 	w?: keyof typeof widthVariants
 	p?: keyof typeof pVariants
 	pb?: keyof typeof pbVariants
@@ -372,7 +398,10 @@ export function Box<E extends React.ElementType = typeof defaultElement>({
 	minW,
 	textAlign,
 	color,
-	background,
+	bg: background,
+	borderColor,
+	border,
+	borderWidth,
 	w,
 	p,
 	pb,
@@ -414,6 +443,9 @@ export function Box<E extends React.ElementType = typeof defaultElement>({
 		textAlign && textAlignVariants[textAlign],
 		color && colorVariants[color],
 		background && backgroundVariants[background],
+		borderColor && borderColorVariants[borderColor],
+		border && borderVariants[border],
+		borderWidth && borderWidthVariants[borderWidth],
 		style,
 	])
 

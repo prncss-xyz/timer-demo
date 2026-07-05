@@ -1,4 +1,3 @@
-import * as stylex from '@stylexjs/stylex'
 import { allPages } from 'content-collections'
 import { settings } from 'content-collections'
 import type { ReactNode } from 'react'
@@ -11,23 +10,11 @@ import { PageMeta } from '@/components/PageMeta'
 import { Box, Col, Row } from '@/layouts/Box'
 import { DevStyleXInject } from '@/layouts/DevStyleXInject'
 import { Header } from '@/layouts/Header'
-import { borderWidth } from '@/layouts/tokens/borderWidth.stylex'
-import { colors } from '@/layouts/tokens/colors.stylex'
 import { links } from '@/links'
 import { basePath } from '@/meta'
 const { title, description } = settings
 
 type RootLayoutProps = { children: ReactNode }
-
-const styles = stylex.create({
-	header: {
-		backgroundColor: colors.headerBg,
-		borderBottomWidth: borderWidth.thin,
-		borderBottomStyle: 'solid',
-		borderBottomColor: colors.accent,
-		backdropFilter: 'blur(12px)',
-	},
-})
 
 const mediaIcons = {
 	LinkedIn: FaLinkedin,
@@ -99,7 +86,10 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 					py={4}
 					align='center'
 					justify='between'
-					style={styles.header}
+					bg='translucent'
+					borderColor='accent'
+					borderWidth='thin'
+					border='bottom'
 				>
 					<Box fontSize={5}>
 						<Link to='/'>{title}</Link>

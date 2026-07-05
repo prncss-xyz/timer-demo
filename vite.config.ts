@@ -7,6 +7,7 @@ import react, { reactCompilerPreset } from '@vitejs/plugin-react'
 import { ViteWebfontDownload } from 'vite-plugin-webfont-dl'
 import { defineConfig } from 'vite-plus'
 
+import { viteWebfontDownloadConfig } from './fontConstants'
 import lint from './oxlint.config'
 import {
 	stylexLightningCssOptions,
@@ -59,11 +60,7 @@ export default defineConfig({
 		contentCollections({
 			isEnabled: () => !process.env.VITEST,
 		}),
-		ViteWebfontDownload([
-			'https://fonts.googleapis.com/css2' +
-				'?family=Nunito:ital,wght@0,400;0,700;1,400;1,700' +
-				'&display=block',
-		]),
+		ViteWebfontDownload(viteWebfontDownloadConfig),
 		injectWebfontToCss,
 	],
 	resolve: {
