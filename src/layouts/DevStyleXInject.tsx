@@ -3,6 +3,11 @@ import { useLayoutEffect } from 'react'
 
 const LAYER_ORDER_STYLE_ID = 'stylex-layer-order'
 
+// vite-plugin-webfont-dl injects webfont CSS into generated HTML/CSS for
+// production builds. Waku dev does not pass its SSR document through Vite's
+// transformIndexHtml hook, so request the plugin's dev middleware CSS directly.
+const DEV_WEBFONT_CSS_PATH = '/@webfonts/webfonts.css'
+
 /**
  * In Waku (app) dev and in the Storybook build, the reset stylesheet
  * (`@layer reset { ... }` from `src/pages/reset.css`) lands before the StyleX
@@ -44,7 +49,10 @@ export function DevStyleXInject() {
 
 	if (import.meta.env.DEV) {
 		return (
-			<link href='/virtual:stylex.css' rel='stylesheet' precedence='high' />
+			<>
+				<link href={DEV_WEBFONT_CSS_PATH} rel='stylesheet' precedence='high' />
+				<link href='/virtual:stylex.css' rel='stylesheet' precedence='high' />
+			</>
 		)
 	}
 	return null
