@@ -23,7 +23,7 @@ export default async function RootElement({ children }: RootElementProps) {
 	)
 }
 
-export const getConfig = async () => {
+export async function getConfig() {
 	return {
 		render: 'static',
 	} as const

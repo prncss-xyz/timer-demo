@@ -1,6 +1,10 @@
+import { settings } from 'content-collections'
+
 import { QRView } from '@/components/QR'
 import { Col } from '@/layouts/Box'
-import { baseUrl, title } from '@/meta'
+import { baseUrl } from '@/meta'
+
+const { title } = settings
 
 export default async function QRPage() {
 	return (
@@ -11,7 +15,7 @@ export default async function QRPage() {
 	)
 }
 
-export const getConfig = async () => {
+export async function getConfig() {
 	return {
 		render: 'static',
 	} as const

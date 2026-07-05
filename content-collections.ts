@@ -1,4 +1,8 @@
-import { defineCollection, defineConfig } from '@content-collections/core'
+import {
+	defineCollection,
+	defineConfig,
+	defineSingleton,
+} from '@content-collections/core'
 import { z } from 'zod'
 
 const blog = defineCollection({
@@ -33,6 +37,17 @@ const pages = defineCollection({
 	}),
 })
 
+const settings = defineSingleton({
+	name: 'settings',
+	filePath: 'content/settings.yaml',
+	typeName: 'Settings',
+	parser: 'yaml',
+	schema: z.object({
+		title: z.string(),
+		description: z.string(),
+	}),
+})
+
 export default defineConfig({
-	content: [blog, pages],
+	content: [blog, pages, settings],
 })

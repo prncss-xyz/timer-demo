@@ -1,5 +1,6 @@
 import * as stylex from '@stylexjs/stylex'
 import { allPages } from 'content-collections'
+import { settings } from 'content-collections'
 import type { ReactNode } from 'react'
 import type { IconType } from 'react-icons'
 import { FaBluesky, FaGithub, FaLinkedin, FaRss } from 'react-icons/fa6'
@@ -13,7 +14,8 @@ import { Header } from '@/layouts/Header'
 import { borderWidth } from '@/layouts/tokens/borderWidth.stylex'
 import { colors } from '@/layouts/tokens/colors.stylex'
 import { links } from '@/links'
-import { basePath, title, description } from '@/meta'
+import { basePath } from '@/meta'
+const { title, description } = settings
 
 type RootLayoutProps = { children: ReactNode }
 

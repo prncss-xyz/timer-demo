@@ -1,40 +1,40 @@
 import { expect, test } from '@playwright/test'
 
+import { noop } from '@/utils/messages/utils'
+
 import { buildBasePath } from '../src/basePath'
 
 const root = buildBasePath(process.env)
 
-const getBlogImageState = () =>
-	window.document.querySelector('main img[aria-hidden="true"]') &&
-	window.document.querySelector('main img:not([aria-hidden])')
-		? (() => {
-				const placeholder = window.document.querySelector(
-					'main img[aria-hidden="true"]',
-				) as HTMLImageElement
-				const image = window.document.querySelector(
-					'main img:not([aria-hidden])',
-				) as HTMLImageElement
-				const placeholderRect = placeholder.getBoundingClientRect()
-				const imageRect = image.getBoundingClientRect()
-				return {
-					image: {
-						complete: image.complete,
-						height: imageRect.height,
-						width: imageRect.width,
-					},
-					placeholder: {
-						height: placeholderRect.height,
-						width: placeholderRect.width,
-					},
-					viewportHeight: window.innerHeight,
-				}
-			})()
-		: null
+function getBlogImageState() {
+	const placeholder = window.document.querySelector(
+		'main img[aria-hidden="true"]',
+	)
+	const image = window.document.querySelector('main img:not([aria-hidden])')
+	if (!placeholder || !image) return null
+
+	const placeholderEl = placeholder as HTMLImageElement
+	const imageEl = image as HTMLImageElement
+	const placeholderRect = placeholderEl.getBoundingClientRect()
+	const imageRect = imageEl.getBoundingClientRect()
+	return {
+		image: {
+			complete: imageEl.complete,
+			height: imageRect.height,
+			width: imageRect.width,
+		},
+		placeholder: {
+			height: placeholderRect.height,
+			width: placeholderRect.width,
+		},
+		viewportHeight: window.innerHeight,
+	}
+}
 
 test('blog image placeholder reserves full rendered image size while loading', async ({
 	page,
 }) => {
-	let unblockImage = () => {}
+	let unblockImage: () => void = noop
 	const imageRequestBlocked = new Promise<void>((resolve) => {
 		void page.route('**/gen/*.webp', async (route) => {
 			resolve()

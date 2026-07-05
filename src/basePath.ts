@@ -6,5 +6,6 @@
  * `import.meta.env`) and Playwright config (Node, via `process.env`)
  * can't drift apart — without coupling this module to either source.
  */
-export const buildBasePath = (env: { VITE_BASE_PATH?: string }): string =>
-	(env.VITE_BASE_PATH ?? '') + '/'
+export function buildBasePath(env: { VITE_BASE_PATH?: string }): string {
+	return (env.VITE_BASE_PATH ?? '') + '/'
+}

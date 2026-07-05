@@ -14,7 +14,7 @@ const styles = stylex.create({
 	},
 })
 
-export const Header = ({ children }: { children: ReactNode }) => {
+export function Header({ children }: { children: ReactNode }) {
 	return (
 		<>
 			<header {...stylex.props(styles.header)}>{children}</header>

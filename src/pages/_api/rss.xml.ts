@@ -1,10 +1,12 @@
-import { allBlogs } from 'content-collections'
+import { allBlogs, settings } from 'content-collections'
 import { Feed } from 'feed'
 
 import { mdToHtml, mdToText } from '@/layouts/MD/createMD'
-import { basePath, baseUrl, description, title } from '@/meta'
+import { basePath, baseUrl } from '@/meta'
 
-export const GET = async () => {
+const { title, description } = settings
+
+export async function GET() {
 	const feed = new Feed({
 		title,
 		description,
@@ -45,7 +47,7 @@ export const GET = async () => {
 	})
 }
 
-export const getConfig = async () => {
+export async function getConfig() {
 	return {
 		render: 'static',
 	} as const

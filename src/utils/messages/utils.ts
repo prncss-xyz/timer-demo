@@ -1,6 +1,8 @@
 export type AnyFunction = (...args: any[]) => any
 export type NonFunction<T> = T extends AnyFunction ? never : T
 
+export function noop(..._args: unknown[]): void {}
+
 export function id<T>(t: T) {
 	return t
 }

@@ -15,7 +15,7 @@ let cacheRoot = ''
 let emittedDir = ''
 let testRoot = ''
 
-const restoreEnv = (key: string, value: string | undefined) => {
+function restoreEnv(key: string, value: string | undefined) {
 	if (value === undefined) {
 		delete process.env[key]
 		return
@@ -24,10 +24,11 @@ const restoreEnv = (key: string, value: string | undefined) => {
 	process.env[key] = value
 }
 
-const cleanGeneratedImages = () =>
-	rm(testRoot, { force: true, recursive: true })
+function cleanGeneratedImages() {
+	return rm(testRoot, { force: true, recursive: true })
+}
 
-const readFiles = async (directory: string) => {
+async function readFiles(directory: string) {
 	try {
 		return await readdir(directory)
 	} catch {
@@ -35,8 +36,8 @@ const readFiles = async (directory: string) => {
 	}
 }
 
-const createPng = (background: string) =>
-	sharp({
+function createPng(background: string) {
+	return sharp({
 		create: {
 			background,
 			channels: 3,
@@ -46,9 +47,10 @@ const createPng = (background: string) =>
 	})
 		.png()
 		.toBuffer()
+}
 
-const mockImageFetch = (buffer: Buffer) =>
-	vi.fn(
+function mockImageFetch(buffer: Buffer) {
+	return vi.fn(
 		async () =>
 			new Response(Uint8Array.from(buffer).buffer, {
 				headers: {
@@ -56,6 +58,7 @@ const mockImageFetch = (buffer: Buffer) =>
 				},
 			}),
 	)
+}
 
 describe('getResponsiveImage', () => {
 	beforeEach(async () => {

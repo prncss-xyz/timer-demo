@@ -20,20 +20,22 @@ export default async function PostsIndex() {
 		<div>
 			<PageMeta {...page} />
 			<MD>{page.content}</MD>
-			<Col as='ul' gap={6}>
-				{sortedBlogs.length
-					? sortedBlogs.map((post) => (
-							<li>
-								<Link to={`/blog/${post._meta.path}`}>
-									<Col key={post.slug}>
-										<H2 textAlign='left'>{post.title}</H2>
-										<div>{post.date}</div>
-									</Col>
-								</Link>
-							</li>
-						))
-					: globalMessages.comingSoon}
-			</Col>
+			{sortedBlogs.length ? (
+				<Col as='ul' gap={6}>
+					{sortedBlogs.map((post) => (
+						<li>
+							<Link to={`/blog/${post._meta.path}`}>
+								<Col key={post.slug}>
+									<H2 textAlign='left'>{post.title}</H2>
+									<div>{post.date}</div>
+								</Col>
+							</Link>
+						</li>
+					))}
+				</Col>
+			) : (
+				globalMessages.comingSoon
+			)}
 		</div>
 	)
 }

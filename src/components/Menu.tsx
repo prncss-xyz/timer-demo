@@ -21,7 +21,7 @@ export function Menu({
 				return (
 					<Box
 						px={5}
-						color={path === to ? 'primary' : 'muted'}
+						color={path === to ? 'text' : 'muted'}
 						as={Link}
 						key={String(to)}
 						to={to as any}

@@ -7,7 +7,7 @@ import { buildBasePath } from '../src/basePath'
 // leading slash to avoid double-slashes.
 const root = buildBasePath(process.env)
 
-const normalizePageUrl = (href: string, rootPath: string) => {
+function normalizePageUrl(href: string, rootPath: string) {
 	const url = new URL(href)
 	const pathname =
 		url.pathname !== rootPath && url.pathname.endsWith('/')
@@ -17,7 +17,7 @@ const normalizePageUrl = (href: string, rootPath: string) => {
 	return `${url.origin}${pathname}${url.search}`
 }
 
-const isInternalPageUrl = (href: string, origin: string, rootPath: string) => {
+function isInternalPageUrl(href: string, origin: string, rootPath: string) {
 	try {
 		const url = new URL(href)
 		return (

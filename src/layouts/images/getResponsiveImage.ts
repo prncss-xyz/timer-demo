@@ -18,16 +18,26 @@ import { basePath } from '@/meta'
 import type { ResponsiveImage } from './responsiveImage'
 
 const defaultCacheRoot = './.cache/responsive-images/'
-const getCacheRoot = () =>
-	process.env.RESPONSIVE_IMAGE_CACHE_ROOT ?? defaultCacheRoot
-const getOriginalsDir = () => join(getCacheRoot(), 'originals')
-const getVariantsDir = () => join(getCacheRoot(), 'variants')
-const getManifestPath = () => join(getCacheRoot(), 'manifest.json')
-const getOutputDir = () =>
-	process.env.RESPONSIVE_IMAGE_OUTPUT_DIR ??
-	(process.env.NODE_ENV === 'development'
-		? './public/gen/'
-		: './dist/public/gen/')
+function getCacheRoot() {
+	return process.env.RESPONSIVE_IMAGE_CACHE_ROOT ?? defaultCacheRoot
+}
+function getOriginalsDir() {
+	return join(getCacheRoot(), 'originals')
+}
+function getVariantsDir() {
+	return join(getCacheRoot(), 'variants')
+}
+function getManifestPath() {
+	return join(getCacheRoot(), 'manifest.json')
+}
+function getOutputDir() {
+	return (
+		process.env.RESPONSIVE_IMAGE_OUTPUT_DIR ??
+		(process.env.NODE_ENV === 'development'
+			? './public/gen/'
+			: './dist/public/gen/')
+	)
+}
 const publicPrefix = `${basePath}gen/`
 
 const widths = [640, 750, 828, 1080, 1200, 1920, 2048, 3840]
@@ -66,23 +76,35 @@ type Manifest = {
 	originals: Record<string, CachedOriginalRecord>
 }
 
-const emptyManifest = (): Manifest => ({ originals: {} })
+function emptyManifest(): Manifest {
+	return { originals: {} }
+}
 
-const hashBuffer = (input: Buffer) =>
-	createHash('sha256').update(input).digest('hex')
+function hashBuffer(input: Buffer) {
+	return createHash('sha256').update(input).digest('hex')
+}
 
-const hashString = (input: string) => hashBuffer(Buffer.from(input))
+function hashString(input: string) {
+	return hashBuffer(Buffer.from(input))
+}
 
-const hashJson = (input: unknown) => hashString(JSON.stringify(input))
+function hashJson(input: unknown) {
+	return hashString(JSON.stringify(input))
+}
 
-const shortHash = (input: string) => input.slice(0, 12)
+function shortHash(input: string) {
+	return input.slice(0, 12)
+}
 
-const getPublicSource = (filename: string, width: number) =>
-	`${publicPrefix}${filename} ${width}w`
+function getPublicSource(filename: string, width: number) {
+	return `${publicPrefix}${filename} ${width}w`
+}
 
-const getSourceUrl = (filename: string) => `${publicPrefix}${filename}`
+function getSourceUrl(filename: string) {
+	return `${publicPrefix}${filename}`
+}
 
-const fileExists = async (filePath: string) => {
+async function fileExists(filePath: string) {
 	try {
 		await stat(filePath)
 		return true
@@ -91,14 +113,15 @@ const fileExists = async (filePath: string) => {
 	}
 }
 
-const ensureDirectories = () =>
-	Promise.all([
+function ensureDirectories() {
+	return Promise.all([
 		mkdir(getOriginalsDir(), { recursive: true }),
 		mkdir(getVariantsDir(), { recursive: true }),
 		mkdir(getOutputDir(), { recursive: true }),
 	])
+}
 
-const readManifest = async () => {
+async function readManifest() {
 	try {
 		return JSON.parse(await readFile(getManifestPath(), 'utf8')) as Manifest
 	} catch {
@@ -106,7 +129,7 @@ const readManifest = async () => {
 	}
 }
 
-const writeManifest = async (manifest: Manifest) => {
+async function writeManifest(manifest: Manifest) {
 	const cacheRoot = getCacheRoot()
 	const manifestPath = getManifestPath()
 	await mkdir(cacheRoot, { recursive: true })
@@ -115,10 +138,7 @@ const writeManifest = async (manifest: Manifest) => {
 	await rename(tempPath, manifestPath)
 }
 
-const getOriginalExtension = (
-	remoteUrl: string,
-	contentType?: string | null,
-) => {
+function getOriginalExtension(remoteUrl: string, contentType?: string | null) {
 	if (contentType?.includes('jpeg')) return 'jpg'
 	if (contentType?.includes('png')) return 'png'
 	if (contentType?.includes('webp')) return 'webp'
@@ -133,10 +153,11 @@ const getOriginalExtension = (
 	}
 }
 
-const wait = (delay: number) =>
-	new Promise((resolve) => {
+function wait(delay: number) {
+	return new Promise((resolve) => {
 		setTimeout(resolve, delay)
 	})
+}
 
 async function fetchRemoteImage(remoteUrl: string, attempt = 0) {
 	try {
@@ -155,18 +176,18 @@ async function fetchRemoteImage(remoteUrl: string, attempt = 0) {
 	}
 }
 
-const getPlaceholder = async (
+async function getPlaceholder(
 	input: Buffer | string,
 	width: number,
 	height: number,
-) => {
+) {
 	const buffer = await sharp(input).resize(20).blur().webp().toBuffer()
 	const href = `data:image/webp;base64,${buffer.toString('base64')}`
 	const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}"><image href="${href}" width="${width}" height="${height}" preserveAspectRatio="xMidYMid slice"/></svg>`
 	return `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`
 }
 
-const readCachedOriginal = async (record?: CachedOriginalRecord) => {
+async function readCachedOriginal(record?: CachedOriginalRecord) {
 	if (!record) return null
 
 	const originalPath = join(getOriginalsDir(), record.filename)
@@ -178,7 +199,7 @@ const readCachedOriginal = async (record?: CachedOriginalRecord) => {
 	} satisfies CachedOriginal
 }
 
-const fetchOriginal = async (remoteUrl: string) => {
+async function fetchOriginal(remoteUrl: string) {
 	const response = await fetchRemoteImage(remoteUrl)
 	const buffer = Buffer.from(await response.arrayBuffer())
 	const contentHash = hashBuffer(buffer)
@@ -208,7 +229,7 @@ const fetchOriginal = async (remoteUrl: string) => {
 	} satisfies CachedOriginal
 }
 
-const getOriginal = async (remoteUrl: string) => {
+async function getOriginal(remoteUrl: string) {
 	const urlHash = shortHash(hashString(remoteUrl))
 	const manifest = await readManifest()
 
@@ -237,16 +258,18 @@ const getOriginal = async (remoteUrl: string) => {
 	}
 }
 
-const createVariantKey = (original: CachedOriginal, width: number) => ({
-	contentHash: original.contentHash,
-	format: outputFormat,
-	quality: outputQuality,
-	transformVersion,
-	url: original.url,
-	width,
-})
+function createVariantKey(original: CachedOriginal, width: number) {
+	return {
+		contentHash: original.contentHash,
+		format: outputFormat,
+		quality: outputQuality,
+		transformVersion,
+		url: original.url,
+		width,
+	}
+}
 
-const getVariant = async (original: CachedOriginal, width: number) => {
+async function getVariant(original: CachedOriginal, width: number) {
 	const variantHash = shortHash(hashJson(createVariantKey(original, width)))
 	const filename = `${variantHash}.${outputFormat}`
 	const variantPath = join(getVariantsDir(), filename)
@@ -273,7 +296,7 @@ const getVariant = async (original: CachedOriginal, width: number) => {
 	} satisfies CachedVariant
 }
 
-const emitVariant = async (variant: CachedVariant) => {
+async function emitVariant(variant: CachedVariant) {
 	const emittedPath = join(getOutputDir(), variant.filename)
 	if (!(await fileExists(emittedPath))) {
 		await copyFile(variant.path, emittedPath)
