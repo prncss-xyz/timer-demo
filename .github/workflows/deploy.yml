@@ -65,9 +65,9 @@ jobs:
       - name: Check, build (with basePath)
         run: vpr ci
         env:
-          DEPLOY_GITHUB_REPOSITORY: ${{ github.repository }}
-          DEPLOY_BASE_URL: ${{ steps.pages.outputs.base_url }}
-          DEPLOY_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          VITE_GITHUB_REPOSITORY: ${{ github.repository }}
+          VITE_BASE_URL: ${{ steps.pages.outputs.base_url }}
+          VITE_BASE_PATH: ${{ steps.pages.outputs.base_path }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
         with:
