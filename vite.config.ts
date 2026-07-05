@@ -134,7 +134,8 @@ export default defineConfig({
 			},
 			'test:units': {
 				cache: true,
-				command: 'vp test',
+				command:
+					'env -u VITE_GITHUB_REPOSITORY -u VITE_BASE_URL -u VITE_BASE_PATH vp test',
 				input: [
 					'tsconfig.json',
 					'vite.config.ts',
@@ -146,7 +147,8 @@ export default defineConfig({
 				],
 			},
 			'test:units:changed': {
-				command: 'vp test --changed',
+				command:
+					'env -u VITE_GITHUB_REPOSITORY -u VITE_BASE_URL -u VITE_BASE_PATH vp test --changed',
 			},
 			ci: {
 				command: 'true',
