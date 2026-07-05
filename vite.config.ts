@@ -14,6 +14,21 @@ import {
 } from './stylex.config'
 import injectWebfontToCss from './vite-plugins/inject-webfont-to-css'
 
+function withDeployEnv(command: string) {
+	return [
+		'VITE_GITHUB_REPOSITORY="${DEPLOY_GITHUB_REPOSITORY:-}"',
+		'VITE_BASE_URL="${DEPLOY_BASE_URL:-http://localhost:3000}"',
+		'VITE_BASE_PATH="${DEPLOY_BASE_PATH:-}"',
+		command,
+	].join(' ')
+}
+
+const deployEnvInputs = [
+	'DEPLOY_GITHUB_REPOSITORY',
+	'DEPLOY_BASE_URL',
+	'DEPLOY_BASE_PATH',
+]
+
 export default defineConfig({
 	build: {
 		rollupOptions: {
@@ -87,7 +102,7 @@ export default defineConfig({
 				dependsOn: ['build'],
 			},
 			build: {
-				command: 'waku build',
+				command: withDeployEnv('waku build'),
 				output: ['dist/**'],
 				input: [
 					'tsconfig.json',
@@ -98,7 +113,7 @@ export default defineConfig({
 					'content/**',
 					'**/src/**/*.{js,ts,jsx,tsx}',
 				],
-				env: ['VITE_GITHUB_REPOSITORY', 'VITE_BASE_URL', 'VITE_BASE_PATH'],
+				env: deployEnvInputs,
 			},
 			tsc: {
 				cache: true,
@@ -115,7 +130,7 @@ export default defineConfig({
 			},
 			'test:e2e': {
 				cache: true,
-				command: 'playwright test',
+				command: withDeployEnv('playwright test'),
 				input: [
 					'tsconfig.json',
 					'vite.config.ts',
@@ -127,7 +142,7 @@ export default defineConfig({
 					'playwright.config.ts',
 				],
 				dependsOn: ['build'],
-				env: ['VITE_GITHUB_REPOSITORY', 'VITE_BASE_URL', 'VITE_BASE_PATH'],
+				env: deployEnvInputs,
 			},
 			'test:e2e:changed': {
 				command: 'playwright test --only-changed',
