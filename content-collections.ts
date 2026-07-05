@@ -2,7 +2,7 @@ import { defineCollection, defineConfig } from '@content-collections/core'
 import { z } from 'zod'
 
 const blog = defineCollection({
-	directory: 'sources/blog',
+	directory: 'content/blog',
 	include: '*.md',
 	name: 'blog',
 	schema: z.object({
@@ -19,7 +19,7 @@ const blog = defineCollection({
 })
 
 const pages = defineCollection({
-	directory: 'sources/pages',
+	directory: 'content/pages',
 	include: '*.md',
 	name: 'pages',
 	schema: z.object({
