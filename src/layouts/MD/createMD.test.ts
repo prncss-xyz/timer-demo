@@ -32,8 +32,19 @@ describe('mdToHtml', () => {
 			'a test paragraph\n\n```mermaid\nflowchart TD\n  Start([Start]) --> Timer[Start the timer]\n  Timer --> Decide{Need a break?}\n  Decide -- Yes --> Pause[Pause]\n  Decide -- No --> Done[Done]\n```',
 		)
 
-		expect(html).toContain('<svg')
-		expect(html).toContain('Start the timer')
+		// `img-svg` embeds the diagram as `<img src="data:image/svg+xml,...">`, so the
+		// SVG payload is URL-encoded inside the data URI rather than inlined.
+		expect(html).toContain('<img')
+		expect(html).toMatch(/src="data:image\/svg\+xml,/)
+		// Labels must be rendered as native SVG `<text>`/`<tspan>` (htmlLabels:false),
+		// never as HTML inside `<foreignObject>` — which is invisible under `<img>`.
+		expect(html).not.toContain('foreignObject')
+		// Mermaid's flowchart path omits `xml:space` on its word-tspans, so the
+		// leading-space word separators can be stripped under default `xml:space`
+		// when the SVG is parsed as an `<img>` data URI. Verify the SVG root is
+		// stamped `xml:space='preserve'` so words stay separated in any renderer.
+		// (rehype-stringify HTML-escapes `'` as `&#x27;`, so accept either form.)
+		expect(html).toMatch(/xml:space=(&#x27;|')preserve(&#x27;|')/)
 		expect(html).toContain('font-family:Nunito')
 		expect(html).not.toContain('font-family:arial,sans-serif')
 		expect(html).not.toContain('<pre><code')
