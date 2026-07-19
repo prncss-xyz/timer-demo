@@ -7,6 +7,7 @@ import { Image } from '../images/OptimizedImage'
 const styles = stylex.create({
 	container: {
 		flexGrow: 0,
+		width: '100%',
 	},
 	image: {
 		display: 'block',
@@ -23,6 +24,7 @@ const styles = stylex.create({
 		maxWidth: '100%',
 		objectFit: 'contain',
 		width: 'auto',
+		marginInline: 'auto',
 	},
 })
 
@@ -33,6 +35,16 @@ export async function Img({
 	...rest
 }: BoxProps<'span'> & BoxProps<'img'>) {
 	if (src) {
+		if (src.startsWith('data:'))
+			return (
+				<Box
+					as='img'
+					alt={alt}
+					src={src}
+					{...rest}
+					{...stylex.props([styles.fallbackImage, style])}
+				/>
+			)
 		const image = await getResponsiveImage(src, alt).catch(() => null)
 		return image ? (
 			<Image

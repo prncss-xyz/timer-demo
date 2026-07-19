@@ -32,10 +32,40 @@ describe('mdToHtml', () => {
 			'a test paragraph\n\n```mermaid\nflowchart TD\n  Start([Start]) --> Timer[Start the timer]\n  Timer --> Decide{Need a break?}\n  Decide -- Yes --> Pause[Pause]\n  Decide -- No --> Done[Done]\n```',
 		)
 
-		expect(html).toContain('<svg')
-		expect(html).toContain('Start the timer')
-		expect(html).toContain('font-family:Nunito')
-		expect(html).not.toContain('font-family:arial,sans-serif')
+		// `img-svg` embeds the diagram as `<img src="data:image/svg+xml,...">`, so the
+		// SVG payload is URL-encoded inside the data URI rather than inlined.
+		expect(html).toContain('<picture>')
+		expect(html).toMatch(
+			/<source[^>]*media="\(prefers-color-scheme: dark\)"[^>]*srcset="data:image\/svg\+xml,/,
+		)
+		expect(html).toContain('<img')
+		expect(html).toMatch(/src="data:image\/svg\+xml,/)
+		// Labels must be rendered as native SVG `<text>`/`<tspan>` (htmlLabels:false),
+		// never as HTML inside `<foreignObject>` — which is invisible under `<img>`.
+		expect(html).not.toContain('foreignObject')
+		const encodedSvg = html.match(/src="data:image\/svg\+xml,([^"]+)"/)?.[1]
+		expect(encodedSvg).toBeDefined()
+		const svg = decodeURIComponent(encodedSvg!.replaceAll('&#x27;', "'"))
+		// Mermaid's flowchart path omits `xml:space` on its word-tspans, so the
+		// SVG root must preserve their leading word-separator whitespace.
+		expect(svg).toContain("xml:space='preserve'")
+		expect(svg).toContain('font-family:Nunito')
+		// SVGs loaded through `<img>` cannot use the document's @font-face rules.
+		// Embed the font fetched from the site's shared webfont source into the SVG.
+		expect(svg).toContain('@font-face')
+		expect(svg).toContain('data:font/woff2;base64,')
+		expect(svg).not.toContain('font-family:arial,sans-serif')
+		const encodedThemeSvgs = [
+			...html.matchAll(/(?:src|srcset)="data:image\/svg\+xml,([^"]+)"/g),
+		]
+		expect(encodedThemeSvgs).toHaveLength(2)
+		for (const [, encodedThemeSvg] of encodedThemeSvgs) {
+			const themeSvg = decodeURIComponent(
+				encodedThemeSvg!.replaceAll('&#x27;', "'"),
+			)
+			expect(themeSvg).toContain('@font-face')
+			expect(themeSvg).toContain('data:font/woff2;base64,')
+		}
 		expect(html).not.toContain('<pre><code')
 	})
 })

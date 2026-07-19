@@ -24,7 +24,7 @@ const x = 3
 
 ```mermaid
 flowchart TD
-  Start([Start]) --> Timer[Start the timer]
+  Start([Mermaid]) --> Timer[Start the timer]
   Timer --> Decide{Need a break?}
   Decide -- Yes --> Pause[Pause]
   Decide -- No --> Done[Done]
