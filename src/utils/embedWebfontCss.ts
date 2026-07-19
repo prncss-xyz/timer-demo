@@ -15,7 +15,9 @@ async function fetchOk(url: string, attempts = 3): Promise<Response> {
 			headers: { 'user-agent': browserUserAgent },
 		})
 		if (!response.ok) {
-			throw new Error(`Failed to fetch webfont resource ${url}: ${response.status}`)
+			throw new Error(
+				`Failed to fetch webfont resource ${url}: ${response.status}`,
+			)
 		}
 		return response
 	} catch (error) {
@@ -42,9 +44,7 @@ function selectFontCss(css: string, fontFamily: string, text: string) {
 	return (css.match(fontFacePattern) ?? [])
 		.filter(
 			(fontFace) =>
-				new RegExp(`font-family:\\s*['"]?${fontFamily}['"]?`).test(
-					fontFace,
-				) &&
+				new RegExp(`font-family:\\s*['"]?${fontFamily}['"]?`).test(fontFace) &&
 				/font-style:\s*normal/.test(fontFace) &&
 				/font-weight:\s*400/.test(fontFace) &&
 				supportsText(fontFace, text),
